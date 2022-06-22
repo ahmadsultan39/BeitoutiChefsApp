@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'core/util/constants.dart';
 import 'injection.config.dart';
 
@@ -13,6 +14,14 @@ abstract class RegisterModule {
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 
+  @lazySingleton
+  Dio get dio => getDio();
+
+  @lazySingleton
+  Location get location => Location();
+
+  @lazySingleton
+  FilePicker get filePicker => FilePicker.platform;
 }
 
 @InjectableInit(
@@ -25,7 +34,7 @@ Future<void> configureDependencies() async => $initGetIt(sl);
 Dio getDio() {
   Dio dio = Dio(
     BaseOptions(
-      baseUrl: Endpoints.BASE_URL,
+      baseUrl: Endpoints.baseUrl,
       headers: {
         "Accept": "application/json",
       },
