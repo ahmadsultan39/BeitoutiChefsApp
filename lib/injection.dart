@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/util/constants.dart';
@@ -19,6 +20,11 @@ abstract class RegisterModule {
 
   @lazySingleton
   Location get location => Location();
+
+  @lazySingleton
+  InternetConnectionChecker get internetConnectionChecker =>
+      InternetConnectionChecker();
+
 
   @lazySingleton
   FilePicker get filePicker => FilePicker.platform;

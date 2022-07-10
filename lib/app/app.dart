@@ -31,15 +31,16 @@ class _AppState extends State<App> {
           debugShowCheckedModeBanner: false,
           onGenerateRoute: GenerateScreen.onGenerate,
           theme: ThemeData(
-              fontFamily: "Thesans",
-              primaryColor: const Color(0xFF013760),
-              backgroundColor: const Color(0xFFE1E8EA),
-              colorScheme: ColorScheme.fromSwatch().copyWith(
-                primary: const Color(0xFF013760),
-                secondary: const Color(0xFF2B9694),
-                background: const Color(0xFFE1E8EA),
-                tertiary: const Color(0xFFEC9005),
-              )),
+            fontFamily: "Thesans",
+            primaryColor: const Color(0xFF013760),
+            backgroundColor: const Color(0xFFE1E8EA),
+            colorScheme: ColorScheme.fromSwatch().copyWith(
+              primary: const Color(0xFF013760),
+              secondary: const Color(0xFF2B9694),
+              background: const Color(0xFFE1E8EA),
+              tertiary: const Color(0xFFEC9005),
+            ),
+          ),
           home: const SplashPage(),
           locale: const Locale('ar', ''),
           localizationsDelegates: const [
@@ -48,10 +49,8 @@ class _AppState extends State<App> {
             GlobalWidgetsLocalizations.delegate,
           ],
           supportedLocales: const [
-            Locale('ar', '')
-            ,
-          ]
-          ,
+            Locale('ar', ''),
+          ],
         );
       },
     );

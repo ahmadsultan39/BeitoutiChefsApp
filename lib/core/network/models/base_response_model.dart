@@ -2,9 +2,7 @@ library base_response_model;
 
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 import '../../../features/auth/data/models/accessibility_status_model.dart';
-import '../../../features/auth/data/models/user_model.dart';
 
 part 'base_response_model.g.dart';
 
@@ -26,13 +24,10 @@ class BaseResponseModel<T> {
 
 T? _dataFromJson<T>(Object data) {
   debugPrint("T is: ${T.toString()}");
-  if (data is List<dynamic>) {
+  if (data is List<dynamic> && data.isEmpty) {
     return null;
-  }
-  else if (T.toString() == AccessibilityStatusModel.className) {
+  } else if (T.toString() == AccessibilityStatusModel.className) {
     return AccessibilityStatusModel.fromJson(data as Map<String, dynamic>) as T;
-  } else if (T.toString() == UserModel.className) {
-    return UserModel.fromJson(data as Map<String, dynamic>) as T;
   } else if (T.toString() == 'Null') {
     debugPrint('Null Data');
     return null;
