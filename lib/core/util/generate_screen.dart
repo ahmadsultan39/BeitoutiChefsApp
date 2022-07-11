@@ -1,3 +1,4 @@
+import 'package:beitouti_chefs/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/pages/auth_page.dart';
@@ -27,6 +28,12 @@ class GenerateScreen {
             builder: (_) => const HomePage(),
           );
         }
+      case NameScreen.profileScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => const ProfilePage(),
+          );
+        }
       default:
         return _errorRoute();
     }
@@ -52,4 +59,5 @@ class NameScreen {
   static const String splashScreen = "/";
   static const String authScreen = "/auth";
   static const String homeScreen = "/home";
+  static const String profileScreen = "/profile";
 }

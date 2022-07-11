@@ -1,3 +1,4 @@
+import 'package:beitouti_chefs/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -23,9 +24,7 @@ class _HomePageState extends State<HomePage> {
     const Center(
       child: Text("Subscriptions page"),
     ),
-    const Center(
-      child: Text("Profile page"),
-    ),
+    const ProfilePage(),
   ];
 
   int _selectedPage = 0;
@@ -82,7 +81,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             GButton(
-              icon: MdiIcons.menu,
+              icon: Icons.restaurant_menu,
               text: 'القائمة',
               padding: EdgeInsets.symmetric(
                 horizontal: 20.w,
