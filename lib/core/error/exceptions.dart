@@ -11,3 +11,9 @@ class CacheException implements Exception {
 }
 
 class PickFileException implements Exception {}
+
+class ImplementedError implements Exception {
+  String error;
+
+  ImplementedError({this.error = ''});
+}

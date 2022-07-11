@@ -35,7 +35,7 @@ class AddMealRemoteDataSourceImp extends BaseRemoteDataSourceImpl
           BaseResponseModel<CategoryModel>.fromJson(json.decode(response.data));
       return result.data!;
     } else {
-      throw ServerException(error: ErrorMessage.ERROR401);
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
@@ -50,7 +50,7 @@ class AddMealRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     if (response.statusCode == 200) {
       return ;
     } else {
-      throw ServerException(error: ErrorMessage.ERROR401);
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
@@ -65,7 +65,7 @@ class AddMealRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     if (response.statusCode == 200) {
       return ;
     } else {
-      throw ServerException(error: ErrorMessage.ERROR401);
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
@@ -80,7 +80,7 @@ class AddMealRemoteDataSourceImp extends BaseRemoteDataSourceImpl
       print(result);
       return result;
     } else {
-      throw ServerException(error: ErrorMessage.ERROR401);
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 }

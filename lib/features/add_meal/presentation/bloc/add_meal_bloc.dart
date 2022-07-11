@@ -5,7 +5,7 @@ import 'package:beitouti_chefs/features/add_meal/domain/use_cases/pick_image.dar
 import 'package:beitouti_chefs/features/show_menu/domain/use_cases/get_categories.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../core/usecases/usecase.dart';
+import '../../../../core/usecase/usecase.dart';
 import '../../domain/use_cases/edit_meal.dart';
 import 'add_meal.dart';
 

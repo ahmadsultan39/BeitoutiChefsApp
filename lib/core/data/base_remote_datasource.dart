@@ -5,10 +5,22 @@ import 'package:injectable/injectable.dart';
 
 import '../error/exceptions.dart';
 import '../network/models/base_list_response_model.dart';
+
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
+import '../error/exceptions.dart';
 import '../network/models/base_response_model.dart';
 import '../util/constants.dart';
 
 abstract class BaseRemoteDataSource {
+  // @protected
+  // Future<T> performPostRequest<T, E>(
+  //   String endpoint,
+  //   FormData data,{
+  //   Options options,
+  // });
+  //
   @protected
   Future<List<T>> performGetListRequest<T>(
     String endpoint,
@@ -17,13 +29,11 @@ abstract class BaseRemoteDataSource {
 
   @protected
   Future<T> performGetRequest<T>(
-      {required String endpoint,
-      required String token,
-      required int language,
-      int isPaginate = 0});
+    String endpoint,
+    String token,
+  );
 }
 
-@LazySingleton(as: BaseRemoteDataSource)
 class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
   final Dio dio;
 
@@ -32,7 +42,7 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
   @override
   Future<List<T>> performGetListRequest<T>(
       String endpoint, String token) async {
-    debugPrint('performGetRequest');
+    print('performGetRequest');
     try {
       final response = await dio.get(
         endpoint,
@@ -41,87 +51,118 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
       if (response.statusCode == 200) {
         final BaseListResponseModel<T> finalResponse =
             BaseListResponseModel<T>.fromJson(json.decode(response.data));
-        // if (finalResponse.status!) {
-        //   return finalResponse.data!;
-        // } else {
-        //   debugPrint('e is error');
-        //   throw ServerException(error: finalResponse.message ?? "");
-        // }
-        if (finalResponse.data != null) {
-          debugPrint('data is not null');
+        if (finalResponse.data != null ) {
+          print('data is not null');
           return finalResponse.data!;
         } else {
-          debugPrint('e is error');
-          throw ServerException(error:
-          // finalResponse.error
-              // ??
-              "");
+          print('e is error');
+          throw ServerException();
         }
       } else if (response.statusCode == 401) {
-        throw ServerException(error: ErrorMessage.ERROR401);
+        throw ServerException(error: ErrorMessage.someThingWentWrong);
       } else {
-        debugPrint('e is error');
-        throw ServerException(error: ErrorMessage.ERROR401);
+        print('e is error');
+        throw ServerException();
       }
     } catch (e) {
-      debugPrint('e is $e');
+      print('e is $e');
       if (e is DioError) {
-        debugPrint('response code is ${e.response!.statusCode}');
+        print('response code is ${e.response!.statusCode}');
         if (e.response!.statusCode == 401) {
-          debugPrint('response code is ${e.response!.statusCode}');
-          throw ServerException(error: ErrorMessage.ERROR401);
+          print('response code is ${e.response!.statusCode}');
+          throw ServerException(error: ErrorMessage.someThingWentWrong);
         } else {
-          throw ServerException(error: ErrorMessage.ERROR401);
+          throw ServerException();
         }
       } else if (e is ServerException) {
-        rethrow;
+        throw ServerException();
       }
       throw ServerException();
     }
   }
 
+  // @override
+  // Future<T> performPostRequest<T, E>(
+  //   String endpoint,
+  //   FormData data, {
+  //   required Options options,
+  // }) async {
+  //   try {
+  //     final response = await dio.post(
+  //       endpoint,
+  //       data: data,
+  //       options: options,
+  //     );
+  //     if (response.statusCode == 200) {
+  //       final BaseResponseModel<T> finalResponse = serializers
+  //           .deserialize(json.decode(response.data));
+  //       if (finalResponse.status) {
+  //         return finalResponse.data;
+  //       } else {
+  //         print('e is error');
+  //         throw ServerException();
+  //       }
+  //     } else if (response.statusCode == 401) {
+  //       throw ServerException(error: ErrorCode.ERROR401);
+  //     } else {
+  //       print('e is error');
+  //       throw ServerException();
+  //     }
+  //   } catch (e) {
+  //     print('e is $e');
+  //     if (e is DioError) {
+  //       if (e.response.statusCode == 401) {
+  //         print('response code is ${e.response.statusCode}');
+  //         throw ServerException(error: ErrorCode.ERROR401);
+  //       } else {
+  //         throw ServerException();
+  //       }
+  //     } else if (e is ServerException) {
+  //       throw ServerException();
+  //     }
+  //     throw ServerException();
+  //   }
+  // }
+
   @override
-  Future<T> performGetRequest<T>({
-    required String endpoint,
-    required String token,
-    int language = 0,
-    int isPaginate = 0,
-  }) async {
+  Future<T> performGetRequest<T>(
+      String endpoint, String token) async {
     try {
       final response = await dio.get(
         endpoint,
-        options: GetOptions.getOptionsWithToken(token,isPagination: isPaginate),
+        options: GetOptions.getOptionsWithToken(token),
       );
       if (response.statusCode == 200) {
         final BaseResponseModel<T> finalResponse =
             BaseResponseModel<T>.fromJson(json.decode(response.data));
         if (finalResponse.data != null) {
-          debugPrint('data is not null');
+          print('data is not null');
           return finalResponse.data!;
         } else {
-          debugPrint('e is error');
-          throw ServerException(error: finalResponse.message ?? "");
+          print('e is error');
+          throw ServerException();
         }
       } else if (response.statusCode == 401) {
-        throw ServerException(error: ErrorMessage.ERROR401);
+        throw ServerException(error: ErrorMessage.someThingWentWrong);
       } else {
-        debugPrint('e is error');
-        throw ServerException(error: ErrorMessage.ERROR401);
+        print('e is error');
+        throw ServerException();
       }
     } catch (e) {
-      debugPrint('e is $e');
+      print('e is $e');
       if (e is DioError) {
-        debugPrint('response code is ${e.response!.statusCode}');
+        print('response code is ${e.response!.statusCode}');
         if (e.response!.statusCode == 401) {
-          debugPrint('response code is ${e.response!.statusCode}');
-          throw ServerException(error: ErrorMessage.ERROR401);
+          print('response code is ${e.response!.statusCode}');
+          throw ServerException(error: ErrorMessage.someThingWentWrong);
         } else {
-          throw ServerException(error: ErrorMessage.ERROR401);
+          throw ServerException();
         }
       } else if (e is ServerException) {
-        rethrow;
+        throw ServerException();
       }
-      throw ServerException(error: ErrorMessage.ERROR401);
+      throw ServerException();
     }
   }
+
 }

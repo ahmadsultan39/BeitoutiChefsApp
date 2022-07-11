@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failures.dart';
-import '../../../../core/usecases/usecase.dart';
+import '../../../../core/usecase/usecase.dart';
 
 @lazySingleton
 class GetFinalPriceUseCase implements UseCase<List<Category>, NoParams> {

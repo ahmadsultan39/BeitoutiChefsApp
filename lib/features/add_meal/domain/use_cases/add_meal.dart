@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failures.dart';
-import '../../../../core/usecases/usecase.dart';
+import '../../../../core/usecase/usecase.dart';
 
 @lazySingleton
 class AddMealUseCase implements UseCase<void, AddMealUseCaseParams> {

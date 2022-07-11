@@ -59,13 +59,13 @@ class _$AddMealState extends AddMealState {
       required this.message})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        isLoading, 'AddMealState', 'isLoading');
+        isLoading, r'AddMealState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(
-        isCategoriesLoading, 'AddMealState', 'isCategoriesLoading');
+        isCategoriesLoading, r'AddMealState', 'isCategoriesLoading');
     BuiltValueNullFieldError.checkNotNull(
-        categories, 'AddMealState', 'categories');
-    BuiltValueNullFieldError.checkNotNull(error, 'AddMealState', 'error');
-    BuiltValueNullFieldError.checkNotNull(message, 'AddMealState', 'message');
+        categories, r'AddMealState', 'categories');
+    BuiltValueNullFieldError.checkNotNull(error, r'AddMealState', 'error');
+    BuiltValueNullFieldError.checkNotNull(message, r'AddMealState', 'message');
   }
 
   @override
@@ -134,7 +134,7 @@ class _$AddMealState extends AddMealState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AddMealState')
+    return (newBuiltValueToStringHelper(r'AddMealState')
           ..add('isLoading', isLoading)
           ..add('imageUrl', imageUrl)
           ..add('pickedImage', pickedImage)
@@ -263,7 +263,7 @@ class AddMealStateBuilder
     final _$result = _$v ??
         new _$AddMealState._(
             isLoading: BuiltValueNullFieldError.checkNotNull(
-                isLoading, 'AddMealState', 'isLoading'),
+                isLoading, r'AddMealState', 'isLoading'),
             imageUrl: imageUrl,
             pickedImage: pickedImage,
             name: name,
@@ -275,16 +275,16 @@ class AddMealStateBuilder
             finalPrice: finalPrice,
             discount: discount,
             isCategoriesLoading: BuiltValueNullFieldError.checkNotNull(
-                isCategoriesLoading, 'AddMealState', 'isCategoriesLoading'),
+                isCategoriesLoading, r'AddMealState', 'isCategoriesLoading'),
             categories: BuiltValueNullFieldError.checkNotNull(
-                categories, 'AddMealState', 'categories'),
+                categories, r'AddMealState', 'categories'),
             error: BuiltValueNullFieldError.checkNotNull(
-                error, 'AddMealState', 'error'),
+                error, r'AddMealState', 'error'),
             message: BuiltValueNullFieldError.checkNotNull(
-                message, 'AddMealState', 'message'));
+                message, r'AddMealState', 'message'));
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'core/util/constants.dart';
@@ -23,6 +25,12 @@ abstract class RegisterModule {
 
   @lazySingleton
   ImagePicker get picker => ImagePicker();
+
+  @lazySingleton
+  Location get location => Location();
+
+  @lazySingleton
+  FilePicker get filePicker => FilePicker.platform;
 }
 
 @InjectableInit(
@@ -35,7 +43,7 @@ Future<void> configureDependencies() async => $initGetIt(sl);
 Dio getDio() {
   Dio dio = Dio(
     BaseOptions(
-      baseUrl: Endpoints.BASE_URL,
+      baseUrl: Endpoints.baseUrl,
       headers: {
         "Accept": "application/json",
       },

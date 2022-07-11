@@ -9,13 +9,15 @@ part of base_response_model;
 BaseResponseModel<T> _$BaseResponseModelFromJson<T>(
         Map<String, dynamic> json) =>
     BaseResponseModel<T>(
-      message: json['message'] as String?,
+      errors: json['errors'] as String?,
+      status: json['status'] as int?,
       data: _dataFromJson(json['data'] as Object),
     );
 
 Map<String, dynamic> _$BaseResponseModelToJson<T>(
         BaseResponseModel<T> instance) =>
     <String, dynamic>{
-      'message': instance.message,
+      'status': instance.status,
+      'errors': instance.errors,
       'data': _dataToJson(instance.data),
     };

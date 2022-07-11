@@ -56,11 +56,11 @@ class _AddMealPageState extends State<AddMealPage> {
   bool saveForm() {
     if (widget.initMeal == null) {
       if (_bloc.state.pickedImage == null) {
-        error(errorMsg: "الرجاء إضافة صورة", context: context, bloc: _bloc);
+        message(message: "الرجاء إضافة صورة", context: context, bloc: _bloc,isError: true);
         return false;
       }
       if (categoryId == null) {
-        error(errorMsg: "الرجاء إضافة تصنيف", context: context, bloc: _bloc);
+        message(message: "الرجاء إضافة تصنيف", context: context, bloc: _bloc, isError: true);
         return false;
       }
     }

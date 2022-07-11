@@ -17,10 +17,10 @@ class BaseLocalDataSourceImp implements BaseLocalDataSource {
 
   @override
   Future<void> logout() async =>
-      sharedPreferences.remove(SharedPreferencesKeys.API_TOKEN);
+      sharedPreferences.remove(SharedPreferencesKeys.apiToken);
 
 
   @override
   Future<String> get token async =>
-      sharedPreferences.getString(SharedPreferencesKeys.API_TOKEN) ?? "";
+      sharedPreferences.getString(SharedPreferencesKeys.apiToken) ?? "";
 }

@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/entities/category.dart';
 import '../../../../core/error/failures.dart';
-import '../../../../core/usecases/usecase.dart';
+import '../../../../core/usecase/usecase.dart';
 
 @lazySingleton
 class AddCategoryUseCase implements UseCase<Category, AddCategoryUseCaseParams> {
