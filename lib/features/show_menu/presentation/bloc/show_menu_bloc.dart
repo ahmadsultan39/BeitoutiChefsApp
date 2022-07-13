@@ -144,8 +144,8 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
         emit(state.rebuild(
           (b) => b
             ..meals![event.categoryId]!
-                    .firstWhere((element) => element.id == event.mealId)
-                    .changeStatus(),
+                .firstWhere((element) => element.id == event.mealId)
+                .changeStatus(),
         ));
         final result = await changeMealAvailabilityUseCase(
             ChangeMealAvailabilityUseCaseParams(mealId: event.mealId));

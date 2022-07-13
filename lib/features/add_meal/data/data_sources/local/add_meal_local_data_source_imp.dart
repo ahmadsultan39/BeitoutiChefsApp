@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'add_meal_local_data_source.dart';
 
 @LazySingleton(as: AddMealLocalDataSource)
-class AddMealLocalDataSourceImp extends BaseLocalDataSourceImp
+class AddMealLocalDataSourceImp extends BaseLocalDataSourceImpl
     implements AddMealLocalDataSource {
   AddMealLocalDataSourceImp(this._picker,
       {required SharedPreferences sharedPreferences})

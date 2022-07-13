@@ -10,6 +10,7 @@ PaginateResponseModel<T> _$PaginateResponseModelFromJson<T extends Equatable>(
         Map<String, dynamic> json) =>
     PaginateResponseModel<T>(
       count: json['total'] as int,
+      perPage: json['perPage'] as int,
       numPages: json['last_page'] as int,
       data: (json['data'] as List<dynamic>)
           .map(_Converter<T>().fromJson)
@@ -21,5 +22,6 @@ Map<String, dynamic> _$PaginateResponseModelToJson<T extends Equatable>(
     <String, dynamic>{
       'total': instance.count,
       'last_page': instance.numPages,
+      'perPage': instance.perPage,
       'data': instance.data.map(_Converter<T>().toJson).toList(),
     };

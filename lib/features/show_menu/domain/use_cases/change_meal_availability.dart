@@ -3,7 +3,6 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/entities/meal.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecase/usecase.dart';
 
@@ -15,7 +14,7 @@ class ChangeMealAvailabilityUseCase
   ChangeMealAvailabilityUseCase(this._repository);
 
   @override
-  Future<Either<Failure,void >> call(
+  Future<Either<Failure, void>> call(
       ChangeMealAvailabilityUseCaseParams params) async {
     return await _repository.changeMealAvailability(params.mealId);
   }

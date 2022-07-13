@@ -20,8 +20,6 @@ class MealTile extends StatefulWidget {
 }
 
 class _MealTileState extends State<MealTile> {
-
-
   @override
   Widget build(BuildContext context) {
     bool? value = widget.meal.isAvailable;
@@ -29,16 +27,16 @@ class _MealTileState extends State<MealTile> {
       bloc: widget.bloc,
       builder: (context, state) {
         return ColorFiltered(
-          colorFilter: (widget.meal.isApproved != null &&
-              !widget.meal.isApproved!)
-              ? const ColorFilter.mode(
-            Colors.grey,
-            BlendMode.saturation,
-          )
-              : const ColorFilter.mode(
-            Colors.transparent,
-            BlendMode.saturation,
-          ),
+          colorFilter:
+              (widget.meal.isApproved != null && !widget.meal.isApproved!)
+                  ? const ColorFilter.mode(
+                      Colors.grey,
+                      BlendMode.saturation,
+                    )
+                  : const ColorFilter.mode(
+                      Colors.transparent,
+                      BlendMode.saturation,
+                    ),
           child: Center(
             child: Container(
               width: 360.w,
@@ -57,13 +55,11 @@ class _MealTileState extends State<MealTile> {
                         Container(
                           height: double.infinity,
                           width: 360.w * 0.15,
-                          color: Theme
-                              .of(context)
-                              .backgroundColor,
+                          color: Theme.of(context).backgroundColor,
                           child: IconButton(
                               onPressed: () {
                                 Navigator.of(context).pushNamed(
-                                    NameScreen.ADD_MEAL,
+                                    NameScreen.addMeal,
                                     arguments: widget.meal);
                               },
                               icon: const Icon(
@@ -81,9 +77,7 @@ class _MealTileState extends State<MealTile> {
                         Container(
                           height: double.infinity,
                           width: 360.w * 0.15,
-                          color: Theme
-                              .of(context)
-                              .errorColor,
+                          color: Theme.of(context).errorColor,
                           child: IconButton(
                               padding: const EdgeInsets.all(0),
                               onPressed: () {
@@ -103,13 +97,13 @@ class _MealTileState extends State<MealTile> {
                         width: 75.w,
                         clipBehavior: Clip.hardEdge,
                         decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(20))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
                         child: CachedNetworkImage(
                           imageUrl: Endpoints.url + widget.meal.imageUrl,
                           fit: BoxFit.cover,
                           errorWidget: (ctx, _, error) =>
-                          const Icon(Icons.error),
+                              const Icon(Icons.error),
                           placeholder: (ctx, _) => const Loader(),
                         ),
                       ),
@@ -123,29 +117,29 @@ class _MealTileState extends State<MealTile> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             widget.meal.discount == null ||
-                                widget.meal.discount == 0
+                                    widget.meal.discount == 0
                                 ? Text(widget.meal.price.toString(),
-                                style: TextStyle(fontSize: 16.sp))
+                                    style: TextStyle(fontSize: 16.sp))
                                 : Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                    (widget.meal.price -
-                                        widget.meal.price *
-                                            widget.meal.discount!)
-                                        .toString(),
-                                    style: TextStyle(fontSize: 16.sp)),
-                                SizedBox(
-                                  width: 15.w,
-                                ),
-                                Text(widget.meal.price.toString(),
-                                    style: TextStyle(
-                                        decoration:
-                                        TextDecoration.lineThrough,
-                                        fontSize: 12.sp)),
-                              ],
-                            ),
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                          (widget.meal.price -
+                                                  widget.meal.price *
+                                                      widget.meal.discount!)
+                                              .toString(),
+                                          style: TextStyle(fontSize: 16.sp)),
+                                      SizedBox(
+                                        width: 15.w,
+                                      ),
+                                      Text(widget.meal.price.toString(),
+                                          style: TextStyle(
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                              fontSize: 12.sp)),
+                                    ],
+                                  ),
                             Row(
                               children: [
                                 Icon(
@@ -172,24 +166,25 @@ class _MealTileState extends State<MealTile> {
                               width: 30,
                               child: SwitchListTile.adaptive(
                                 activeColor:
-                                Theme
-                                    .of(context)
-                                    .colorScheme
-                                    .secondary,
+                                    Theme.of(context).colorScheme.secondary,
                                 value: value ?? false,
                                 onChanged: (newValue) {
                                   if (widget.meal.isApproved != null &&
                                       widget.meal.isApproved!) {
                                     widget.bloc.addChangeMealAvailabilityEvent(
                                         widget.meal.id, widget.meal.categoryId);
-                                 setState(() {
-                                   value = !value!;
-                                 });
+                                    setState(() {
+                                      value = !value!;
+                                    });
                                   } else {
                                     message(
-                                        message: "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
-                                        context: context,
-                                        bloc: widget.bloc,isError: true);
+
+                                      message:
+                                          "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
+                                      context: context,
+                                      isError: state.error,
+                                      bloc: widget.bloc,
+                                    );
                                   }
                                 },
                               ),
@@ -198,42 +193,38 @@ class _MealTileState extends State<MealTile> {
                               height: 35.h,
                               clipBehavior: Clip.hardEdge,
                               decoration: BoxDecoration(
-                                  color: Theme
-                                      .of(context)
-                                      .primaryColor,
+                                  color: Theme.of(context).primaryColor,
                                   border: Border.all(
-                                      color: Theme
-                                          .of(context)
-                                          .primaryColor),
-                                  borderRadius:
-                                  const BorderRadius.all(Radius.circular(30))),
+                                      color: Theme.of(context).primaryColor),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(30))),
                               child: Row(
                                 children: [
                                   Container(
                                     width: 30.w,
-                                    color: Theme
-                                        .of(context)
-                                        .primaryColor,
+                                    color: Theme.of(context).primaryColor,
                                     child: IconButton(
                                       onPressed: () {
                                         if (widget.meal.isApproved != null &&
                                             widget.meal.isApproved!) {
                                           widget.bloc
                                               .addIncreaseMaxMealNumberEvent(
-                                              widget.meal.id,
-                                              widget.meal.categoryId);
+                                                  widget.meal.id,
+                                                  widget.meal.categoryId);
                                         } else {
                                           message(
-                                              message: "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
-                                              context: context,
-                                              bloc: widget.bloc , isError: true);
+
+                                            message:
+                                                "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
+                                            context: context,
+                                            isError: state.error,
+                                            bloc: widget.bloc,
+                                          );
                                         }
                                       },
                                       icon: Icon(
                                         Icons.add,
-                                        color:
-                                        Theme
-                                            .of(context)
+                                        color: Theme.of(context)
                                             .colorScheme
                                             .secondary,
                                       ),
@@ -244,35 +235,35 @@ class _MealTileState extends State<MealTile> {
                                       decoration: const BoxDecoration(
                                           color: Colors.white,
                                           shape: BoxShape.circle),
-                                      padding:
-                                      EdgeInsets.symmetric(horizontal: 10.h),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.h),
                                       child: Text(
                                         widget.meal.maxMeals.toString(),
                                         style: TextStyle(fontSize: 14.sp),
                                       )),
                                   Container(
                                     width: 30.w,
-                                    color: Theme
-                                        .of(context)
-                                        .primaryColor,
+                                    color: Theme.of(context).primaryColor,
                                     child: IconButton(
                                       onPressed: () {
                                         if (widget.meal.isApproved != null &&
                                             widget.meal.isApproved!) {
                                           widget.bloc
                                               .addDecreaseMaxMealNumberEvent(
-                                              widget.meal.id,
-                                              widget.meal.categoryId);
+                                                  widget.meal.id,
+                                                  widget.meal.categoryId);
                                         } else {
                                           message(
-                                              message: "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
-                                              context: context,
-                                              bloc: widget.bloc,isError: true,);
+                                            message:
+                                                "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
+                                            context: context,
+                                            isError: state.error,
+                                            bloc: widget.bloc,
+                                          );
                                         }
                                       },
                                       icon: Icon(Icons.remove,
-                                          color: Theme
-                                              .of(context)
+                                          color: Theme.of(context)
                                               .colorScheme
                                               .secondary),
                                       padding: const EdgeInsets.all(0),

@@ -9,6 +9,7 @@ part of base_list_response_model;
 BaseListResponseModel<T> _$BaseListResponseModelFromJson<T>(
         Map<String, dynamic> json) =>
     BaseListResponseModel<T>(
+      error: json['errors'] as String?,
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => _Converter<T>().fromJson(e as Object))
           .toList(),
@@ -17,5 +18,6 @@ BaseListResponseModel<T> _$BaseListResponseModelFromJson<T>(
 Map<String, dynamic> _$BaseListResponseModelToJson<T>(
         BaseListResponseModel<T> instance) =>
     <String, dynamic>{
+      'errors': instance.error,
       'data': instance.data?.map(_Converter<T>().toJson).toList(),
     };

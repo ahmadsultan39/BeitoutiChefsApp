@@ -20,7 +20,7 @@ class OrdersRemoteDataSourceImp extends BaseRemoteDataSourceImpl
 
   @override
   Future<List<OrdersTimesModel>> getOrdersTimes({required String token})
-  => performGetListRequest<OrdersTimesModel>(Endpoints.ordersTimes, token);
+  => performGetListRequest<OrdersTimesModel>(endpoint: Endpoints.ordersTimes,token: token);
   // async {
   //   final BaseListResponseModel<OrdersTimesModel> finalResponse =
   //   BaseListResponseModel<OrdersTimesModel>.fromJson(json.decode(
@@ -31,7 +31,7 @@ class OrdersRemoteDataSourceImp extends BaseRemoteDataSourceImpl
 
   @override
   Future<List<TimeOrderModel>> getTimeOrders({required String token, required String time})  =>
-      performGetListRequest<TimeOrderModel>( Endpoints.timeOrders(time.split(" ").last), token);
+      performGetListRequest<TimeOrderModel>(endpoint: Endpoints.timeOrders(time.split(" ").last),token: token);
 
   @override
   Future<void> changeStatus({required String token, required int orderId}) async {

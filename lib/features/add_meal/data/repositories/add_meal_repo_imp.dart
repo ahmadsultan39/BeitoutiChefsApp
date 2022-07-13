@@ -16,7 +16,11 @@ import '../../domain/repositories/add_meal_repository.dart';
 
 @LazySingleton(as: AddMealRepository)
 class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
-  AddMealRepoImp(this._local, this._remote, {required BaseLocalDataSource baseLocalDataSource, required NetworkInfo networkInfo}) : super(baseLocalDataSource: baseLocalDataSource, networkInfo: networkInfo);
+  AddMealRepoImp(this._local, this._remote,
+      {required BaseLocalDataSource baseLocalDataSource,
+      required NetworkInfo networkInfo})
+      : super(
+            baseLocalDataSource: baseLocalDataSource, networkInfo: networkInfo);
   final AddMealLocalDataSource _local;
   final AddMealRemoteDataSource _remote;
 
@@ -24,7 +28,7 @@ class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
   Future<Either<Failure, Category>> addCategory(String name) async {
     try {
       final token = await _local.token;
-      final result = await _remote.addCategory(token : token,name : name);
+      final result = await _remote.addCategory(token: token, name: name);
       return Right(result);
     } on ServerException catch (e) {
       print("add meal repo error in repo $e");
@@ -36,7 +40,7 @@ class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
   Future<Either<Failure, void>> addMeal(AddMealUseCaseParams params) async {
     try {
       final token = await _local.token;
-      await _remote.addMeal(token : token,params : params);
+      await _remote.addMeal(token: token, params: params);
       return Right(null);
     } on ServerException catch (e) {
       print("add meal repo error in repo $e");
@@ -48,7 +52,7 @@ class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
   Future<Either<Failure, void>> editMeal(EditMealUseCaseParams params) async {
     try {
       final token = await _local.token;
-      await _remote.editMeal(token : token,params : params);
+      await _remote.editMeal(token: token, params: params);
       return Right(null);
     } on ServerException catch (e) {
       print("add meal repo error in repo $e");
@@ -58,24 +62,21 @@ class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
 
   @override
   Future<Either<Failure, List<Category>>> getCategories() async {
-
-      try {
-        final token = await _local.token;
-        final result = await _remote.getCategories(token);
-        return Right(result);
-      } on ServerException catch (e) {
-        print("add meal repo error in repo $e");
-        return Left(ServerFailure(error: e.error));
-      }
-
-
+    try {
+      final token = await _local.token;
+      final result = await _remote.getCategories(token);
+      return Right(result);
+    } on ServerException catch (e) {
+      print("add meal repo error in repo $e");
+      return Left(ServerFailure(error: e.error));
+    }
   }
 
   @override
   Future<Either<Failure, int>> getFinalPrice(int price) async {
     try {
       final token = await _local.token;
-      final result = await _remote.getFinalPrice(token : token,price : price);
+      final result = await _remote.getFinalPrice(token: token, price: price);
       return Right(result);
     } on ServerException catch (e) {
       print("add meal repo error in repo $e");
@@ -93,5 +94,4 @@ class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
       return Left(PickFileFailure());
     }
   }
-
 }

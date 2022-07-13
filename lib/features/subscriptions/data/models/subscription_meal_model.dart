@@ -27,3 +27,4 @@ class SubscriptionMealModel extends SubscriptionMeal {
           dayNumber,
         );
 }
+

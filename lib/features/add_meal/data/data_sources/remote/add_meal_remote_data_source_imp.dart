@@ -20,14 +20,14 @@ class AddMealRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   @override
   Future<List<CategoryModel>> getCategories(String token) async =>
       await performGetListRequest<CategoryModel>(
-        Endpoints.GET_CATEGORIES,
-        token,
+        endpoint: Endpoints.getCategories,
+        token: token,
       );
 
   @override
   Future<CategoryModel> addCategory(
       {required String token, required String name}) async {
-    final response = await dio.post(Endpoints.CREATE_CATEGORY,
+    final response = await dio.post(Endpoints.createCategory,
         options: GetOptions.getOptionsWithToken(token),
         data: RequestBody.createCategory(name: name));
     if (response.statusCode == 200) {
@@ -39,31 +39,30 @@ class AddMealRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     }
   }
 
+
   @override
   Future<void> addMeal(
       {required String token, required AddMealUseCaseParams params}) async {
-    final response = await dio.post(
-      Endpoints.ADD_MEAL,
-      options: GetOptions.getOptionsWithToken(token),
-      data: await RequestBody.addMeal(params : params)
-    );
+    final response = await dio.post(Endpoints.addMeal,
+        options: GetOptions.getOptionsWithToken(token),
+        data: await RequestBody.addMeal(params: params));
     if (response.statusCode == 200) {
-      return ;
+      return;
     } else {
       throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
   @override
-  Future<void> editMeal(
-      {required String token, required EditMealUseCaseParams params}) async {
-    final response = await dio.post(
-      Endpoints.editMeal(params.mealId),
-      options: GetOptions.getOptionsWithToken(token),
-      data: await RequestBody.editMeal(params : params)
-    );
+  Future<void> editMeal({
+    required String token,
+    required EditMealUseCaseParams params,
+  }) async {
+    final response = await dio.post(Endpoints.editMeal(params.mealId),
+        options: GetOptions.getOptionsWithToken(token),
+        data: await RequestBody.editMeal(params: params));
     if (response.statusCode == 200) {
-      return ;
+      return;
     } else {
       throw ServerException(error: ErrorMessage.someThingWentWrong);
     }

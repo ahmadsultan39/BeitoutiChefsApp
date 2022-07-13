@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../entities/paginate_list.dart';
+
 part 'paginate_response_model.g.dart';
 
 @JsonSerializable()
@@ -13,17 +14,20 @@ class PaginateResponseModel<T extends Equatable> extends PaginateList {
   final int count;
   @JsonKey(name: 'last_page')
   final int numPages;
+  final int perPage;
 
   @_Converter()
   final List<T> data;
 
   const PaginateResponseModel({
     required this.count,
+    required this.perPage,
     required this.numPages,
     required this.data,
   }) : super(
           data: data,
-          page: numPages,
+          pages: numPages,
+          total: count,
         );
 
   factory PaginateResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -37,6 +41,10 @@ class _Converter<T> implements JsonConverter<T, Object?> {
   T fromJson(Object? json) {
     debugPrint('T is ${T.toString()}');
     // if (json is Map<String, dynamic> &&
+    //     T.toString() == HomeMealModel.className) {
+    //   return HomeMealModel.fromJson(json) as T;
+    // }
+
     //     T.toString() == NewSongModel.className) {
     //   return NewSongModel.fromJson(json) as T;
     // }

@@ -40,7 +40,7 @@ class SubscriptionsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   @override
   Future<List<SubscriptionModel>> getSubscriptions({required String token}) =>
       performGetListRequest<SubscriptionModel>(
-          Endpoints.getSubscriptions, token);
+          endpoint: Endpoints.getSubscriptions, token: token);
 
   @override
   Future<String> editSubscriptionAvailability(
@@ -113,5 +113,5 @@ class SubscriptionsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   Future<List<AddSubscriptionMealModel>> getChefMeals(
           {required String token}) =>
       performGetListRequest<AddSubscriptionMealModel>(
-          Endpoints.getChefMeals, token);
+          endpoint: Endpoints.getChefMeals, token: token);
 }

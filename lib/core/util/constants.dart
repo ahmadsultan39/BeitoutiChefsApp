@@ -6,20 +6,29 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../features/auth/data/models/request_register_model.dart';
 import '../../features/add_meal/domain/use_cases/add_meal.dart';
 
 class Endpoints {
   static const baseUrl = "https://78f8-31-9-140-112.ngrok.io/api/chef";
   static const url = "https://5188-188-133-25-71.ngrok.io";
-  static const GET_CATEGORIES = "/meals/categories";
-  static const GET_MEALS_ACTIVE_COUNT = "/meals/active-count";
-  static const CREATE_CATEGORY = "/meals/category";
-  static const ADD_MEAL = "/meals/";
+  static const logout = "/logout";
+  static const getCategories = "/meals/categories";
+  static const getMealsActiveCount = "/meals/active-count";
+  static const createCategory = "/meals/category";
+  static const addMeal = "/meals/";
   static const ordersTimes = "/orders/meals";
   static const getSubscriptions = "/subscriptions/";
   static const addNewSubscription = "/subscriptions/";
   static const getChefMeals = "/meals";
+  static const changeProfilePicture = "/profile/edit-profile";
+  static const getChefProfile = "/profile";
+  static const getChefBalance = "/profile/balance";
+  static const getOrderHistory = "/profile/order-history";
+  static const getOrdersMealsNotes = "/profile/notes";
+  static const editDeliverMealTime = "/profile/edit-deliver-meal-time";
+  static const editMaxMealPerDay = "/profile/edit-max-meal";
 
   static String timeOrders(String time) => "/orders/?time=$time";
 
@@ -56,11 +65,24 @@ class Endpoints {
 }
 
 class SharedPreferencesKeys {
+  static String userId = 'user_id';
   static String apiToken = 'token';
+  static String userName = 'user_name';
+  static String userEmail = 'user_email';
+  static String userPhoneNumber = 'user_phone_number';
+  static String userCampusCardExpiryDate = 'user_campus_card_expiry_date';
 }
 
 class ErrorMessage {
+  static String error400 = 'الطلب الذي تم إرساله غير صالح';
+  static String error401 = 'فشلت عملية المصادقة مع الخادم';
+  static String error403 = 'لا يوجد لديك إذن للقيام بهذه العملية';
+  static String error404 = 'المورد المطلوب غير موجود';
+  static String error422 = 'االبيانات المدخلة غير صحيحة';
+  static String error500 = 'حدث خطأ ما في عملية التواصل مع الخادم';
+  static String error503 = 'الخدمة المطلوب غير متوفرة حالياً';
   static String someThingWentWrong = 'حدث خطأ ما';
+  static String nullData = 'لايوجد بيانات لعرضها';
 }
 
 final option = Options(
@@ -106,8 +128,10 @@ class RequestBody {
   }) async {
     final form = FormData.fromMap({
       if (params.pickedImage != null)
-        'image': await MultipartFile.fromFile(params.pickedImage!.path,
-            filename: params.pickedImage!.name),
+        'image': await MultipartFile.fromFile(
+          params.pickedImage!.path,
+          filename: params.pickedImage!.name,
+        ),
       'name': params.name,
       'category_id': params.categoryId,
       'ingredients': params.ingredients,
@@ -192,6 +216,42 @@ class RequestBody {
         // 'profile_picture': request.profilePicture,
       });
     }
+  }
+
+  // Change profile picture
+  static FormData changeProfilePicture({required XFile image}) {
+    return FormData.fromMap(
+      {
+        'profile_picture': MultipartFile.fromFile(
+          image.path,
+          filename: image.name,
+        ),
+      },
+    );
+  }
+
+  // Edit max meals per day
+  static FormData editMaxMealsPerDay({
+    required int maxMealsPerDay,
+  }) {
+    return FormData.fromMap(
+      {
+        'max_meals_per_day': maxMealsPerDay,
+      },
+    );
+  }
+
+  // Edit deliver meal time
+  static FormData editDeliverMealTime({
+    required String deliveryStartsAt,
+    required String deliveryEndsAt,
+  }) {
+    return FormData.fromMap(
+      {
+        'delivery_starts_at': deliveryStartsAt,
+        'delivery_ends_at': deliveryEndsAt,
+      },
+    );
   }
 }
 

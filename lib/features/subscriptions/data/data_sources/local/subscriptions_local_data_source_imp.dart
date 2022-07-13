@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @LazySingleton(as: SubscriptionsLocalDataSource)
-class SubscriptionsLocalDataSourceImp extends BaseLocalDataSourceImp implements SubscriptionsLocalDataSource
+class SubscriptionsLocalDataSourceImp extends BaseLocalDataSourceImpl implements SubscriptionsLocalDataSource
 {
   SubscriptionsLocalDataSourceImp({required SharedPreferences sharedPreferences}) : super(sharedPreferences: sharedPreferences);
 

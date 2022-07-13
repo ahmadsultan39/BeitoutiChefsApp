@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+
 import '../error/exceptions.dart';
 import '../error/failures.dart';
-import 'base_local_data_source.dart';
 import '../network/network_info.dart';
+
+import 'base_local_data_source.dart';
 
 typedef FutureEitherOr<T> = Future<Either<Failure, T>> Function();
 typedef FutureEitherOrWithToken<T> = Future<Either<Failure, T>> Function(
@@ -32,11 +34,11 @@ class BaseRepositoryImpl implements BaseRepository {
   @override
   Future<Either<Failure, String>> getToken() async {
     final token = await baseLocalDataSource.token;
-    debugPrint('token is $token');
+    debugPrint('Token is $token');
     if (token.isNotEmpty) {
       return Right(token);
     } else {
-      return Left(CacheFailure());
+      return const Left(CacheFailure());
     }
   }
 
@@ -44,23 +46,29 @@ class BaseRepositoryImpl implements BaseRepository {
   Future<Either<Failure, T>> requestWithToken<T>(
     FutureEitherOrWithToken<T> body,
   ) async {
-    debugPrint('requestWithToken');
+    debugPrint('RequestWithToken');
     return await checkNetwork<T>(() async {
       try {
         final token = await getToken();
-        print('token is $token');
+        debugPrint('Token is $token');
         return await token.fold(
-          (failure) => const Left(ServerFailure()),
+          (failure) => const Left(
+            ServerFailure(),
+          ),
           (token) async {
             return body(token);
           },
         );
       } catch (e) {
-        debugPrint('e is $e');
+        debugPrint('E is $e');
         if (e is ServerException) {
-          return Left(ServerFailure(error: e.error));
+          return Left(
+            ServerFailure(error: e.error),
+          );
         } else {
-          return Left(ServerFailure(error: "Test is test"));
+          return const Left(
+            ServerFailure(),
+          );
         }
       }
     });
@@ -71,7 +79,9 @@ class BaseRepositoryImpl implements BaseRepository {
     if (await networkInfo.isConnected) {
       return body();
     } else {
-      return Left(ServerFailure());
+      return const Left(
+        ServerFailure(),
+      );
     }
   }
 }

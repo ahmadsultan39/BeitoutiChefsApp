@@ -20,73 +20,81 @@ class ShowMenuRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   @override
   Future<List<CategoryModel>> getCategories({required String token}) async =>
       await performGetListRequest<CategoryModel>(
-        Endpoints.GET_CATEGORIES,
-        token,
+        endpoint: Endpoints.getCategories,
+        token: token,
       );
 
   @override
   Future<MealsInfoModel> getActiveMealsCount({required String token}) async =>
       await performGetRequest<MealsInfoModel>(
-      Endpoints.GET_MEALS_ACTIVE_COUNT,
-      token,
-      );
-
-  @override
-  Future<List<MealModel>> getCategoryMeals({required String token,required int categoryId}) async =>
-      await performGetListRequest<MealModel>(
-        Endpoints.getCategoryMeals(categoryId),
+        Endpoints.getMealsActiveCount,
         token,
       );
 
   @override
-  Future<void> changeMealAvailability({required String token,required int mealId}) async {
-    final response = await dio.put(Endpoints.changeMealAvailability(mealId),
-        options: GetOptions.getOptionsWithToken(token),
-        );
+  Future<List<MealModel>> getCategoryMeals(
+          {required String token, required int categoryId}) async =>
+      await performGetListRequest<MealModel>(
+        endpoint: Endpoints.getCategoryMeals(categoryId),
+        token: token,
+      );
+
+  @override
+  Future<void> changeMealAvailability(
+      {required String token, required int mealId}) async {
+    final response = await dio.put(
+      Endpoints.changeMealAvailability(mealId),
+      options: GetOptions.getOptionsWithToken(token),
+    );
     if (response.statusCode == 200) {
       final result =
-      BaseResponseModel<Null>.fromJson(json.decode(response.data));
+          BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
       throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
   @override
-  Future<void> decreaseMaxMealNumber({required String token,required int mealId}) async {
-    final response = await dio.put(Endpoints.decreaseMaxMealNumber(mealId),
+  Future<void> decreaseMaxMealNumber(
+      {required String token, required int mealId}) async {
+    final response = await dio.put(
+      Endpoints.decreaseMaxMealNumber(mealId),
       options: GetOptions.getOptionsWithToken(token),
     );
     if (response.statusCode == 200) {
       final result =
-      BaseResponseModel<Null>.fromJson(json.decode(response.data));
+          BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
       throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
   @override
-  Future<void> deleteMeal({required String token,required int mealId}) async {
-    final response = await dio.delete(Endpoints.deleteMeal(mealId),
+  Future<void> deleteMeal({required String token, required int mealId}) async {
+    final response = await dio.delete(
+      Endpoints.deleteMeal(mealId),
       options: GetOptions.getOptionsWithToken(token),
     );
     if (response.statusCode == 200) {
       final result =
-      BaseResponseModel<Null>.fromJson(json.decode(response.data));
+          BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
       throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
   @override
-  Future<void> increaseMaxMealNumber({required String token,required int mealId}) async {
-    final response = await dio.put(Endpoints.increaseMaxMealNumber(mealId),
+  Future<void> increaseMaxMealNumber(
+      {required String token, required int mealId}) async {
+    final response = await dio.put(
+      Endpoints.increaseMaxMealNumber(mealId),
       options: GetOptions.getOptionsWithToken(token),
     );
     if (response.statusCode == 200) {
       final result =
-      BaseResponseModel<Null>.fromJson(json.decode(response.data));
+          BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
-      throw ServerException(error: ErrorMessage.someThingWentWrong);
+      throw ServerException(error: 'ErrorMessage.ERROR401');
     }
   }
 }

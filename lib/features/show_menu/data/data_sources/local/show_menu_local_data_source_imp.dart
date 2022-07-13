@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../core/data/base_local_data_source.dart';
 
 @LazySingleton(as: ShowMenuLocalDataSource)
-class ShowMenuLocalDataSourceImp extends BaseLocalDataSourceImp
+class ShowMenuLocalDataSourceImp extends BaseLocalDataSourceImpl
     implements ShowMenuLocalDataSource {
   ShowMenuLocalDataSourceImp({required SharedPreferences sharedPreferences})
       : super(sharedPreferences: sharedPreferences);

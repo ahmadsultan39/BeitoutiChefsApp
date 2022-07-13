@@ -32,7 +32,7 @@ Map<String, dynamic> _$RegisterRequestModelToJson(
       'location': instance.location,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
-      'gender': _$GenderEnumMap[instance.gender],
+      'gender': _$GenderEnumMap[instance.gender]!,
       'certificateName': instance.certificateName,
       'certificatePath': instance.certificatePath,
       'phone_number': instance.phoneNumber,

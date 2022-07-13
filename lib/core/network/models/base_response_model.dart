@@ -3,13 +3,10 @@ library base_response_model;
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../features/orders/data/models/order_meal_model.dart';
-import '../../../features/orders/data/models/time_order_model.dart';
-import '../../../features/orders/data/models/total_meal_model.dart';
+import '../../../features/auth/data/models/user_model.dart';
 import '../../../features/show_menu/data/models/meals_info_model.dart';
 import '../../models/category_model.dart';
 import '../../../features/auth/data/models/accessibility_status_model.dart';
-import '../../../features/auth/data/models/user_model.dart';
 
 part 'base_response_model.g.dart';
 
@@ -29,12 +26,15 @@ class BaseResponseModel<T> {
   }
 }
 
-T? _dataFromJson<T>(Object data) {
+T? _dataFromJson<T>(Object? data) {
   debugPrint("T is: ${T.toString()}");
-  if (data is List<dynamic>) {
+  if (data is List<dynamic> && data.isEmpty) {
     return null;
   } else if (T.toString() == AccessibilityStatusModel.className) {
     return AccessibilityStatusModel.fromJson(data as Map<String, dynamic>) as T;
+  } else if (T.toString() == 'Null') {
+    debugPrint('Null Data');
+    return null;
   } else if (T.toString() == UserModel.className) {
     return UserModel.fromJson(data as Map<String, dynamic>) as T;
   } else if (data is Map<String, dynamic>) {
@@ -42,18 +42,21 @@ T? _dataFromJson<T>(Object data) {
       return CategoryModel.fromJson(data) as T;
     } else if (T.toString() == MealsInfoModel.className) {
       return MealsInfoModel.fromJson(data) as T;
-    } else if (T.toString() == TotalMealModel.className) {
-      return TotalMealModel.fromJson(data) as T;
-    } else if (T.toString() == TimeOrderModel.className) {
-      return TimeOrderModel.fromJson(data) as T;
-    } else if (T.toString() == OrderMealModel.className) {
-      return OrderMealModel.fromJson(data) as T;
-    } else if (T.toString() == 'Null') {
+    }
+    // else if (T.toString() == TotalMealModel.className) {
+    //   return TotalMealModel.fromJson(data) as T;
+    // } else if (T.toString() == TimeOrderModel.className) {
+    //   return TimeOrderModel.fromJson(data) as T;
+    // } else if (T.toString() == OrderMealModel.className) {
+    //   return OrderMealModel.fromJson(data) as T;
+    // }
+    else if (T.toString() == 'Null') {
       debugPrint('Null Data');
       return null;
     }
     throw Exception('parse error');
   }
+  return null;
 }
 
 Map<String, dynamic> _dataToJson<T, S, U>(T input, [S? other1, U? other2]) =>

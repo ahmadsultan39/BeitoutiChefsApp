@@ -10,10 +10,10 @@ abstract class BaseLocalDataSource {
 }
 
 @LazySingleton(as: BaseLocalDataSource)
-class BaseLocalDataSourceImp implements BaseLocalDataSource {
+class BaseLocalDataSourceImpl implements BaseLocalDataSource {
   final SharedPreferences sharedPreferences;
 
-  BaseLocalDataSourceImp({required this.sharedPreferences});
+  BaseLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
   Future<void> logout() async =>

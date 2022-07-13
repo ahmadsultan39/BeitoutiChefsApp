@@ -1,12 +1,17 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 
 class PaginateList<T extends Equatable> extends Equatable {
   final List<T> data;
 
-  final int page;
+  final int total;
 
-  const PaginateList({required this.data, required this.page}) : super();
+  final int pages;
+
+  const PaginateList({
+    required this.data,
+    required this.pages,
+    required this.total,
+  }) : super();
 
   void addChild(T entity) {
     data.add(entity);
@@ -21,5 +26,5 @@ class PaginateList<T extends Equatable> extends Equatable {
   }
 
   @override
-  List<Object?> get props => [data, page];
+  List<Object?> get props => [data, pages, total];
 }

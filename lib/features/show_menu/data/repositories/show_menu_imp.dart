@@ -42,6 +42,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 
@@ -59,6 +60,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 
@@ -77,6 +79,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 
@@ -93,6 +96,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 
@@ -109,6 +113,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 
@@ -124,7 +129,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+  return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
     }
   }
 
@@ -141,6 +146,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 }
