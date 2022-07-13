@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/util/constants.dart';
 import '../../../../core/util/enums.dart';
+import '../../../../core/util/generate_screen.dart';
 import '../../../../core/widgets/custom_dialog.dart';
 import '../../../../core/widgets/custom_loader.dart';
 import '../../../../core/widgets/decor.dart';
@@ -198,8 +199,15 @@ class _AuthPageState extends State<AuthPage> {
               // Code is right, Now we must check accessibility status
               if (state.accessibilityStaysType ==
                   AccessibilityStaysType.active) {
-                print('عل الهوم ولاااك');
-                // Navigate to home page;
+                WidgetsBinding.instance?.addPostFrameCallback(
+                  (_) {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      NameScreen.homeScreen,
+                      (_) => false,
+                    );
+                  },
+                );
               }
               if (state.accessibilityStaysType ==
                   AccessibilityStaysType.blocked) {

@@ -1,4 +1,5 @@
 import 'package:beitouti_chefs/features/home/presentation/pages/home_page.dart';
+import 'package:beitouti_chefs/features/splash/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -25,7 +26,7 @@ class _AppState extends State<App> {
 
     return ScreenUtilInit(
       designSize: const Size(375, 812),
-      builder: (context) {
+      builder: (context, child) {
         return MaterialApp(
           title: 'Beitouti Chefs',
           debugShowCheckedModeBanner: false,
@@ -41,7 +42,7 @@ class _AppState extends State<App> {
               tertiary: const Color(0xFFEC9005),
             ),
           ),
-          home: const HomePage(),
+          home: const SplashPage(),
           locale: const Locale('ar', ''),
           localizationsDelegates: const [
             AppLocalizations.delegate,

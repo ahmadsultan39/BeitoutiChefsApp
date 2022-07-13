@@ -349,7 +349,7 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
     required String token,
     dynamic data,
   }) async {
-    debugPrint("performPutRequest");
+    debugPrint("performDeleteRequest");
     try {
       final response = await dio.delete(
         endpoint,

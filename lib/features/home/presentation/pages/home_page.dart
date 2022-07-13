@@ -1,10 +1,8 @@
 import 'package:beitouti_chefs/features/profile/presentation/pages/profile_page.dart';
+import 'package:beitouti_chefs/features/show_menu/presentation/pages/show_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
-import '../../../../core/util/generate_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,9 +16,7 @@ class _HomePageState extends State<HomePage> {
     const Center(
       child: Text("Orders page"),
     ),
-    const Center(
-      child: Text("Menu page"),
-    ),
+    ShowMenuPage(),
     const Center(
       child: Text("Subscriptions page"),
     ),
