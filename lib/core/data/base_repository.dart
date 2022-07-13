@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+
 import '../error/exceptions.dart';
 import '../error/failures.dart';
 import '../network/network_info.dart';
-import 'base_local_datasource.dart';
+
+import 'base_local_data_source.dart';
 
 typedef FutureEitherOr<T> = Future<Either<Failure, T>> Function();
 typedef FutureEitherOrWithToken<T> = Future<Either<Failure, T>> Function(

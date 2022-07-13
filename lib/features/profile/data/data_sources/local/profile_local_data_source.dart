@@ -1,4 +1,3 @@
+import '../../../../../core/data/base_local_data_source.dart';
 
-import '../../../../../core/data/base_local_datasource.dart';
-
-abstract class ProfileLocalDataSource extends BaseLocalDataSource{}
+abstract class ProfileLocalDataSource extends BaseLocalDataSource {}

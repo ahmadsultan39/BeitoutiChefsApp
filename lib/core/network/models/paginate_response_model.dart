@@ -14,7 +14,6 @@ class PaginateResponseModel<T extends Equatable> extends PaginateList {
   final int count;
   @JsonKey(name: 'last_page')
   final int numPages;
-  @JsonKey(name: 'per_page')
   final int perPage;
 
   @_Converter()
@@ -46,6 +45,9 @@ class _Converter<T> implements JsonConverter<T, Object?> {
     //   return HomeMealModel.fromJson(json) as T;
     // }
 
+    //     T.toString() == NewSongModel.className) {
+    //   return NewSongModel.fromJson(json) as T;
+    // }
     return json as T;
   }
 

@@ -3,12 +3,16 @@ library base_list_response_model;
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../models/category_model.dart';
+import '../../models/meal_model.dart';
+
 part 'base_list_response_model.g.dart';
 
 @JsonSerializable()
 class BaseListResponseModel<T> {
   @JsonKey(name: 'errors')
   final String? error;
+
   @JsonKey(name: 'data')
   @_Converter()
   final List<T>? data;
@@ -24,15 +28,31 @@ class _Converter<T> implements JsonConverter<T, Object> {
 
   @override
   T fromJson(Object json) {
-    debugPrint('T is ${T.toString()}');
-    // /*** HomeMealModel ***/
-    // if (json is Map<String, dynamic> &&
-    //     T.toString() == HomeMealModel.className) {
-    //   return HomeMealModel.fromJson(json) as T;
+    debugPrint('t is ${T.toString()}');
+    if (json is Map<String, dynamic> && T.toString() == MealModel.className) {
+      return MealModel.fromJson(json) as T;
+    } else if (json is Map<String, dynamic> &&
+        T.toString() == CategoryModel.className) {
+      return CategoryModel.fromJson(json) as T;
+    }
+    // else if (json is Map<String, dynamic> &&
+    //     T.toString() == OrdersTimesModel.className) {
+    //   return OrdersTimesModel.fromJson(json) as T;
+    // } else if (json is Map<String, dynamic> &&
+    //     T.toString() == TotalMealModel.className) {
+    //   return TotalMealModel.fromJson(json) as T;
+    // } else if (json is Map<String, dynamic> &&
+    //     T.toString() == TimeOrderModel.className) {
+    //   return TimeOrderModel.fromJson(json) as T;
+    // } else if (json is Map<String, dynamic> &&
+    //     T.toString() == OrderMealModel.className) {
+    //   return OrderMealModel.fromJson(json) as T;
+    // }else if (json is Map<String, dynamic> &&
+    //     T.toString() == SubscriptionModel.className) {
+    //   return SubscriptionModel.fromJson(json) as T;
     // }
-    /*** ParseError ***/
-    debugPrint('Parse Error');
-    throw Exception('Parse Error');
+
+    throw Exception('parse error');
   }
 
   @override
