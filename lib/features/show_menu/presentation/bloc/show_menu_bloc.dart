@@ -6,7 +6,7 @@ import 'package:beitouti_chefs/features/show_menu/domain/use_cases/get_category_
 import 'package:beitouti_chefs/features/show_menu/domain/use_cases/increase_max_meal_number.dart';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../core/usecases/usecase.dart';
+import '../../../../core/usecase/usecase.dart';
 import '../../domain/use_cases/decrease_max_meal_number.dart';
 import 'show_menu.dart';
 

@@ -32,14 +32,14 @@ class _$ShowMenuState extends ShowMenuState {
       required this.message})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        categories, 'ShowMenuState', 'categories');
-    BuiltValueNullFieldError.checkNotNull(meals, 'ShowMenuState', 'meals');
+        categories, r'ShowMenuState', 'categories');
+    BuiltValueNullFieldError.checkNotNull(meals, r'ShowMenuState', 'meals');
     BuiltValueNullFieldError.checkNotNull(
-        mealsInfo, 'ShowMenuState', 'mealsInfo');
+        mealsInfo, r'ShowMenuState', 'mealsInfo');
     BuiltValueNullFieldError.checkNotNull(
-        isLoading, 'ShowMenuState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(error, 'ShowMenuState', 'error');
-    BuiltValueNullFieldError.checkNotNull(message, 'ShowMenuState', 'message');
+        isLoading, r'ShowMenuState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(error, r'ShowMenuState', 'error');
+    BuiltValueNullFieldError.checkNotNull(message, r'ShowMenuState', 'message');
   }
 
   @override
@@ -75,7 +75,7 @@ class _$ShowMenuState extends ShowMenuState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ShowMenuState')
+    return (newBuiltValueToStringHelper(r'ShowMenuState')
           ..add('categories', categories)
           ..add('meals', meals)
           ..add('mealsInfo', mealsInfo)
@@ -148,20 +148,20 @@ class ShowMenuStateBuilder
     final _$result = _$v ??
         new _$ShowMenuState._(
             categories: BuiltValueNullFieldError.checkNotNull(
-                categories, 'ShowMenuState', 'categories'),
+                categories, r'ShowMenuState', 'categories'),
             meals: BuiltValueNullFieldError.checkNotNull(
-                meals, 'ShowMenuState', 'meals'),
+                meals, r'ShowMenuState', 'meals'),
             mealsInfo: BuiltValueNullFieldError.checkNotNull(
-                mealsInfo, 'ShowMenuState', 'mealsInfo'),
+                mealsInfo, r'ShowMenuState', 'mealsInfo'),
             isLoading: BuiltValueNullFieldError.checkNotNull(
-                isLoading, 'ShowMenuState', 'isLoading'),
+                isLoading, r'ShowMenuState', 'isLoading'),
             error: BuiltValueNullFieldError.checkNotNull(
-                error, 'ShowMenuState', 'error'),
+                error, r'ShowMenuState', 'error'),
             message: BuiltValueNullFieldError.checkNotNull(
-                message, 'ShowMenuState', 'message'));
+                message, r'ShowMenuState', 'message'));
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

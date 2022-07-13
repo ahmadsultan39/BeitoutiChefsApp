@@ -1,7 +1,7 @@
 import 'package:beitouti_chefs/features/subscriptions/domain/entities/subscription_meal.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'subscriptoin_meal_model.g.dart';
+part 'subscription_meal_model.g.dart';
 
 @JsonSerializable()
 class SubscriptionMealModel extends SubscriptionMeal {

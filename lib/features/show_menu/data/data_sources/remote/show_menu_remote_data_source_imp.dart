@@ -27,8 +27,8 @@ class ShowMenuRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   @override
   Future<MealsInfoModel> getActiveMealsCount({required String token}) async =>
       await performGetRequest<MealsInfoModel>(
-        endpoint: Endpoints.GET_MEALS_ACTIVE_COUNT,
-        token: token,
+      Endpoints.GET_MEALS_ACTIVE_COUNT,
+      token,
       );
 
   @override
@@ -47,7 +47,7 @@ class ShowMenuRemoteDataSourceImp extends BaseRemoteDataSourceImpl
       final result =
       BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
-      throw ServerException(error: ErrorMessage.ERROR401);
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
@@ -60,7 +60,7 @@ class ShowMenuRemoteDataSourceImp extends BaseRemoteDataSourceImpl
       final result =
       BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
-      throw ServerException(error: ErrorMessage.ERROR401);
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
@@ -73,7 +73,7 @@ class ShowMenuRemoteDataSourceImp extends BaseRemoteDataSourceImpl
       final result =
       BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
-      throw ServerException(error: ErrorMessage.ERROR401);
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
@@ -86,7 +86,7 @@ class ShowMenuRemoteDataSourceImp extends BaseRemoteDataSourceImpl
       final result =
       BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
-      throw ServerException(error: ErrorMessage.ERROR401);
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 }

@@ -43,15 +43,15 @@ class _$AuthState extends AuthState {
       this.filePickerResult,
       this.accessibilityStaysType})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(isLoading, 'AuthState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(message, 'AuthState', 'message');
-    BuiltValueNullFieldError.checkNotNull(error, 'AuthState', 'error');
+    BuiltValueNullFieldError.checkNotNull(isLoading, r'AuthState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(message, r'AuthState', 'message');
+    BuiltValueNullFieldError.checkNotNull(error, r'AuthState', 'error');
     BuiltValueNullFieldError.checkNotNull(
-        isCodeSent, 'AuthState', 'isCodeSent');
+        isCodeSent, r'AuthState', 'isCodeSent');
     BuiltValueNullFieldError.checkNotNull(
-        isCodeValid, 'AuthState', 'isCodeValid');
+        isCodeValid, r'AuthState', 'isCodeValid');
     BuiltValueNullFieldError.checkNotNull(
-        isRegisterRequestSent, 'AuthState', 'isRegisterRequestSent');
+        isRegisterRequestSent, r'AuthState', 'isRegisterRequestSent');
   }
 
   @override
@@ -101,7 +101,7 @@ class _$AuthState extends AuthState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AuthState')
+    return (newBuiltValueToStringHelper(r'AuthState')
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error)
@@ -202,17 +202,17 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
     final _$result = _$v ??
         new _$AuthState._(
             isLoading: BuiltValueNullFieldError.checkNotNull(
-                isLoading, 'AuthState', 'isLoading'),
+                isLoading, r'AuthState', 'isLoading'),
             message: BuiltValueNullFieldError.checkNotNull(
-                message, 'AuthState', 'message'),
+                message, r'AuthState', 'message'),
             error: BuiltValueNullFieldError.checkNotNull(
-                error, 'AuthState', 'error'),
+                error, r'AuthState', 'error'),
             isCodeSent: BuiltValueNullFieldError.checkNotNull(
-                isCodeSent, 'AuthState', 'isCodeSent'),
+                isCodeSent, r'AuthState', 'isCodeSent'),
             isCodeValid: BuiltValueNullFieldError.checkNotNull(
-                isCodeValid, 'AuthState', 'isCodeValid'),
+                isCodeValid, r'AuthState', 'isCodeValid'),
             isRegisterRequestSent: BuiltValueNullFieldError.checkNotNull(
-                isRegisterRequestSent, 'AuthState', 'isRegisterRequestSent'),
+                isRegisterRequestSent, r'AuthState', 'isRegisterRequestSent'),
             locationData: locationData,
             user: user,
             filePickerResult: filePickerResult,
@@ -222,4 +222,4 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

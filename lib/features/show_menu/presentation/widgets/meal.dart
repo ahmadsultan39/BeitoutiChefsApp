@@ -186,10 +186,10 @@ class _MealTileState extends State<MealTile> {
                                    value = !value!;
                                  });
                                   } else {
-                                    error(
-                                        errorMsg: "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
+                                    message(
+                                        message: "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
                                         context: context,
-                                        bloc: widget.bloc);
+                                        bloc: widget.bloc,isError: true);
                                   }
                                 },
                               ),
@@ -223,10 +223,10 @@ class _MealTileState extends State<MealTile> {
                                               widget.meal.id,
                                               widget.meal.categoryId);
                                         } else {
-                                          error(
-                                              errorMsg: "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
+                                          message(
+                                              message: "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
                                               context: context,
-                                              bloc: widget.bloc);
+                                              bloc: widget.bloc , isError: true);
                                         }
                                       },
                                       icon: Icon(
@@ -264,10 +264,10 @@ class _MealTileState extends State<MealTile> {
                                               widget.meal.id,
                                               widget.meal.categoryId);
                                         } else {
-                                          error(
-                                              errorMsg: "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
+                                          message(
+                                              message: "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
                                               context: context,
-                                              bloc: widget.bloc);
+                                              bloc: widget.bloc,isError: true,);
                                         }
                                       },
                                       icon: Icon(Icons.remove,
