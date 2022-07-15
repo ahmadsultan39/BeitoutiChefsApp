@@ -50,7 +50,7 @@ class ShowMenuRemoteDataSourceImp extends BaseRemoteDataSourceImpl
       final result =
           BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
-      throw ServerException(error: 'ErrorMessage.ERROR401');
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
@@ -65,7 +65,7 @@ class ShowMenuRemoteDataSourceImp extends BaseRemoteDataSourceImpl
       final result =
           BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
-      throw ServerException(error: 'ErrorMessage.ERROR401');
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 
@@ -79,7 +79,7 @@ class ShowMenuRemoteDataSourceImp extends BaseRemoteDataSourceImpl
       final result =
           BaseResponseModel<Null>.fromJson(json.decode(response.data));
     } else {
-      throw ServerException(error:' ErrorMessage.ERROR401');
+      throw ServerException(error: ErrorMessage.someThingWentWrong);
     }
   }
 

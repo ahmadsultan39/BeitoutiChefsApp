@@ -41,7 +41,8 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: 'ErrorMessage.ERROR401'));
+      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 
@@ -58,7 +59,8 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error:' ErrorMessage.ERROR401'));
+      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 
@@ -76,7 +78,8 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: 'ErrorMessage.ERROR401'));
+      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 
@@ -92,7 +95,8 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: 'ErrorMessage.ERROR401'));
+      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 
@@ -108,7 +112,8 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: 'ErrorMessage.ERROR401'));
+      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 
@@ -124,7 +129,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: 'ErrorMessage.ERROR401'));
+  return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
     }
   }
 
@@ -140,7 +145,8 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
-      return Left(ServerFailure(error: 'ErrorMessage.ERROR401'));
+      return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
+
     }
   }
 }

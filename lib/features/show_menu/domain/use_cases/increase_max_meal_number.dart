@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/entities/meal.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecase/usecase.dart';
+
 @lazySingleton
 class IncreaseMaxMealNumberUseCase
     implements UseCase<void, IncreaseMaxMealNumberUseCaseParams> {

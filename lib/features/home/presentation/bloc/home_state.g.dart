@@ -20,9 +20,9 @@ class _$HomeState extends HomeState {
   _$HomeState._(
       {required this.isLoading, required this.message, required this.error})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(isLoading, 'HomeState', 'isLoading');
-    BuiltValueNullFieldError.checkNotNull(message, 'HomeState', 'message');
-    BuiltValueNullFieldError.checkNotNull(error, 'HomeState', 'error');
+    BuiltValueNullFieldError.checkNotNull(isLoading, r'HomeState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(message, r'HomeState', 'message');
+    BuiltValueNullFieldError.checkNotNull(error, r'HomeState', 'error');
   }
 
   @override
@@ -49,7 +49,7 @@ class _$HomeState extends HomeState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('HomeState')
+    return (newBuiltValueToStringHelper(r'HomeState')
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error))
@@ -103,14 +103,14 @@ class HomeStateBuilder implements Builder<HomeState, HomeStateBuilder> {
     final _$result = _$v ??
         new _$HomeState._(
             isLoading: BuiltValueNullFieldError.checkNotNull(
-                isLoading, 'HomeState', 'isLoading'),
+                isLoading, r'HomeState', 'isLoading'),
             message: BuiltValueNullFieldError.checkNotNull(
-                message, 'HomeState', 'message'),
+                message, r'HomeState', 'message'),
             error: BuiltValueNullFieldError.checkNotNull(
-                error, 'HomeState', 'error'));
+                error, r'HomeState', 'error'));
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

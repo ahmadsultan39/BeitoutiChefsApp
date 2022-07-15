@@ -20,7 +20,7 @@ Map<String, dynamic> _$PreparedOrderModelToJson(PreparedOrderModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
-      'status': _$OrderStatusEnumMap[instance.status],
+      'status': _$OrderStatusEnumMap[instance.status]!,
       'meals_cost': instance.mealsCost,
       'paid_to_chef': instance.paidToChef,
       'prepared_at': instance.preparedAt,

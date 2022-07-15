@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecase/usecase.dart';
+
 @lazySingleton
 class GetCategoriesUseCase
     implements UseCase<List<Category>, NoParams> {

@@ -17,8 +17,8 @@ class _$CheckCode extends CheckCode {
 
   _$CheckCode._({required this.phoneNumber, required this.code}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        phoneNumber, 'CheckCode', 'phoneNumber');
-    BuiltValueNullFieldError.checkNotNull(code, 'CheckCode', 'code');
+        phoneNumber, r'CheckCode', 'phoneNumber');
+    BuiltValueNullFieldError.checkNotNull(code, r'CheckCode', 'code');
   }
 
   @override
@@ -43,7 +43,7 @@ class _$CheckCode extends CheckCode {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('CheckCode')
+    return (newBuiltValueToStringHelper(r'CheckCode')
           ..add('phoneNumber', phoneNumber)
           ..add('code', code))
         .toString();
@@ -91,9 +91,9 @@ class CheckCodeBuilder implements Builder<CheckCode, CheckCodeBuilder> {
     final _$result = _$v ??
         new _$CheckCode._(
             phoneNumber: BuiltValueNullFieldError.checkNotNull(
-                phoneNumber, 'CheckCode', 'phoneNumber'),
+                phoneNumber, r'CheckCode', 'phoneNumber'),
             code: BuiltValueNullFieldError.checkNotNull(
-                code, 'CheckCode', 'code'));
+                code, r'CheckCode', 'code'));
     replace(_$result);
     return _$result;
   }
@@ -108,7 +108,7 @@ class _$RequestRegister extends RequestRegister {
 
   _$RequestRegister._({required this.request}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        request, 'RequestRegister', 'request');
+        request, r'RequestRegister', 'request');
   }
 
   @override
@@ -132,7 +132,7 @@ class _$RequestRegister extends RequestRegister {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('RequestRegister')
+    return (newBuiltValueToStringHelper(r'RequestRegister')
           ..add('request', request))
         .toString();
   }
@@ -175,7 +175,7 @@ class RequestRegisterBuilder
     final _$result = _$v ??
         new _$RequestRegister._(
             request: BuiltValueNullFieldError.checkNotNull(
-                request, 'RequestRegister', 'request'));
+                request, r'RequestRegister', 'request'));
     replace(_$result);
     return _$result;
   }
@@ -209,7 +209,7 @@ class _$ReInitializeState extends ReInitializeState {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ReInitializeState').toString();
+    return newBuiltValueToStringHelper(r'ReInitializeState').toString();
   }
 }
 
@@ -269,7 +269,7 @@ class _$GetCurrentLocation extends GetCurrentLocation {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetCurrentLocation').toString();
+    return newBuiltValueToStringHelper(r'GetCurrentLocation').toString();
   }
 }
 
@@ -326,7 +326,7 @@ class _$PickFile extends PickFile {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('PickFile').toString();
+    return newBuiltValueToStringHelper(r'PickFile').toString();
   }
 }
 
@@ -382,7 +382,7 @@ class _$ClearMessage extends ClearMessage {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ClearMessage').toString();
+    return newBuiltValueToStringHelper(r'ClearMessage').toString();
   }
 }
 
@@ -422,7 +422,7 @@ class _$SendCode extends SendCode {
 
   _$SendCode._({required this.phoneNumber}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        phoneNumber, 'SendCode', 'phoneNumber');
+        phoneNumber, r'SendCode', 'phoneNumber');
   }
 
   @override
@@ -445,7 +445,7 @@ class _$SendCode extends SendCode {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('SendCode')
+    return (newBuiltValueToStringHelper(r'SendCode')
           ..add('phoneNumber', phoneNumber))
         .toString();
   }
@@ -487,10 +487,10 @@ class SendCodeBuilder implements Builder<SendCode, SendCodeBuilder> {
     final _$result = _$v ??
         new _$SendCode._(
             phoneNumber: BuiltValueNullFieldError.checkNotNull(
-                phoneNumber, 'SendCode', 'phoneNumber'));
+                phoneNumber, r'SendCode', 'phoneNumber'));
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

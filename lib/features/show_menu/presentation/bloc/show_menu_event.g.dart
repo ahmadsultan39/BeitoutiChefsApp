@@ -35,7 +35,7 @@ class _$GetCategoriesEvent extends GetCategoriesEvent {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetCategoriesEvent').toString();
+    return newBuiltValueToStringHelper(r'GetCategoriesEvent').toString();
   }
 }
 
@@ -95,7 +95,7 @@ class _$GetActiveMealsCountEvent extends GetActiveMealsCountEvent {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetActiveMealsCountEvent').toString();
+    return newBuiltValueToStringHelper(r'GetActiveMealsCountEvent').toString();
   }
 }
 
@@ -137,7 +137,7 @@ class _$GetCategoryMealsEvent extends GetCategoryMealsEvent {
 
   _$GetCategoryMealsEvent._({required this.categoryId}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        categoryId, 'GetCategoryMealsEvent', 'categoryId');
+        categoryId, r'GetCategoryMealsEvent', 'categoryId');
   }
 
   @override
@@ -162,7 +162,7 @@ class _$GetCategoryMealsEvent extends GetCategoryMealsEvent {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GetCategoryMealsEvent')
+    return (newBuiltValueToStringHelper(r'GetCategoryMealsEvent')
           ..add('categoryId', categoryId))
         .toString();
   }
@@ -205,7 +205,7 @@ class GetCategoryMealsEventBuilder
     final _$result = _$v ??
         new _$GetCategoryMealsEvent._(
             categoryId: BuiltValueNullFieldError.checkNotNull(
-                categoryId, 'GetCategoryMealsEvent', 'categoryId'));
+                categoryId, r'GetCategoryMealsEvent', 'categoryId'));
     replace(_$result);
     return _$result;
   }
@@ -225,9 +225,9 @@ class _$IncreaseMaxMealNumberEvent extends IncreaseMaxMealNumberEvent {
       {required this.mealId, required this.categoryId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        mealId, 'IncreaseMaxMealNumberEvent', 'mealId');
+        mealId, r'IncreaseMaxMealNumberEvent', 'mealId');
     BuiltValueNullFieldError.checkNotNull(
-        categoryId, 'IncreaseMaxMealNumberEvent', 'categoryId');
+        categoryId, r'IncreaseMaxMealNumberEvent', 'categoryId');
   }
 
   @override
@@ -254,7 +254,7 @@ class _$IncreaseMaxMealNumberEvent extends IncreaseMaxMealNumberEvent {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('IncreaseMaxMealNumberEvent')
+    return (newBuiltValueToStringHelper(r'IncreaseMaxMealNumberEvent')
           ..add('mealId', mealId)
           ..add('categoryId', categoryId))
         .toString();
@@ -304,9 +304,9 @@ class IncreaseMaxMealNumberEventBuilder
     final _$result = _$v ??
         new _$IncreaseMaxMealNumberEvent._(
             mealId: BuiltValueNullFieldError.checkNotNull(
-                mealId, 'IncreaseMaxMealNumberEvent', 'mealId'),
+                mealId, r'IncreaseMaxMealNumberEvent', 'mealId'),
             categoryId: BuiltValueNullFieldError.checkNotNull(
-                categoryId, 'IncreaseMaxMealNumberEvent', 'categoryId'));
+                categoryId, r'IncreaseMaxMealNumberEvent', 'categoryId'));
     replace(_$result);
     return _$result;
   }
@@ -326,9 +326,9 @@ class _$DecreaseMaxMealNumberEvent extends DecreaseMaxMealNumberEvent {
       {required this.mealId, required this.categoryId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        mealId, 'DecreaseMaxMealNumberEvent', 'mealId');
+        mealId, r'DecreaseMaxMealNumberEvent', 'mealId');
     BuiltValueNullFieldError.checkNotNull(
-        categoryId, 'DecreaseMaxMealNumberEvent', 'categoryId');
+        categoryId, r'DecreaseMaxMealNumberEvent', 'categoryId');
   }
 
   @override
@@ -355,7 +355,7 @@ class _$DecreaseMaxMealNumberEvent extends DecreaseMaxMealNumberEvent {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('DecreaseMaxMealNumberEvent')
+    return (newBuiltValueToStringHelper(r'DecreaseMaxMealNumberEvent')
           ..add('mealId', mealId)
           ..add('categoryId', categoryId))
         .toString();
@@ -405,9 +405,9 @@ class DecreaseMaxMealNumberEventBuilder
     final _$result = _$v ??
         new _$DecreaseMaxMealNumberEvent._(
             mealId: BuiltValueNullFieldError.checkNotNull(
-                mealId, 'DecreaseMaxMealNumberEvent', 'mealId'),
+                mealId, r'DecreaseMaxMealNumberEvent', 'mealId'),
             categoryId: BuiltValueNullFieldError.checkNotNull(
-                categoryId, 'DecreaseMaxMealNumberEvent', 'categoryId'));
+                categoryId, r'DecreaseMaxMealNumberEvent', 'categoryId'));
     replace(_$result);
     return _$result;
   }
@@ -427,9 +427,9 @@ class _$ChangeMealAvailabilityEvent extends ChangeMealAvailabilityEvent {
       {required this.mealId, required this.categoryId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        mealId, 'ChangeMealAvailabilityEvent', 'mealId');
+        mealId, r'ChangeMealAvailabilityEvent', 'mealId');
     BuiltValueNullFieldError.checkNotNull(
-        categoryId, 'ChangeMealAvailabilityEvent', 'categoryId');
+        categoryId, r'ChangeMealAvailabilityEvent', 'categoryId');
   }
 
   @override
@@ -456,7 +456,7 @@ class _$ChangeMealAvailabilityEvent extends ChangeMealAvailabilityEvent {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ChangeMealAvailabilityEvent')
+    return (newBuiltValueToStringHelper(r'ChangeMealAvailabilityEvent')
           ..add('mealId', mealId)
           ..add('categoryId', categoryId))
         .toString();
@@ -507,9 +507,9 @@ class ChangeMealAvailabilityEventBuilder
     final _$result = _$v ??
         new _$ChangeMealAvailabilityEvent._(
             mealId: BuiltValueNullFieldError.checkNotNull(
-                mealId, 'ChangeMealAvailabilityEvent', 'mealId'),
+                mealId, r'ChangeMealAvailabilityEvent', 'mealId'),
             categoryId: BuiltValueNullFieldError.checkNotNull(
-                categoryId, 'ChangeMealAvailabilityEvent', 'categoryId'));
+                categoryId, r'ChangeMealAvailabilityEvent', 'categoryId'));
     replace(_$result);
     return _$result;
   }
@@ -526,9 +526,9 @@ class _$DeleteMealEvent extends DeleteMealEvent {
 
   _$DeleteMealEvent._({required this.mealId, required this.categoryId})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(mealId, 'DeleteMealEvent', 'mealId');
+    BuiltValueNullFieldError.checkNotNull(mealId, r'DeleteMealEvent', 'mealId');
     BuiltValueNullFieldError.checkNotNull(
-        categoryId, 'DeleteMealEvent', 'categoryId');
+        categoryId, r'DeleteMealEvent', 'categoryId');
   }
 
   @override
@@ -554,7 +554,7 @@ class _$DeleteMealEvent extends DeleteMealEvent {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('DeleteMealEvent')
+    return (newBuiltValueToStringHelper(r'DeleteMealEvent')
           ..add('mealId', mealId)
           ..add('categoryId', categoryId))
         .toString();
@@ -603,9 +603,9 @@ class DeleteMealEventBuilder
     final _$result = _$v ??
         new _$DeleteMealEvent._(
             mealId: BuiltValueNullFieldError.checkNotNull(
-                mealId, 'DeleteMealEvent', 'mealId'),
+                mealId, r'DeleteMealEvent', 'mealId'),
             categoryId: BuiltValueNullFieldError.checkNotNull(
-                categoryId, 'DeleteMealEvent', 'categoryId'));
+                categoryId, r'DeleteMealEvent', 'categoryId'));
     replace(_$result);
     return _$result;
   }
@@ -637,7 +637,7 @@ class _$ClearError extends ClearError {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ClearError').toString();
+    return newBuiltValueToStringHelper(r'ClearError').toString();
   }
 }
 
@@ -667,4 +667,4 @@ class ClearErrorBuilder implements Builder<ClearError, ClearErrorBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

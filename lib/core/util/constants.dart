@@ -145,21 +145,21 @@ class RequestBody {
     return form;
   }
 
-  // static Future<String> addSubscription({
-  //   required NewSubscription newSubscription,
-  // }) async {
-  //   final form = json.encode({
-  //     'name': newSubscription.name,
-  //     'days_number': newSubscription.daysNumber,
-  //     'meals': [...newSubscription.mealsIds],
-  //     'starts_at': newSubscription.startsAt,
-  //     'meal_delivery_time': newSubscription.mealDeliveryTime,
-  //     'max_subscribers': newSubscription.maxSubscribers,
-  //     'meals_cost': newSubscription.mealsCost,
-  //   });
-  //   print(form);
-  //   return form;
-  // }
+  static Future<String> addSubscription({
+    required NewSubscription newSubscription,
+  }) async {
+    final form = json.encode({
+      'name': newSubscription.name,
+      'days_number': newSubscription.daysNumber,
+      'meals': [...newSubscription.mealsIds],
+      'starts_at': newSubscription.startsAt,
+      'meal_delivery_time': newSubscription.mealDeliveryTime,
+      'max_subscribers': newSubscription.maxSubscribers,
+      'meals_cost': newSubscription.mealsCost,
+    });
+    print(form);
+    return form;
+  }
 
   // Send Code
   static FormData sendCode({required String phoneNumber}) {

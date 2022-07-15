@@ -178,6 +178,7 @@ class _MealTileState extends State<MealTile> {
                                     });
                                   } else {
                                     message(
+
                                       message:
                                           "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
                                       context: context,
@@ -212,6 +213,7 @@ class _MealTileState extends State<MealTile> {
                                                   widget.meal.categoryId);
                                         } else {
                                           message(
+
                                             message:
                                                 "لا يمكن تغيير حالة الوجبة مالم تتم الموافقة عليها",
                                             context: context,

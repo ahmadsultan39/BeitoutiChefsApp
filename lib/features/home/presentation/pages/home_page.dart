@@ -1,5 +1,7 @@
+import 'package:beitouti_chefs/features/orders/presentation/pages/orders_page.dart';
 import 'package:beitouti_chefs/features/profile/presentation/pages/profile_page.dart';
 import 'package:beitouti_chefs/features/show_menu/presentation/pages/show_menu.dart';
+import 'package:beitouti_chefs/features/subscriptions/presentation/pages/subscriptions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -12,15 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Widget> _pages = [
-    const Center(
-      child: Text("Orders page"),
-    ),
+  final List<Widget> _pages = const [
+    OrdersPage(),
     ShowMenuPage(),
-    const Center(
-      child: Text("Subscriptions page"),
-    ),
-    const ProfilePage(),
+    SubscriptionsPage(),
+    ProfilePage(),
   ];
 
   int _selectedPage = 0;

@@ -35,7 +35,7 @@ class _$GetCategoriesEvent extends GetCategoriesEvent {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetCategoriesEvent').toString();
+    return newBuiltValueToStringHelper(r'GetCategoriesEvent').toString();
   }
 }
 
@@ -75,7 +75,8 @@ class _$GetFinalPriceEvent extends GetFinalPriceEvent {
       (new GetFinalPriceEventBuilder()..update(updates))._build();
 
   _$GetFinalPriceEvent._({required this.price}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(price, 'GetFinalPriceEvent', 'price');
+    BuiltValueNullFieldError.checkNotNull(
+        price, r'GetFinalPriceEvent', 'price');
   }
 
   @override
@@ -100,7 +101,7 @@ class _$GetFinalPriceEvent extends GetFinalPriceEvent {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GetFinalPriceEvent')
+    return (newBuiltValueToStringHelper(r'GetFinalPriceEvent')
           ..add('price', price))
         .toString();
   }
@@ -143,7 +144,7 @@ class GetFinalPriceEventBuilder
     final _$result = _$v ??
         new _$GetFinalPriceEvent._(
             price: BuiltValueNullFieldError.checkNotNull(
-                price, 'GetFinalPriceEvent', 'price'));
+                price, r'GetFinalPriceEvent', 'price'));
     replace(_$result);
     return _$result;
   }
@@ -158,7 +159,7 @@ class _$AddCategoryEvent extends AddCategoryEvent {
       (new AddCategoryEventBuilder()..update(updates))._build();
 
   _$AddCategoryEvent._({required this.name}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(name, 'AddCategoryEvent', 'name');
+    BuiltValueNullFieldError.checkNotNull(name, r'AddCategoryEvent', 'name');
   }
 
   @override
@@ -182,7 +183,7 @@ class _$AddCategoryEvent extends AddCategoryEvent {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AddCategoryEvent')..add('name', name))
+    return (newBuiltValueToStringHelper(r'AddCategoryEvent')..add('name', name))
         .toString();
   }
 }
@@ -224,7 +225,7 @@ class AddCategoryEventBuilder
     final _$result = _$v ??
         new _$AddCategoryEvent._(
             name: BuiltValueNullFieldError.checkNotNull(
-                name, 'AddCategoryEvent', 'name'));
+                name, r'AddCategoryEvent', 'name'));
     replace(_$result);
     return _$result;
   }
@@ -239,7 +240,7 @@ class _$AddNewMealEvent extends AddNewMealEvent {
 
   _$AddNewMealEvent._({required this.mealData}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        mealData, 'AddNewMealEvent', 'mealData');
+        mealData, r'AddNewMealEvent', 'mealData');
   }
 
   @override
@@ -263,7 +264,7 @@ class _$AddNewMealEvent extends AddNewMealEvent {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AddNewMealEvent')
+    return (newBuiltValueToStringHelper(r'AddNewMealEvent')
           ..add('mealData', mealData))
         .toString();
   }
@@ -306,7 +307,7 @@ class AddNewMealEventBuilder
     final _$result = _$v ??
         new _$AddNewMealEvent._(
             mealData: BuiltValueNullFieldError.checkNotNull(
-                mealData, 'AddNewMealEvent', 'mealData'));
+                mealData, r'AddNewMealEvent', 'mealData'));
     replace(_$result);
     return _$result;
   }
@@ -321,7 +322,7 @@ class _$EditMealEvent extends EditMealEvent {
 
   _$EditMealEvent._({required this.mealData}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        mealData, 'EditMealEvent', 'mealData');
+        mealData, r'EditMealEvent', 'mealData');
   }
 
   @override
@@ -344,7 +345,7 @@ class _$EditMealEvent extends EditMealEvent {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('EditMealEvent')
+    return (newBuiltValueToStringHelper(r'EditMealEvent')
           ..add('mealData', mealData))
         .toString();
   }
@@ -387,7 +388,7 @@ class EditMealEventBuilder
     final _$result = _$v ??
         new _$EditMealEvent._(
             mealData: BuiltValueNullFieldError.checkNotNull(
-                mealData, 'EditMealEvent', 'mealData'));
+                mealData, r'EditMealEvent', 'mealData'));
     replace(_$result);
     return _$result;
   }
@@ -419,7 +420,7 @@ class _$PickImage extends PickImage {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('PickImage').toString();
+    return newBuiltValueToStringHelper(r'PickImage').toString();
   }
 }
 
@@ -475,7 +476,7 @@ class _$ClearError extends ClearError {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ClearError').toString();
+    return newBuiltValueToStringHelper(r'ClearError').toString();
   }
 }
 
@@ -505,4 +506,4 @@ class ClearErrorBuilder implements Builder<ClearError, ClearErrorBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

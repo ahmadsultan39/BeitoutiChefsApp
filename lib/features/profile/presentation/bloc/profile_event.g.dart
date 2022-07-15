@@ -16,7 +16,7 @@ class _$ChangeProfilePicture extends ChangeProfilePicture {
 
   _$ChangeProfilePicture._({required this.image}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        image, 'ChangeProfilePicture', 'image');
+        image, r'ChangeProfilePicture', 'image');
   }
 
   @override
@@ -41,7 +41,7 @@ class _$ChangeProfilePicture extends ChangeProfilePicture {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ChangeProfilePicture')
+    return (newBuiltValueToStringHelper(r'ChangeProfilePicture')
           ..add('image', image))
         .toString();
   }
@@ -84,7 +84,7 @@ class ChangeProfilePictureBuilder
     final _$result = _$v ??
         new _$ChangeProfilePicture._(
             image: BuiltValueNullFieldError.checkNotNull(
-                image, 'ChangeProfilePicture', 'image'));
+                image, r'ChangeProfilePicture', 'image'));
     replace(_$result);
     return _$result;
   }
@@ -116,7 +116,7 @@ class _$Logout extends Logout {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('Logout').toString();
+    return newBuiltValueToStringHelper(r'Logout').toString();
   }
 }
 
@@ -172,7 +172,7 @@ class _$GetProfile extends GetProfile {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetProfile').toString();
+    return newBuiltValueToStringHelper(r'GetProfile').toString();
   }
 }
 
@@ -236,7 +236,7 @@ class _$GetChefBalance extends GetChefBalance {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GetChefBalance')
+    return (newBuiltValueToStringHelper(r'GetChefBalance')
           ..add('startDate', startDate)
           ..add('endDate', endDate))
         .toString();
@@ -317,7 +317,7 @@ class _$GetOrdersHistory extends GetOrdersHistory {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetOrdersHistory').toString();
+    return newBuiltValueToStringHelper(r'GetOrdersHistory').toString();
   }
 }
 
@@ -377,7 +377,7 @@ class _$GetOrdersMealsNote extends GetOrdersMealsNote {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('GetOrdersMealsNote').toString();
+    return newBuiltValueToStringHelper(r'GetOrdersMealsNote').toString();
   }
 }
 
@@ -422,9 +422,9 @@ class _$EditDeliverMealTime extends EditDeliverMealTime {
       {required this.deliveryStartsAt, required this.deliveryEndsAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        deliveryStartsAt, 'EditDeliverMealTime', 'deliveryStartsAt');
+        deliveryStartsAt, r'EditDeliverMealTime', 'deliveryStartsAt');
     BuiltValueNullFieldError.checkNotNull(
-        deliveryEndsAt, 'EditDeliverMealTime', 'deliveryEndsAt');
+        deliveryEndsAt, r'EditDeliverMealTime', 'deliveryEndsAt');
   }
 
   @override
@@ -451,7 +451,7 @@ class _$EditDeliverMealTime extends EditDeliverMealTime {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('EditDeliverMealTime')
+    return (newBuiltValueToStringHelper(r'EditDeliverMealTime')
           ..add('deliveryStartsAt', deliveryStartsAt)
           ..add('deliveryEndsAt', deliveryEndsAt))
         .toString();
@@ -502,9 +502,9 @@ class EditDeliverMealTimeBuilder
     final _$result = _$v ??
         new _$EditDeliverMealTime._(
             deliveryStartsAt: BuiltValueNullFieldError.checkNotNull(
-                deliveryStartsAt, 'EditDeliverMealTime', 'deliveryStartsAt'),
+                deliveryStartsAt, r'EditDeliverMealTime', 'deliveryStartsAt'),
             deliveryEndsAt: BuiltValueNullFieldError.checkNotNull(
-                deliveryEndsAt, 'EditDeliverMealTime', 'deliveryEndsAt'));
+                deliveryEndsAt, r'EditDeliverMealTime', 'deliveryEndsAt'));
     replace(_$result);
     return _$result;
   }
@@ -520,7 +520,7 @@ class _$EditMaxMealsPerDay extends EditMaxMealsPerDay {
 
   _$EditMaxMealsPerDay._({required this.maxMealsPerDay}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        maxMealsPerDay, 'EditMaxMealsPerDay', 'maxMealsPerDay');
+        maxMealsPerDay, r'EditMaxMealsPerDay', 'maxMealsPerDay');
   }
 
   @override
@@ -546,7 +546,7 @@ class _$EditMaxMealsPerDay extends EditMaxMealsPerDay {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('EditMaxMealsPerDay')
+    return (newBuiltValueToStringHelper(r'EditMaxMealsPerDay')
           ..add('maxMealsPerDay', maxMealsPerDay))
         .toString();
   }
@@ -590,7 +590,7 @@ class EditMaxMealsPerDayBuilder
     final _$result = _$v ??
         new _$EditMaxMealsPerDay._(
             maxMealsPerDay: BuiltValueNullFieldError.checkNotNull(
-                maxMealsPerDay, 'EditMaxMealsPerDay', 'maxMealsPerDay'));
+                maxMealsPerDay, r'EditMaxMealsPerDay', 'maxMealsPerDay'));
     replace(_$result);
     return _$result;
   }
@@ -622,7 +622,7 @@ class _$ClearMessage extends ClearMessage {
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ClearMessage').toString();
+    return newBuiltValueToStringHelper(r'ClearMessage').toString();
   }
 }
 
@@ -653,4 +653,4 @@ class ClearMessageBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
