@@ -4,6 +4,7 @@ import 'package:beitouti_chefs/features/profile/domain/entities/order_meal_note.
 import 'package:beitouti_chefs/features/profile/domain/entities/prepared_order.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../domain/entities/profile.dart';
 
@@ -19,7 +20,7 @@ abstract class ProfileState
 
   bool get isLoggedOut;
 
-  ProfilePagesState get profilePagesState;
+  XFile? get pickedImage;
 
   BuiltList<OrderMealNote> get orderMealsNotes;
 
@@ -43,25 +44,9 @@ abstract class ProfileState
         ..isLoggedOut = false
         ..chefBalance = null
         ..profile = null
+        ..pickedImage = null
         ..preparedOrder.replace([])
-        ..orderMealsNotes.replace([])
-        ..profilePagesState = ProfilePagesState(
-          mealsNotesPageState: BaseState.initial(),
-          editProfilePageState: BaseState.initial(),
-          orderHistoryPageState: BaseState.initial(),
-        ),
+        ..orderMealsNotes.replace([]),
     );
   }
-}
-
-class ProfilePagesState {
-  final BaseState orderHistoryPageState;
-  final BaseState mealsNotesPageState;
-  final BaseState editProfilePageState;
-
-  ProfilePagesState({
-    required this.orderHistoryPageState,
-    required this.mealsNotesPageState,
-    required this.editProfilePageState,
-  });
 }

@@ -56,11 +56,19 @@ class _AddMealPageState extends State<AddMealPage> {
   bool saveForm() {
     if (widget.initMeal == null) {
       if (_bloc.state.pickedImage == null) {
-        message(message: "الرجاء إضافة صورة", context: context, bloc: _bloc,isError: true);
+        message(
+            message: "الرجاء إضافة صورة",
+            context: context,
+            bloc: _bloc,
+            isError: true);
         return false;
       }
       if (categoryId == null) {
-        message(message: "الرجاء إضافة تصنيف", context: context, bloc: _bloc, isError: true);
+        message(
+            message: "الرجاء إضافة تصنيف",
+            context: context,
+            bloc: _bloc,
+            isError: true);
         return false;
       }
     }
@@ -498,8 +506,9 @@ class _AddMealPageState extends State<AddMealPage> {
                                 },
                                 onSaved: (value) {
                                   value!.trim();
-                                  if (value != null && value.isNotEmpty)
+                                  if (value.isNotEmpty) {
                                     discount = double.parse(value);
+                                  }
                                 },
                               ),
                             ),
@@ -541,10 +550,12 @@ class _AddMealPageState extends State<AddMealPage> {
                                                       _bloc.state.finalPrice ==
                                                           null
                                                   ? SizedBox(
-                                                  height: 50.h,
-                                                  child: Loader())
+                                                      height: 50.h,
+                                                      child: const Loader(),
+                                                    )
                                                   : Column(
-                                                mainAxisSize: MainAxisSize.min,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
                                                       children: [
                                                         Text(
                                                           "السعر للطالب سوف يكون",
@@ -580,8 +591,8 @@ class _AddMealPageState extends State<AddMealPage> {
                                                       widget.initMeal == null
                                                           ? _bloc.addAddNewMealEvent(
                                                               AddMealUseCaseParams(
-                                                              pickedImage:
-                                                                  state.pickedImage!,
+                                                              pickedImage: state
+                                                                  .pickedImage!,
                                                               name: name!,
                                                               categoryId:
                                                                   categoryId!,
@@ -599,8 +610,8 @@ class _AddMealPageState extends State<AddMealPage> {
                                                               EditMealUseCaseParams(
                                                               mealId: widget
                                                                   .initMeal!.id,
-                                                              pickedImage:
-                                                                  state.pickedImage,
+                                                              pickedImage: state
+                                                                  .pickedImage,
                                                               name: name!,
                                                               categoryId:
                                                                   categoryId!,

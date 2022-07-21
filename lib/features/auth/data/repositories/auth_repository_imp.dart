@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../core/util/enums.dart';
 import '../../domain/entities/accessibility_status.dart';
 import '../../domain/entities/request_register.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -17,7 +18,9 @@ class AuthRepositoryImp implements AuthRepository {
   AuthRepositoryImp(this._local, this._http);
 
   @override
-  Future<Either<Failure, void>> sendCode({required String phoneNumber}) async {
+  Future<Either<Failure, void>> sendCode({
+    required String phoneNumber,
+  }) async {
     try {
       await _http.sendCode(phoneNumber: phoneNumber);
       return const Right(null);
@@ -27,13 +30,18 @@ class AuthRepositoryImp implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, AccessibilityStatus>> checkCode(
-      {required String phoneNumber, required String code}) async {
+  Future<Either<Failure, AccessibilityStatus>> checkCode({
+    required String phoneNumber,
+    required String code,
+  }) async {
     try {
       final accessibilityStatus = await _http.checkCodeAndAccessibility(
         phoneNumber: phoneNumber,
         code: code,
       );
+      if (accessibilityStatus.status == AccessibilityStaysType.active) {
+        _local.saveUser(accessibilityStatus.userModel!);
+      }
       return Right(accessibilityStatus);
     } on ServerException catch (e) {
       return Left(ServerFailure(error: e.error));
