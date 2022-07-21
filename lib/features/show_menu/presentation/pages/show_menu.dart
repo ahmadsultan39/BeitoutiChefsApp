@@ -27,14 +27,14 @@ class ShowMenuPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(height: 35),
+                    const SizedBox(height: 35),
                     MealsInfoTopTile(_bloc),
                     ..._bloc.state.categories
                         .map((e) => CategoryExpansionTile(e,_bloc)),
                   ],
                 ),
               ),
-              if (state.isLoading) Loader()
+              if (state.isLoading) const Loader()
             ],
           );
         },

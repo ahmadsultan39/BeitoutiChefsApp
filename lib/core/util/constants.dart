@@ -11,8 +11,8 @@ import '../../features/auth/data/models/request_register_model.dart';
 import '../../features/add_meal/domain/use_cases/add_meal.dart';
 
 class Endpoints {
-  static const baseUrl = "https://78f8-31-9-140-112.ngrok.io/api/chef";
-  static const url = "https://5188-188-133-25-71.ngrok.io";
+  static const baseUrl = "http://95a2-5-155-157-177.ngrok.io/api/chef";
+  static const url = "http://95a2-5-155-157-177.ngrok.io";
   static const logout = "/logout";
   static const getCategories = "/meals/categories";
   static const getMealsActiveCount = "/meals/active-count";
@@ -172,10 +172,12 @@ class RequestBody {
   static FormData checkCode({
     required String phoneNumber,
     required String code,
+    required String fcmToken,
   }) {
     return FormData.fromMap({
       'phone_number': phoneNumber,
       'code': code,
+      'fcm_token': fcmToken,
     });
   }
 

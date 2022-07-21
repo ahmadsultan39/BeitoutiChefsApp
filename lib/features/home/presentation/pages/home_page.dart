@@ -1,4 +1,5 @@
 import 'package:beitouti_chefs/features/profile/presentation/pages/profile_page.dart';
+import 'package:beitouti_chefs/features/subscriptions/presentation/pages/subscriptions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -21,9 +22,7 @@ class _HomePageState extends State<HomePage> {
     const Center(
       child: Text("Menu page"),
     ),
-    const Center(
-      child: Text("Subscriptions page"),
-    ),
+    const SubscriptionsPage(),
     const ProfilePage(),
   ];
 

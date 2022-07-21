@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
@@ -30,9 +31,12 @@ class AuthRepositoryImp implements AuthRepository {
   Future<Either<Failure, AccessibilityStatus>> checkCode(
       {required String phoneNumber, required String code}) async {
     try {
+      String? fcmToken = await FirebaseMessaging.instance.getToken();
+      fcmToken = fcmToken ?? "";
       final accessibilityStatus = await _http.checkCodeAndAccessibility(
         phoneNumber: phoneNumber,
         code: code,
+        fcmToken: fcmToken,
       );
       return Right(accessibilityStatus);
     } on ServerException catch (e) {

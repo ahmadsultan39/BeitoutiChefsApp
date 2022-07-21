@@ -6,6 +6,7 @@ abstract class AuthRemoteDataSource extends BaseRemoteDataSource {
   Future<AccessibilityStatusModel> checkCodeAndAccessibility({
     required String phoneNumber,
     required String code,
+    required String fcmToken,
   });
 
   Future<void> sendCode({

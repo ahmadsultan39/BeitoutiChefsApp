@@ -19,9 +19,10 @@ class AuthRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   Future<AccessibilityStatusModel> checkCodeAndAccessibility({
     required String phoneNumber,
     required String code,
+    required String fcmToken,
   }) async {
     final formData =
-        RequestBody.checkCode(phoneNumber: phoneNumber, code: code);
+        RequestBody.checkCode(phoneNumber: phoneNumber, code: code,fcmToken : fcmToken);
 
     try {
       final response = await dio.post(
