@@ -1,9 +1,13 @@
 library base_response_model;
 
+import 'package:beitouti_chefs/features/profile/data/models/profile_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../features/auth/data/models/user_model.dart';
+import '../../../features/orders/data/models/order_meal_model.dart';
+import '../../../features/orders/data/models/time_order_model.dart';
+import '../../../features/orders/data/models/total_meal_model.dart';
 import '../../../features/show_menu/data/models/meals_info_model.dart';
 import '../../models/category_model.dart';
 import '../../../features/auth/data/models/accessibility_status_model.dart';
@@ -42,15 +46,15 @@ T? _dataFromJson<T>(Object? data) {
       return CategoryModel.fromJson(data) as T;
     } else if (T.toString() == MealsInfoModel.className) {
       return MealsInfoModel.fromJson(data) as T;
-    }
-    // else if (T.toString() == TotalMealModel.className) {
-    //   return TotalMealModel.fromJson(data) as T;
-    // } else if (T.toString() == TimeOrderModel.className) {
-    //   return TimeOrderModel.fromJson(data) as T;
-    // } else if (T.toString() == OrderMealModel.className) {
-    //   return OrderMealModel.fromJson(data) as T;
-    // }
-    else if (T.toString() == 'Null') {
+    } else if (T.toString() == TotalMealModel.className) {
+      return TotalMealModel.fromJson(data) as T;
+    } else if (T.toString() == TimeOrderModel.className) {
+      return TimeOrderModel.fromJson(data) as T;
+    } else if (T.toString() == OrderMealModel.className) {
+      return OrderMealModel.fromJson(data) as T;
+    } else if (T.toString() == ProfileModel.className) {
+      return ProfileModel.fromJson(data) as T;
+    } else if (T.toString() == 'Null') {
       debugPrint('Null Data');
       return null;
     }

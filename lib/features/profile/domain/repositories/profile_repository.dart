@@ -17,6 +17,8 @@ abstract class ProfileRepository extends BaseRepository {
 
   Future<Either<Failure, ProfileModel>> getChefProfile();
 
+  Future<Either<Failure, XFile?>> pickImage();
+
   Future<Either<Failure, void>> logout();
 
   Future<Either<Failure, void>> changeProfilePicture({

@@ -22,7 +22,6 @@ class MealTile extends StatefulWidget {
 class _MealTileState extends State<MealTile> {
   @override
   Widget build(BuildContext context) {
-    bool? value = widget.meal.isAvailable;
     return BlocBuilder<ShowMenuBloc, ShowMenuState>(
       bloc: widget.bloc,
       builder: (context, state) {
@@ -127,8 +126,8 @@ class _MealTileState extends State<MealTile> {
                                       Text(
                                           (widget.meal.price -
                                                   widget.meal.price *
-                                                      widget.meal.discount!)
-                                              .toString(),
+                                                      (widget.meal.discount!/100))
+                                              .toString().split(".").first,
                                           style: TextStyle(fontSize: 16.sp)),
                                       SizedBox(
                                         width: 15.w,
@@ -140,6 +139,7 @@ class _MealTileState extends State<MealTile> {
                                               fontSize: 12.sp)),
                                     ],
                                   ),
+                            if (widget.meal.rating != null)
                             Row(
                               children: [
                                 Icon(
@@ -147,7 +147,6 @@ class _MealTileState extends State<MealTile> {
                                   color: Colors.yellow,
                                   size: 20.sp,
                                 ),
-                                if (widget.meal.rating != null)
                                   Text(
                                     widget.meal.rating.toString(),
                                     style: TextStyle(fontSize: 14.sp),
@@ -167,15 +166,12 @@ class _MealTileState extends State<MealTile> {
                               child: SwitchListTile.adaptive(
                                 activeColor:
                                     Theme.of(context).colorScheme.secondary,
-                                value: value ?? false,
+                                value: widget.meal.isAvailable ?? false,
                                 onChanged: (newValue) {
                                   if (widget.meal.isApproved != null &&
                                       widget.meal.isApproved!) {
                                     widget.bloc.addChangeMealAvailabilityEvent(
                                         widget.meal.id, widget.meal.categoryId);
-                                    setState(() {
-                                      value = !value!;
-                                    });
                                   } else {
                                     message(
 

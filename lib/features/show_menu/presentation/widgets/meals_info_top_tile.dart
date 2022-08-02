@@ -2,6 +2,8 @@ import 'package:beitouti_chefs/features/show_menu/presentation/bloc/show_menu.da
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/util/generate_screen.dart';
+
 class MealsInfoTopTile extends StatelessWidget {
   final ShowMenuBloc bloc;
 
@@ -24,7 +26,9 @@ class MealsInfoTopTile extends StatelessWidget {
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(theme.colorScheme.tertiary)),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(NameScreen.addMeal);
+              },
               icon: Icon(
                 Icons.add,
                 color: theme.primaryColor,

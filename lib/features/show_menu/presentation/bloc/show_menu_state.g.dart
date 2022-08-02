@@ -10,7 +10,7 @@ class _$ShowMenuState extends ShowMenuState {
   @override
   final List<Category> categories;
   @override
-  final Map<int, List<Meal>> meals;
+  final Map<int, BuiltList<Meal>> meals;
   @override
   final MealsInfo mealsInfo;
   @override
@@ -94,9 +94,9 @@ class ShowMenuStateBuilder
   List<Category>? get categories => _$this._categories;
   set categories(List<Category>? categories) => _$this._categories = categories;
 
-  Map<int, List<Meal>>? _meals;
-  Map<int, List<Meal>>? get meals => _$this._meals;
-  set meals(Map<int, List<Meal>>? meals) => _$this._meals = meals;
+  Map<int, BuiltList<Meal>>? _meals;
+  Map<int, BuiltList<Meal>>? get meals => _$this._meals;
+  set meals(Map<int, BuiltList<Meal>>? meals) => _$this._meals = meals;
 
   MealsInfo? _mealsInfo;
   MealsInfo? get mealsInfo => _$this._mealsInfo;

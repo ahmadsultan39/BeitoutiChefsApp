@@ -1,8 +1,12 @@
+import 'package:beitouti_chefs/features/profile/presentation/pages/chef_balance_page.dart';
+import 'package:beitouti_chefs/features/profile/presentation/pages/edit_order_settings_page.dart';
+import 'package:beitouti_chefs/features/profile/presentation/pages/meals_notes_page.dart';
 import 'package:beitouti_chefs/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/pages/auth_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/profile/presentation/pages/order_history_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
 import 'package:beitouti_chefs/core/entities/meal.dart';
 import 'package:beitouti_chefs/features/add_meal/presentation/pages/add_meal.dart';
@@ -56,14 +60,38 @@ class GenerateScreen {
             ),
           );
         }
-      // case NameScreen.addSubscription:
-      //   {
-      //     return MaterialPageRoute(
-      //       builder: (context) => AddNewSubscriptionPage(
-      //         initSubscription: value.arguments as NewSubscription?,
-      //       ),
-      //     );
-      //   }
+      case NameScreen.orderMealsNotesScreen:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const MealsNotesPage(),
+          );
+        }   case NameScreen.ordersHistoryScreen:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const OrderHistoryPage(),
+          );
+        }
+      case NameScreen.editOrderSettingsScreen:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const EditOrderSettingsPage(),
+          );
+        }
+      case NameScreen.chefBalanceScreen:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const ChefBalancePage(),
+          );
+        }
+      case NameScreen.addSubscription:
+        {
+          return MaterialPageRoute(
+            builder: (context) =>  AddNewSubscriptionPage(
+              initSubscription: value.arguments as NewSubscription?,
+            ),
+          );
+        }
+
       default:
         return _errorRoute();
     }
@@ -93,4 +121,8 @@ class NameScreen {
   static const String showMenu = "/show-menu";
   static const String addMeal = "/add-meal";
   static const String addSubscription = "/add-subscription";
+  static const String ordersHistoryScreen = "/orders-history";
+  static const String orderMealsNotesScreen = "/order-meals-notes";
+  static const String editOrderSettingsScreen = "/edit-order-settings";
+  static const String chefBalanceScreen = "/chef-balance";
 }

@@ -14,7 +14,7 @@ SubscriptionModel _$SubscriptionModelFromJson(Map<String, dynamic> json) =>
       json['meal_delivery_time'] as String,
       json['is_available'] as bool,
       json['starts_at'] as String,
-      json['max_subscibers'] as int,
+      json['max_subscribers'] as int?,
       json['meals_cost'] as int,
       json['current_subscribers'] as int,
       (json['meals'] as List<dynamic>)
@@ -31,7 +31,7 @@ Map<String, dynamic> _$SubscriptionModelToJson(SubscriptionModel instance) =>
       'meal_delivery_time': instance.mealDeliveryTime,
       'is_available': instance.isAvailable,
       'starts_at': instance.startsAt,
-      'max_subscibers': instance.maxSubscribers,
+      'max_subscribers': instance.maxSubscribers,
       'meals_cost': instance.mealsCost,
       'current_subscribers': instance.currentSubscribers,
     };

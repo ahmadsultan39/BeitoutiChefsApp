@@ -43,7 +43,7 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
     add(EditSubscriptionAvailabilityEvent((b) => b..id = id));
   }
 
-  void clearError() {
+  void clearMessage() {
     add(ClearError((b) => b));
   }
 
@@ -137,14 +137,15 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
               ..message = failure.error,
           ));
         }, (message) {
-          emit(
-            state.rebuild(
-                  (b) => b
-                ..isLoading = false
-                    ..message = message
-                ..subscriptions!.firstWhere((element) => element.id == event.id).editAvailability(),
-            ),
-          );
+          // emit(
+          //   state.rebuild(
+          //         (b) => b
+          //       ..isLoading = false
+          //           ..message = message
+          //       ..subscriptions!.firstWhere((element) => element.id == event.id).editAvailability(),
+          //   ),
+          // );
+          addGetSubscriptionsEvent();
         });
       }
 

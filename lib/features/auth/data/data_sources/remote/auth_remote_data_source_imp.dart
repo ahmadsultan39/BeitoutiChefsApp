@@ -21,8 +21,8 @@ class AuthRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required String code,
     required String fcmToken,
   }) async {
-    final formData =
-        RequestBody.checkCode(phoneNumber: phoneNumber, code: code,fcmToken : fcmToken);
+    final formData = RequestBody.checkCode(
+        phoneNumber: phoneNumber, code: code, fcmToken: fcmToken);
 
     try {
       final response = await dio.post(
@@ -50,8 +50,11 @@ class AuthRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   }
 
   @override
-  Future<void> requestRegister({required RegisterRequestModel request}) async {
-    final formData = RequestBody.requestRegister(request: request);
+  Future<void> requestRegister({
+    required RegisterRequestModel request,
+    required String fcmToken,
+  }) async {
+    final formData = RequestBody.requestRegister(request: request,fcmToken: fcmToken);
     try {
       final response = await dio.post(
         Endpoints.requestRegister,

@@ -11,8 +11,8 @@ import '../../features/auth/data/models/request_register_model.dart';
 import '../../features/add_meal/domain/use_cases/add_meal.dart';
 
 class Endpoints {
-  static const baseUrl = "http://95a2-5-155-157-177.ngrok.io/api/chef";
-  static const url = "http://95a2-5-155-157-177.ngrok.io";
+  static const baseUrl = "http://13e7-46-213-57-181.ngrok.io/api/chef";
+  static const url = "http://13e7-46-213-57-181.ngrok.io";
   static const logout = "/logout";
   static const getCategories = "/meals/categories";
   static const getMealsActiveCount = "/meals/active-count";
@@ -145,9 +145,9 @@ class RequestBody {
     return form;
   }
 
-  static Future<String> addSubscription({
+  static String addSubscription({
     required NewSubscription newSubscription,
-  }) async {
+  }) {
     final form = json.encode({
       'name': newSubscription.name,
       'days_number': newSubscription.daysNumber,
@@ -184,6 +184,7 @@ class RequestBody {
   // Request Register
   static FormData requestRegister({
     required RegisterRequestModel request,
+    required String fcmToken,
   }) {
     if (request.certificatePath != null) {
       return FormData.fromMap({
@@ -201,6 +202,7 @@ class RequestBody {
         // 'profile_picture': request.profilePicture,
         'certificate': MultipartFile.fromFile(request.certificatePath!,
             filename: request.certificateName),
+        'fcm_token': fcmToken,
       });
     } else {
       return FormData.fromMap({
@@ -216,6 +218,7 @@ class RequestBody {
         'delivery_ends_at': request.deliveryEndsAt,
         'max_meals_per_day': request.maxMealsPerDay,
         // 'profile_picture': request.profilePicture,
+        'fcm_token': fcmToken,
       });
     }
   }

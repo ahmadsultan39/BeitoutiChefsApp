@@ -1,11 +1,10 @@
+import 'package:beitouti_chefs/features/orders/presentation/pages/orders_page.dart';
 import 'package:beitouti_chefs/features/profile/presentation/pages/profile_page.dart';
+import 'package:beitouti_chefs/features/show_menu/presentation/pages/show_menu.dart';
 import 'package:beitouti_chefs/features/subscriptions/presentation/pages/subscriptions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
-import '../../../../core/util/generate_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,15 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Widget> _pages = [
-    const Center(
-      child: Text("Orders page"),
-    ),
-    const Center(
-      child: Text("Menu page"),
-    ),
-    const SubscriptionsPage(),
-    const ProfilePage(),
+  final List<Widget> _pages = const [
+    OrdersPage(),
+    ShowMenuPage(),
+    SubscriptionsPage(),
+    ProfilePage(),
   ];
 
   int _selectedPage = 0;
@@ -39,6 +34,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text(
           "بَيتوتيْ",

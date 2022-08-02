@@ -27,7 +27,6 @@ class ShowMenuPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(height: 35),
                     MealsInfoTopTile(_bloc),
                     ..._bloc.state.categories
                         .map((e) => CategoryExpansionTile(e,_bloc)),

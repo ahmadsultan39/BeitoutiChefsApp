@@ -62,7 +62,7 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
       if (response.statusCode == 200 || response.statusCode == 201) {
         final BaseListResponseModel<T> finalResponse =
             BaseListResponseModel<T>.fromJson(json.decode(response.data));
-        if (finalResponse.data != null && finalResponse.data!.isNotEmpty) {
+        if (finalResponse.data != null ) {
           debugPrint("Data is not null");
           return finalResponse.data!;
         } else {
@@ -138,6 +138,10 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
         queryParameters: queryParameters,
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
+        if (T.toString() == "String")
+          {
+           return json.decode(response.data)["data"];
+          }
         final BaseResponseModel<T> finalResponse =
             BaseResponseModel<T>.fromJson(
           json.decode(response.data),
@@ -349,7 +353,7 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
     required String token,
     dynamic data,
   }) async {
-    debugPrint("performPutRequest");
+    debugPrint("performDeleteRequest");
     try {
       final response = await dio.delete(
         endpoint,

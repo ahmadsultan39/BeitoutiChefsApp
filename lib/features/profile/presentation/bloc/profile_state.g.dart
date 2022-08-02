@@ -16,7 +16,7 @@ class _$ProfileState extends ProfileState {
   @override
   final bool isLoggedOut;
   @override
-  final ProfilePagesState profilePagesState;
+  final XFile? pickedImage;
   @override
   final BuiltList<OrderMealNote> orderMealsNotes;
   @override
@@ -34,7 +34,7 @@ class _$ProfileState extends ProfileState {
       required this.error,
       required this.isLoading,
       required this.isLoggedOut,
-      required this.profilePagesState,
+      this.pickedImage,
       required this.orderMealsNotes,
       required this.preparedOrder,
       this.chefBalance,
@@ -46,8 +46,6 @@ class _$ProfileState extends ProfileState {
         isLoading, r'ProfileState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(
         isLoggedOut, r'ProfileState', 'isLoggedOut');
-    BuiltValueNullFieldError.checkNotNull(
-        profilePagesState, r'ProfileState', 'profilePagesState');
     BuiltValueNullFieldError.checkNotNull(
         orderMealsNotes, r'ProfileState', 'orderMealsNotes');
     BuiltValueNullFieldError.checkNotNull(
@@ -69,7 +67,7 @@ class _$ProfileState extends ProfileState {
         error == other.error &&
         isLoading == other.isLoading &&
         isLoggedOut == other.isLoggedOut &&
-        profilePagesState == other.profilePagesState &&
+        pickedImage == other.pickedImage &&
         orderMealsNotes == other.orderMealsNotes &&
         preparedOrder == other.preparedOrder &&
         chefBalance == other.chefBalance &&
@@ -87,7 +85,7 @@ class _$ProfileState extends ProfileState {
                             $jc($jc($jc(0, message.hashCode), error.hashCode),
                                 isLoading.hashCode),
                             isLoggedOut.hashCode),
-                        profilePagesState.hashCode),
+                        pickedImage.hashCode),
                     orderMealsNotes.hashCode),
                 preparedOrder.hashCode),
             chefBalance.hashCode),
@@ -101,7 +99,7 @@ class _$ProfileState extends ProfileState {
           ..add('error', error)
           ..add('isLoading', isLoading)
           ..add('isLoggedOut', isLoggedOut)
-          ..add('profilePagesState', profilePagesState)
+          ..add('pickedImage', pickedImage)
           ..add('orderMealsNotes', orderMealsNotes)
           ..add('preparedOrder', preparedOrder)
           ..add('chefBalance', chefBalance)
@@ -130,10 +128,9 @@ class ProfileStateBuilder
   bool? get isLoggedOut => _$this._isLoggedOut;
   set isLoggedOut(bool? isLoggedOut) => _$this._isLoggedOut = isLoggedOut;
 
-  ProfilePagesState? _profilePagesState;
-  ProfilePagesState? get profilePagesState => _$this._profilePagesState;
-  set profilePagesState(ProfilePagesState? profilePagesState) =>
-      _$this._profilePagesState = profilePagesState;
+  XFile? _pickedImage;
+  XFile? get pickedImage => _$this._pickedImage;
+  set pickedImage(XFile? pickedImage) => _$this._pickedImage = pickedImage;
 
   ListBuilder<OrderMealNote>? _orderMealsNotes;
   ListBuilder<OrderMealNote> get orderMealsNotes =>
@@ -165,7 +162,7 @@ class ProfileStateBuilder
       _error = $v.error;
       _isLoading = $v.isLoading;
       _isLoggedOut = $v.isLoggedOut;
-      _profilePagesState = $v.profilePagesState;
+      _pickedImage = $v.pickedImage;
       _orderMealsNotes = $v.orderMealsNotes.toBuilder();
       _preparedOrder = $v.preparedOrder.toBuilder();
       _chefBalance = $v.chefBalance;
@@ -202,8 +199,7 @@ class ProfileStateBuilder
                   isLoading, r'ProfileState', 'isLoading'),
               isLoggedOut: BuiltValueNullFieldError.checkNotNull(
                   isLoggedOut, r'ProfileState', 'isLoggedOut'),
-              profilePagesState: BuiltValueNullFieldError.checkNotNull(
-                  profilePagesState, r'ProfileState', 'profilePagesState'),
+              pickedImage: pickedImage,
               orderMealsNotes: orderMealsNotes.build(),
               preparedOrder: preparedOrder.build(),
               chefBalance: chefBalance,

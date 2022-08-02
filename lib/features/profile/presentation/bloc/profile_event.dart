@@ -135,6 +135,19 @@ abstract class EditMaxMealsPerDay extends ProfileEvent
   }
 }
 
+abstract class PickImage extends ProfileEvent
+    implements Built<PickImage, PickImageBuilder> {
+  //getter fields
+
+  PickImage._();
+
+  factory PickImage([Function(PickImageBuilder b) updates]) = _$PickImage;
+
+  factory PickImage.initial() {
+    return PickImage((b) => b);
+  }
+}
+
 abstract class ClearMessage extends ProfileEvent
     implements Built<ClearMessage, ClearMessageBuilder> {
   //getter fields

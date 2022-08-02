@@ -15,5 +15,6 @@ abstract class AuthRemoteDataSource extends BaseRemoteDataSource {
 
   Future<void> requestRegister({
     required RegisterRequestModel request,
+    required String fcmToken,
   });
 }

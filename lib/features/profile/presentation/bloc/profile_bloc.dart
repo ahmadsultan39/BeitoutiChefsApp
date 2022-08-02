@@ -1,4 +1,5 @@
 import 'package:beitouti_chefs/core/usecase/usecase.dart';
+import 'package:beitouti_chefs/features/add_meal/domain/use_cases/pick_image.dart';
 import 'package:beitouti_chefs/features/profile/domain/use_cases/change_profile_picture_use_case.dart';
 import 'package:beitouti_chefs/features/profile/domain/use_cases/edit_deliver_meal_time_use_case.dart';
 import 'package:beitouti_chefs/features/profile/domain/use_cases/edit_max_meals_per_day_use_case.dart';
@@ -22,6 +23,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final EditDeliverTimeUseCase _editDeliverTimeUseCase;
   final GetChefBalanceUseCase _getChefBalanceUseCase;
   final GetProfileUseCase _getProfileUseCase;
+  final PickImageUseCase _pickImageUseCase;
   final LogoutUseCase _logoutUseCase;
 
   void addChangeProfilePictureEvent({
@@ -41,6 +43,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     ));
   }
 
+  void addPickImageEvent() {
+    add(PickImage((b) => b));
+  }
+
   void addEditMaxMealsPerDayEvent({
     required int maxMealsPerDay,
   }) {
@@ -53,6 +59,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     add(GetChefBalance());
   }
 
+  void addGetOrderMealsNotesEvent() {
+    add(GetOrdersMealsNote());
+  }
+
   void addGetProfileEvent() {
     add(GetProfile());
   }
@@ -60,6 +70,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   void addGetOrdersHistoryEvent() {
     add(GetOrdersHistory());
   }
+
+
 
   void clearMessage() {
     add(ClearMessage());
@@ -75,6 +87,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     this._getChefBalanceUseCase,
     this._getProfileUseCase,
     this._editMaxMealsPerDayUseCase,
+    this._pickImageUseCase,
   ) : super(ProfileState.initial()) {
     on<ProfileEvent>(
       (event, emit) async {
@@ -145,7 +158,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         if (event is GetOrdersMealsNote) {
           emit(
             state.rebuild(
-              (b) => b..profilePagesState!.mealsNotesPageState.isLoading = true,
+              (b) => b..isLoading = true,
             ),
           );
 
@@ -155,16 +168,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             (failure) => emit(
               state.rebuild(
                 (b) => b
-                  ..profilePagesState!.mealsNotesPageState.isLoading = false
-                  ..profilePagesState!.mealsNotesPageState.error = true
-                  ..profilePagesState!.mealsNotesPageState.message =
-                      failure.error,
+                  ..isLoading = false
+                  ..error = true
+                  ..message = failure.error,
               ),
             ),
             (orderMealsNotes) => emit(
               state.rebuild(
                 (b) => b
-                  ..profilePagesState!.mealsNotesPageState.isLoading = false
+                  ..isLoading = false
                   ..orderMealsNotes.addAll(orderMealsNotes),
               ),
             ),
@@ -175,8 +187,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         if (event is GetOrdersHistory) {
           emit(
             state.rebuild(
-              (b) =>
-                  b..profilePagesState!.orderHistoryPageState.isLoading = true,
+              (b) => b..isLoading = true,
             ),
           );
 
@@ -186,16 +197,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             (failure) => emit(
               state.rebuild(
                 (b) => b
-                  ..profilePagesState!.orderHistoryPageState.isLoading = false
-                  ..profilePagesState!.orderHistoryPageState.error = true
-                  ..profilePagesState!.orderHistoryPageState.message =
-                      failure.error,
+                  ..isLoading = false
+                  ..error = true
+                  ..message = failure.error,
               ),
             ),
             (preparedOrder) => emit(
               state.rebuild(
                 (b) => b
-                  ..profilePagesState!.orderHistoryPageState.isLoading = false
+                  ..isLoading = false
                   ..preparedOrder.addAll(preparedOrder),
               ),
             ),
@@ -206,31 +216,79 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         if (event is GetChefBalance) {
           emit(
             state.rebuild(
-                  (b) =>
-              b..profilePagesState,
+              (b) => b..isLoading = true,
             ),
           );
 
           final result = await _getOrdersHistoryUseCase(NoParams());
 
           result.fold(
-                (failure) => emit(
+            (failure) => emit(
               state.rebuild(
-                    (b) => b
-                  ..profilePagesState!.orderHistoryPageState.isLoading = false
-                  ..profilePagesState!.orderHistoryPageState.error = true
-                  ..profilePagesState!.orderHistoryPageState.message =
-                      failure.error,
+                (b) => b
+                  ..isLoading = false
+                  ..error = true
+                  ..message = failure.error,
               ),
             ),
-                (preparedOrder) => emit(
+            (preparedOrder) => emit(
               state.rebuild(
-                    (b) => b
-                  ..profilePagesState!.orderHistoryPageState.isLoading = false
+                (b) => b
+                  ..isLoading = false
                   ..preparedOrder.addAll(preparedOrder),
               ),
             ),
           );
+        }
+
+        /// *** GetProfile *** ///
+        if (event is GetProfile) {
+          emit(
+            state.rebuild(
+              (b) => b..isLoading = true,
+            ),
+          );
+
+          final result = await _getProfileUseCase(NoParams());
+
+          result.fold(
+            (failure) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..error = true
+                  ..message = failure.error,
+              ),
+            ),
+            (profile) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..profile = profile,
+              ),
+            ),
+          );
+        }
+
+        /// *** PickImage *** ///
+        if (event is PickImage) {
+          final result = await _pickImageUseCase(NoParams());
+
+          result.fold((failure) {
+            emit(
+              state.rebuild(
+                (b) => b
+                  ..error = true
+                  ..message = failure.error,
+              ),
+            );
+          }, (image) {
+            emit(
+              state.rebuild(
+                (b) => b..pickedImage = image,
+              ),
+            );
+          });
         }
       },
     );

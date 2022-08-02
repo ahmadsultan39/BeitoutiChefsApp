@@ -596,6 +596,62 @@ class EditMaxMealsPerDayBuilder
   }
 }
 
+class _$PickImage extends PickImage {
+  factory _$PickImage([void Function(PickImageBuilder)? updates]) =>
+      (new PickImageBuilder()..update(updates))._build();
+
+  _$PickImage._() : super._();
+
+  @override
+  PickImage rebuild(void Function(PickImageBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  PickImageBuilder toBuilder() => new PickImageBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is PickImage;
+  }
+
+  @override
+  int get hashCode {
+    return 618242274;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'PickImage').toString();
+  }
+}
+
+class PickImageBuilder implements Builder<PickImage, PickImageBuilder> {
+  _$PickImage? _$v;
+
+  PickImageBuilder();
+
+  @override
+  void replace(PickImage other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$PickImage;
+  }
+
+  @override
+  void update(void Function(PickImageBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  PickImage build() => _build();
+
+  _$PickImage _build() {
+    final _$result = _$v ?? new _$PickImage._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$ClearMessage extends ClearMessage {
   factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
       (new ClearMessageBuilder()..update(updates))._build();

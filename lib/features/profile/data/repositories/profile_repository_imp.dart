@@ -133,4 +133,14 @@ class ProfileRepositoryImp extends BaseRepositoryImpl
       return Left(ServerFailure(error: e.error));
     }
   }
+
+  @override
+  Future<Either<Failure, XFile?>> pickImage() async {
+    try {
+      final result = await _local.pickImage();
+      return Right(result);
+    } on PickFileException catch (e) {
+      return const Left(PickFileFailure());
+    }
+  }
 }

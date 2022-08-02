@@ -32,8 +32,10 @@ class SubscriptionsPage extends StatelessWidget {
                           },
                           child: const Text("إنشاء اشتراك جديد")),
                       ...state.subscriptions.map((subscription) =>
-                          SubscriptionTile(
-                              bloc: _bloc, subscription: subscription)),
+                          Center(
+                            child: SubscriptionTile(
+                                bloc: _bloc, subscription: subscription),
+                          )),
                     ],
                   ),
           ),
