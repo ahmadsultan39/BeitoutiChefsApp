@@ -56,8 +56,9 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
   }
 
   void clearMessage() {
-    add(ClearError((b) => b));
+    add(ClearMessage());
   }
+
 
   @factoryMethod
   ShowMenuBloc(
@@ -216,11 +217,15 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
         });
       }
 
-      /***** ClearError *****/
-      if (event is ClearError) {
-        emit(state.rebuild((b) => b
-          ..error = false
-          ..message = ''));
+      /// *** ClearMessage *** //
+      if (event is ClearMessage) {
+        emit(
+          state.rebuild(
+                (b) => b
+              ..error = false
+              ..message = '',
+          ),
+        );
       }
     });
   }

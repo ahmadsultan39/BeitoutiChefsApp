@@ -81,14 +81,14 @@ abstract class PickImage extends AddMealEvent
   factory PickImage([Function(PickImageBuilder b) updates]) = _$PickImage;
 }
 
-abstract class ClearError extends AddMealEvent
-    implements Built<ClearError, ClearErrorBuilder> {
+abstract class ClearMessage extends AddMealEvent
+    implements Built<ClearMessage, ClearMessageBuilder> {
+  ClearMessage._();
 
-  ClearError._();
+  factory ClearMessage([Function(ClearMessageBuilder b) updates]) =
+  _$ClearMessage;
 
-  factory ClearError([Function(ClearErrorBuilder b) updates]) = _$ClearError;
-
-  factory ClearError.initial() {
-    return ClearError((b) => b);
+  factory ClearMessage.initial() {
+    return ClearMessage((b) => b);
   }
 }

@@ -44,7 +44,7 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
   }
 
   void clearMessage() {
-    add(ClearError((b) => b));
+    add(ClearMessage());
   }
 
   @factoryMethod
@@ -196,11 +196,15 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
 
 
 
-      /***** ClearError *****/
-      if (event is ClearError) {
-        emit(state.rebuild((b) => b
-          ..error = false
-          ..message = ''));
+      /// *** ClearMessage *** //
+      if (event is ClearMessage) {
+        emit(
+          state.rebuild(
+                (b) => b
+              ..error = false
+              ..message = '',
+          ),
+        );
       }
     });
   }
