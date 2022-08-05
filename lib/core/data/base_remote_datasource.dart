@@ -209,6 +209,10 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
         options: GetOptions.getOptionsWithToken(token),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
+        if (T.toString() == "String")
+        {
+          return json.decode(response.data)["data"];
+        }
         final BaseResponseModel<T> finalResponse =
             BaseResponseModel<T>.fromJson(json.decode(response.data));
         if (finalResponse.data != null) {

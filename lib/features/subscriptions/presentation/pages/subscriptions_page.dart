@@ -8,13 +8,24 @@ import '../../../../core/util/generate_screen.dart';
 import '../../../../injection.dart';
 import '../bloc/subscriptions_state.dart';
 
-class SubscriptionsPage extends StatelessWidget {
+class SubscriptionsPage extends StatefulWidget {
   const SubscriptionsPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final _bloc = sl<SubscriptionsBloc>();
+  State<SubscriptionsPage> createState() => _SubscriptionsPageState();
+}
+
+class _SubscriptionsPageState extends State<SubscriptionsPage> {
+  final _bloc = sl<SubscriptionsBloc>();
+
+  @override
+  void initState() {
     _bloc.addGetSubscriptionsEvent();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<SubscriptionsBloc, SubscriptionsState>(
       bloc: _bloc,
       builder: (context, state) {

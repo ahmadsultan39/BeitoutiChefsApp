@@ -42,17 +42,6 @@ class _HomePageState extends State<HomePage> {
             fontSize: 21.sp,
           ),
         ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 12.w,
-            ),
-            child: Icon(
-              Icons.search_rounded,
-              size: 25.sp,
-            ),
-          ),
-        ],
       ),
       body: _pages[_selectedPage],
       bottomNavigationBar: SizedBox(
