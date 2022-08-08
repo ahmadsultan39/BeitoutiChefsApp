@@ -8,6 +8,8 @@ abstract class AddMealState
     implements Built<AddMealState, AddMealStateBuilder> {
   //getter fields
 
+  bool get popScreen;
+
   bool get isLoading;
 
   String? get imageUrl;
@@ -45,6 +47,7 @@ abstract class AddMealState
   factory AddMealState.initial() {
     return AddMealState(
       (b) => b
+      ..popScreen = false
         ..isLoading = false
         ..isCategoriesLoading = false
         ..categories = []

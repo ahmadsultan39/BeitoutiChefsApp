@@ -12,6 +12,8 @@ class _$SubscriptionsState extends SubscriptionsState {
   @override
   final BuiltList<AddSubscriptionMeal> meals;
   @override
+  final bool popScreen;
+  @override
   final bool isLoading;
   @override
   final bool error;
@@ -25,6 +27,7 @@ class _$SubscriptionsState extends SubscriptionsState {
   _$SubscriptionsState._(
       {required this.subscriptions,
       required this.meals,
+      required this.popScreen,
       required this.isLoading,
       required this.error,
       required this.message})
@@ -33,6 +36,8 @@ class _$SubscriptionsState extends SubscriptionsState {
         subscriptions, r'SubscriptionsState', 'subscriptions');
     BuiltValueNullFieldError.checkNotNull(
         meals, r'SubscriptionsState', 'meals');
+    BuiltValueNullFieldError.checkNotNull(
+        popScreen, r'SubscriptionsState', 'popScreen');
     BuiltValueNullFieldError.checkNotNull(
         isLoading, r'SubscriptionsState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(
@@ -56,6 +61,7 @@ class _$SubscriptionsState extends SubscriptionsState {
     return other is SubscriptionsState &&
         subscriptions == other.subscriptions &&
         meals == other.meals &&
+        popScreen == other.popScreen &&
         isLoading == other.isLoading &&
         error == other.error &&
         message == other.message;
@@ -65,7 +71,9 @@ class _$SubscriptionsState extends SubscriptionsState {
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, subscriptions.hashCode), meals.hashCode),
+            $jc(
+                $jc($jc($jc(0, subscriptions.hashCode), meals.hashCode),
+                    popScreen.hashCode),
                 isLoading.hashCode),
             error.hashCode),
         message.hashCode));
@@ -76,6 +84,7 @@ class _$SubscriptionsState extends SubscriptionsState {
     return (newBuiltValueToStringHelper(r'SubscriptionsState')
           ..add('subscriptions', subscriptions)
           ..add('meals', meals)
+          ..add('popScreen', popScreen)
           ..add('isLoading', isLoading)
           ..add('error', error)
           ..add('message', message))
@@ -97,6 +106,10 @@ class SubscriptionsStateBuilder
       _$this._meals ??= new ListBuilder<AddSubscriptionMeal>();
   set meals(ListBuilder<AddSubscriptionMeal>? meals) => _$this._meals = meals;
 
+  bool? _popScreen;
+  bool? get popScreen => _$this._popScreen;
+  set popScreen(bool? popScreen) => _$this._popScreen = popScreen;
+
   bool? _isLoading;
   bool? get isLoading => _$this._isLoading;
   set isLoading(bool? isLoading) => _$this._isLoading = isLoading;
@@ -116,6 +129,7 @@ class SubscriptionsStateBuilder
     if ($v != null) {
       _subscriptions = $v.subscriptions;
       _meals = $v.meals.toBuilder();
+      _popScreen = $v.popScreen;
       _isLoading = $v.isLoading;
       _error = $v.error;
       _message = $v.message;
@@ -146,6 +160,8 @@ class SubscriptionsStateBuilder
               subscriptions: BuiltValueNullFieldError.checkNotNull(
                   subscriptions, r'SubscriptionsState', 'subscriptions'),
               meals: meals.build(),
+              popScreen: BuiltValueNullFieldError.checkNotNull(
+                  popScreen, r'SubscriptionsState', 'popScreen'),
               isLoading: BuiltValueNullFieldError.checkNotNull(
                   isLoading, r'SubscriptionsState', 'isLoading'),
               error: BuiltValueNullFieldError.checkNotNull(

@@ -32,6 +32,8 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
   int? maxSubscribers;
   int? mealsCost;
   final _bloc = sl<SubscriptionsBloc>();
+  String? mealsCostError;
+  String? maxSubscribersError;
 
   @override
   void initState() {
@@ -57,9 +59,25 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
           isError: true);
       return false;
     }
+    if (mealsIds.length > daysNumber) {
+      message(
+          message: "عدد الوجبات أكبر من عدد الأيام",
+          context: context,
+          bloc: _bloc,
+          isError: true);
+      return false;
+    }
     if (startsAt == null) {
       message(
           message: "الرجاء اختيار تاريخ بداية للاشتراك",
+          context: context,
+          bloc: _bloc,
+          isError: true);
+      return false;
+    }
+    if (mealDeliveryTime == null) {
+      message(
+          message: "الرجاء اختيار توقيت الوجبات",
           context: context,
           bloc: _bloc,
           isError: true);
@@ -73,8 +91,13 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return BlocBuilder<SubscriptionsBloc, SubscriptionsState>(
+    return BlocConsumer<SubscriptionsBloc, SubscriptionsState>(
       bloc: _bloc,
+      listener: (context,state) {
+        if (state.popScreen){
+          Navigator.of(context).pop();
+        }
+      },
       builder: (context, state) {
         WidgetsBinding.instance?.addPostFrameCallback((_) {
           message(
@@ -150,6 +173,7 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                                     startsAt =
                                         pickedDate.toString().split(".").first;
                                   });
+
                                 }
                               },
                               icon: const Icon(Icons.date_range),
@@ -264,11 +288,20 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                                   validator: (value) {
                                     value?.trim();
                                     if (value == null || value.isEmpty) {
-                                      return "السعر لا يجب أن يكون فارغ";
+                                      setState(() {
+                                        mealsCostError = "السعر لا يجب أن يكون فارغ";
+                                      });
+                                      return " ";
                                     }
                                     if (int.tryParse(value) == null) {
-                                      return "السعر يجب أن يكون رقم";
+                                      setState(() {
+                                        mealsCostError = "السعر يجب أن يكون رقم";
+                                      });
+                                      return " ";
                                     }
+                                    setState(() {
+                                      mealsCostError = null;
+                                    });
                                     return null;
                                   },
                                   onSaved: (value) {
@@ -280,6 +313,8 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                               const Text("ل.س")
                             ],
                           ),
+                          if(mealsCostError != null)
+                            Text(mealsCostError!, style: TextStyle(color: Theme.of(context).errorColor),),
                           SizedBox(height: 8.h),
                           Row(
                             children: [
@@ -292,11 +327,20 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                                   validator: (value) {
                                     value?.trim();
                                     if (value == null || value.isEmpty) {
-                                      return "العدد الأعظمي لا يجب أن يكون فارغ";
+                                      setState(() {
+                                        maxSubscribersError = "العدد الأعظمي لا يجب أن يكون فارغ";
+                                      });
+                                      return " ";
                                     }
                                     if (int.tryParse(value) == null) {
-                                      return "العدد الأعظمي يجب أن يكون رقم";
+                                      setState(() {
+                                        maxSubscribersError = "العدد الأعظمي يجب أن يكون رقم";
+                                      });
+                                      return " ";
                                     }
+                                    setState(() {
+                                      maxSubscribersError = null;
+                                    });
                                     return null;
                                   },
                                   onSaved: (value) {
@@ -309,6 +353,8 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                               ),
                             ],
                           ),
+                          if(maxSubscribersError != null)
+                            Text(maxSubscribersError!, style: TextStyle(color: Theme.of(context).errorColor),),
                           SizedBox(height: 8.h),
                           Center(
                             child: SizedBox(
@@ -344,7 +390,6 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                                                       mealsCost!,
                                                       widget.initSubscription!
                                                           .id!)));
-                                      Navigator.of(context).pop();
                                     }
                                   },
                                   icon: Icon(

@@ -269,6 +269,7 @@ class GetOptions {
         'Content-type': 'application/json',
         'Accept': 'application/json',
         'Authorization': ' Bearer $token',
+        // 'encrypt' : 'multiport/form-data',
       };
     } else {
       options.headers = {

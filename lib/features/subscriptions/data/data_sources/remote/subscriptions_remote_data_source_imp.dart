@@ -20,21 +20,8 @@ class SubscriptionsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   @override
   Future<void> deleteSubscription(
       {required String token, required int id}) async {
-    try {
-      final response = await dio.delete(
-        Endpoints.deleteSubscription(id),
-        options: GetOptions.getOptionsWithToken(token),
-      );
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return;
-      } else {
-        throw ServerException(error: ErrorMessage.someThingWentWrong);
-      }
-    } on DioError catch (e) {
-      final result =
-          BaseResponseModel<Null>.fromJson(json.decode(e.response!.data));
-      throw ServerException(error: result.errors!);
-    }
+    await performDeleteRequest<Null>(endpoint: Endpoints.deleteSubscription(id),
+        token: token);
   }
 
   @override

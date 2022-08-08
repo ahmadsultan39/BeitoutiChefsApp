@@ -173,6 +173,7 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
         result.fold((failure) {
           emit(state.rebuild(
             (b) => b
+            ..isLoading = false
               ..error = true
               ..message = failure.error,
           ));
@@ -191,6 +192,7 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
         result.fold((failure) {
           emit(state.rebuild(
             (b) => b
+            ..isLoading = false
               ..error = true
               ..message = failure.error,
           ));

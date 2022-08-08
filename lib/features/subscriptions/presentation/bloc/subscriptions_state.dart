@@ -13,6 +13,8 @@ abstract class SubscriptionsState
 
   BuiltList<AddSubscriptionMeal> get meals;
 
+  bool get popScreen;
+
   bool get isLoading;
 
   bool get error;
@@ -29,6 +31,7 @@ abstract class SubscriptionsState
           (b) => b
           ..subscriptions = []
             ..meals.replace([])
+            ..popScreen = false
         ..isLoading = false
         ..error = false
         ..message = "",

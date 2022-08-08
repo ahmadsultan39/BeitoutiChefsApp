@@ -3,6 +3,7 @@ import 'package:beitouti_chefs/features/subscriptions/presentation/bloc/subscrip
 import 'package:beitouti_chefs/features/subscriptions/presentation/widgets/subscription_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/util/generate_screen.dart';
 import '../../../../injection.dart';
@@ -30,25 +31,34 @@ class _SubscriptionsPageState extends State<SubscriptionsPage> {
       bloc: _bloc,
       builder: (context, state) {
         return Scaffold(
-          body: SingleChildScrollView(
-            child: state.isLoading
-                ? const Loader()
-                : Column(
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(
-                              NameScreen.addSubscription,
-                            );
-                          },
-                          child: const Text("إنشاء اشتراك جديد")),
-                      ...state.subscriptions.map((subscription) =>
-                          Center(
-                            child: SubscriptionTile(
-                                bloc: _bloc, subscription: subscription),
-                          )),
-                    ],
-                  ),
+          body: RefreshIndicator(
+            onRefresh: () async {
+              _bloc.addGetSubscriptionsEvent();
+            },
+            child: Container(
+              constraints: BoxConstraints(minHeight: 400.h),
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: state.isLoading
+                    ? const Loader()
+                    : Column(
+                        children: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamed(
+                                  NameScreen.addSubscription,
+                                );
+                              },
+                              child: const Text("إنشاء اشتراك جديد")),
+                          ...state.subscriptions.map((subscription) =>
+                              Center(
+                                child: SubscriptionTile(
+                                    bloc: _bloc, subscription: subscription),
+                              )),
+                        ],
+                      ),
+              ),
+            ),
           ),
         );
       },

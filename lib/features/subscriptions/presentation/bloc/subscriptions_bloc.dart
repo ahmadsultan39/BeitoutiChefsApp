@@ -165,6 +165,7 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
           emit(
             state.rebuild(
                   (b) => b
+                  ..popScreen = true
                 ..isLoading = false,
             ),
           );
@@ -187,7 +188,8 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
           emit(
             state.rebuild(
                   (b) => b
-                ..isLoading = false,
+                    ..popScreen = true
+                    ..isLoading = false,
             ),
           );
         });

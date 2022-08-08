@@ -35,7 +35,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
         token: _token,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -49,7 +49,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
         id: id,
       );
       return Right(null);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -64,7 +64,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
         id: id,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -79,7 +79,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
         newSubscription: newSubscription,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -94,7 +94,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
         newSubscription: newSubscription,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -107,7 +107,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
         token: _token,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }

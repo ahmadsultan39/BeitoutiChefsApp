@@ -45,7 +45,7 @@ class _AppState extends State<App> {
               tertiary: const Color(0xFFEC9005),
             ),
           ),
-          home: const SplashPage(),
+          home: const AuthPage(),
           locale: const Locale('ar', ''),
           localizationsDelegates: const [
             AppLocalizations.delegate,

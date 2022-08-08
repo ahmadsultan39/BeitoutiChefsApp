@@ -37,6 +37,10 @@ class _AddMealPageState extends State<AddMealPage> {
   String? priceEditReason;
   double? discount;
   final _bloc = sl<AddMealBloc>();
+  String? maxMealsError;
+  String? priceError;
+  String? preparationTimeError;
+  String? discountError;
 
   @override
   void initState() {
@@ -80,8 +84,14 @@ class _AddMealPageState extends State<AddMealPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return BlocBuilder<AddMealBloc, AddMealState>(
+    return BlocConsumer<AddMealBloc, AddMealState>(
       bloc: _bloc,
+      listener: (context,state){
+        if (state.popScreen)
+          {
+            Navigator.of(context).pop();
+          }
+      },
       builder: (context, state) {
         WidgetsBinding.instance?.addPostFrameCallback((_) {
           message(
@@ -218,31 +228,34 @@ class _AddMealPageState extends State<AddMealPage> {
                           ],
                         ),
                         SizedBox(height: 8.h),
-                        TextFormField(
-                          initialValue: ingredients,
-                          decoration: const InputDecoration(
-                            labelText: "المكونات",
-                            enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(width: 0.5, color: Colors.grey),
+                        Container(
+                          clipBehavior: Clip.none,
+                          child: TextFormField(
+                            initialValue: ingredients,
+                            decoration: const InputDecoration(
+                              labelText: "المكونات",
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 0.5, color: Colors.grey),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 0.5, color: Colors.grey),
+                              ),
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(width: 0.5, color: Colors.grey),
-                            ),
+                            maxLines: 3,
+                            validator: (value) {
+                              value?.trim();
+                              if (value == null || value.isEmpty) {
+                                return "المكونات لا يجب أن تكون فارغة";
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              value!.trim();
+                              ingredients = value;
+                            },
                           ),
-                          maxLines: 3,
-                          validator: (value) {
-                            value?.trim();
-                            if (value == null || value.isEmpty) {
-                              return "المكونات لا يجب أن يكون فارغة";
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            value!.trim();
-                            ingredients = value;
-                          },
                         ),
                         SizedBox(height: 8.h),
                         Row(
@@ -256,11 +269,22 @@ class _AddMealPageState extends State<AddMealPage> {
                                 validator: (value) {
                                   value?.trim();
                                   if (value == null || value.isEmpty) {
-                                    return "الوقت المتوقع لا يجب أن يكون فارغ";
+                                   setState(() {
+                                     preparationTimeError =
+                                     "الوقت المتوقع لا يجب أن يكون فارغ";
+                                   });
+                                    return " ";
                                   }
                                   if (int.tryParse(value) == null) {
-                                    return "الوقت المتوقع يجب أن يكون رقم";
+                                  setState(() {
+                                    preparationTimeError =
+                                    "الوقت المتوقع يجب أن يكون رقم";
+                                  });
+                                    return " ";
                                   }
+                                  setState(() {
+                                    preparationTimeError = null;
+                                  });
                                   return null;
                                 },
                                 onSaved: (value) {
@@ -272,34 +296,60 @@ class _AddMealPageState extends State<AddMealPage> {
                             const Text("دقيقة")
                           ],
                         ),
+                        if (preparationTimeError != null)
+                          Text(
+                            preparationTimeError!,
+                            style:
+                                TextStyle(color: Theme.of(context).errorColor),
+                          ),
                         SizedBox(height: 8.h),
                         Row(
                           children: [
                             const Text("العدد الأعظمي للتحضير"),
                             SizedBox(
                               width: 35.w,
-                              child: TextFormField(
-                                initialValue: maxMeals?.toString(),
-                                textAlign: TextAlign.center,
-                                validator: (value) {
-                                  value?.trim();
-                                  if (value == null || value.isEmpty) {
-                                    return "العدد الأعظمي لا يجب أن يكون فارغ";
-                                  }
-                                  if (int.tryParse(value) == null) {
-                                    return "العدد الأعظمي يجب أن يكون رقم";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (value) {
-                                  value!.trim();
-                                  maxMeals = int.parse(value);
-                                },
+                              child: Container(
+                                clipBehavior: Clip.none,
+                                child: TextFormField(
+                                  initialValue: maxMeals?.toString(),
+                                  textAlign: TextAlign.center,
+                                  validator: (value) {
+                                    value?.trim();
+                                    if (value == null || value.isEmpty) {
+                                   setState(() {
+                                     maxMealsError =
+                                     "العدد الأعظمي لا يجب أن يكون فارغ";
+                                   });
+                                      return " ";
+                                    }
+                                    if (int.tryParse(value) == null) {
+                                      setState(() {
+                                        maxMealsError =
+                                        "العدد الأعظمي يجب أن يكون رقم";
+                                      });
+                                      return " ";
+                                    }
+                                    setState(() {
+                                      maxMealsError = null;
+                                    });
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    value!.trim();
+                                    maxMeals = int.parse(value);
+                                  },
+                                ),
                               ),
                             ),
                             const Text("وجبة")
                           ],
                         ),
+                        if (maxMealsError != null)
+                          Text(
+                            maxMealsError!,
+                            style:
+                                TextStyle(color: Theme.of(context).errorColor),
+                          ),
                         SizedBox(height: 8.h),
                         if (widget.initMeal == null)
                           Row(
@@ -313,11 +363,14 @@ class _AddMealPageState extends State<AddMealPage> {
                                   validator: (value) {
                                     value?.trim();
                                     if (value == null || value.isEmpty) {
-                                      return "السعر لا يجب أن يكون فارغ";
+                                      priceError = "السعر لا يجب أن يكون فارغ" ;
+                                      return " ";
                                     }
                                     if (int.tryParse(value) == null) {
-                                      return "السعر يجب أن يكون رقم";
+                                      priceError = "السعر يجب أن يكون رقم" ;
+                                      return " ";
                                     }
+                                    priceError = null;
                                     return null;
                                   },
                                   onSaved: (value) {
@@ -328,6 +381,13 @@ class _AddMealPageState extends State<AddMealPage> {
                               ),
                               const Text("ل.س")
                             ],
+                          ),
+                        if (widget.initMeal == null && priceError != null)
+                          Text(
+                            priceError!,
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .errorColor),
                           ),
                         if (widget.initMeal != null)
                           Row(
@@ -503,13 +563,22 @@ class _AddMealPageState extends State<AddMealPage> {
                                   value?.trim();
                                   if (value != null && value.isNotEmpty) {
                                     if (int.tryParse(value) == null) {
-                                      return "الحسم يجب أن يكون رقم";
+                                      setState(() {
+                                        discountError = "الحسم يجب أن يكون رقم";
+                                      });
+                                      return " ";
                                     }
                                     if (int.parse(value) < 0 ||
                                         int.parse(value) > 100) {
-                                      return "الحسم يجب أن يكون رقم بين 0 و 100";
+                                      setState(() {
+                                        discountError = "الحسم يجب أن يكون رقم بين 0 و 100";
+                                      });
+                                      return " ";
                                     }
                                   }
+                                  setState(() {
+                                    discountError = null;
+                                  });
                                   return null;
                                 },
                                 onSaved: (value) {
@@ -523,6 +592,13 @@ class _AddMealPageState extends State<AddMealPage> {
                             const Text("%")
                           ],
                         ),
+                        if (discountError != null)
+                          Text(
+                            discountError!,
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .errorColor),
+                          ),
                         SizedBox(height: 8.h),
                         Center(
                           child: SizedBox(
@@ -639,8 +715,6 @@ class _AddMealPageState extends State<AddMealPage> {
                                                               discount:
                                                                   discount,
                                                             ));
-                                                      Navigator.of(context)
-                                                          .pop();
                                                       Navigator.of(context)
                                                           .pop();
                                                     },

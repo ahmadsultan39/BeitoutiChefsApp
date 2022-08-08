@@ -211,7 +211,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (event is PickFile) {
           final file = await FilePicker.platform.pickFiles(
             type: FileType.custom,
-            allowedExtensions: ['pdf','docx'], //here
+            allowedExtensions: ['pdf','docx','jpg'], //here
           );
           if (file != null) {
             emit(
