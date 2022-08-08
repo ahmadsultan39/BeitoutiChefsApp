@@ -27,77 +27,89 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileBloc, ProfileState>(
+    return BlocListener<ProfileBloc, ProfileState>(
       bloc: _bloc,
-      builder: (context, state) {
-        message(
-          bloc: _bloc,
-          isError: state.error,
-          message: state.message,
-          context: context,
-        );
-        return Stack(
-          children: [
-            if (state.profile != null)
-              SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    ProfilePicture(
-                      profilePicture: state.profile!.profilePicture,
-                      pickedImage: state.pickedImage,
-                      pickImage: _bloc.addPickImageEvent,
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    ChefInfo(
-                      name: "الاسم",
-                      info: state.profile!.name,
-                    ),
-                    ChefInfo(
-                      name: "العنوان",
-                      info: state.profile!.locationName,
-                    ),
-                    ChefInfo(
-                      name: "الرقم",
-                      info: state.profile!.phoneNumber,
-                    ),
-                    const ProfileTile(
-                      title: 'سجل الطلبات',
-                      icon: Icons.history,
-                      screenName: NameScreen.ordersHistoryScreen,
-                    ),
-                    const ProfileTile(
-                      title: 'تعديل إعدادات الطلب',
-                      icon: Icons.settings,
-                      screenName: NameScreen.editOrderSettingsScreen,
-                    ),
-                    const ProfileTile(
-                      title: 'الملاحظات',
-                      icon: Icons.notes,
-                      screenName: NameScreen.orderMealsNotesScreen,
-                    ),
-                    const ProfileTile(
-                      title: 'الرصيد',
-                      icon: Icons.balance,
-                      screenName: NameScreen.chefBalanceScreen,
-                    ),
-                    // const ProfileTile(
-                    //   title: 'تسجيل الخروج',
-                    //   icon: Icons.logout,
-                    //   isLogout: true,
-                    //   logoutFunction: _bloc.a,
-                    // ),
-                  ],
-                ),
-              ),
-            if (state.isLoading) const Loader(),
-          ],
-        );
+      listener: (context, state) {
+        if (state.isLoggedOut) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            NameScreen.splashScreen,
+            (route) => false,
+          );
+        }
       },
+      child: BlocBuilder<ProfileBloc, ProfileState>(
+        bloc: _bloc,
+        builder: (context, state) {
+          message(
+            bloc: _bloc,
+            isError: state.error,
+            message: state.message,
+            context: context,
+          );
+          return Stack(
+            children: [
+              if (state.profile != null)
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      ProfilePicture(
+                        profilePicture: state.profile!.profilePicture,
+                        pickedImage: state.pickedImage,
+                        pickImage: _bloc.addPickImageEvent,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      ChefInfo(
+                        name: "الاسم",
+                        info: state.profile!.name,
+                      ),
+                      ChefInfo(
+                        name: "العنوان",
+                        info: state.profile!.locationName,
+                      ),
+                      ChefInfo(
+                        name: "الرقم",
+                        info: state.profile!.phoneNumber,
+                      ),
+                      const ProfileTile(
+                        title: 'سجل الطلبات',
+                        icon: Icons.history,
+                        screenName: NameScreen.ordersHistoryScreen,
+                      ),
+                      const ProfileTile(
+                        title: 'تعديل إعدادات الطلب',
+                        icon: Icons.settings,
+                        screenName: NameScreen.editOrderSettingsScreen,
+                      ),
+                      const ProfileTile(
+                        title: 'الملاحظات',
+                        icon: Icons.notes,
+                        screenName: NameScreen.orderMealsNotesScreen,
+                      ),
+                      const ProfileTile(
+                        title: 'الرصيد',
+                        icon: Icons.balance,
+                        screenName: NameScreen.chefBalanceScreen,
+                      ),
+                      ProfileTile(
+                        title: 'تسجيل الخروج',
+                        icon: Icons.logout,
+                        isLogout: true,
+                        logoutFunction: _bloc.addLogoutEvent,
+                      ),
+                    ],
+                  ),
+                ),
+              if (state.isLoading) const Loader(),
+            ],
+          );
+        },
+      ),
     );
   }
 }

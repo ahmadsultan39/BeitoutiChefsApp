@@ -13,16 +13,22 @@ class _$HomeState extends HomeState {
   final String message;
   @override
   final bool error;
+  @override
+  final bool active;
 
   factory _$HomeState([void Function(HomeStateBuilder)? updates]) =>
       (new HomeStateBuilder()..update(updates))._build();
 
   _$HomeState._(
-      {required this.isLoading, required this.message, required this.error})
+      {required this.isLoading,
+      required this.message,
+      required this.error,
+      required this.active})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(isLoading, r'HomeState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(message, r'HomeState', 'message');
     BuiltValueNullFieldError.checkNotNull(error, r'HomeState', 'error');
+    BuiltValueNullFieldError.checkNotNull(active, r'HomeState', 'active');
   }
 
   @override
@@ -38,13 +44,15 @@ class _$HomeState extends HomeState {
     return other is HomeState &&
         isLoading == other.isLoading &&
         message == other.message &&
-        error == other.error;
+        error == other.error &&
+        active == other.active;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, isLoading.hashCode), message.hashCode), error.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, isLoading.hashCode), message.hashCode), error.hashCode),
+        active.hashCode));
   }
 
   @override
@@ -52,7 +60,8 @@ class _$HomeState extends HomeState {
     return (newBuiltValueToStringHelper(r'HomeState')
           ..add('isLoading', isLoading)
           ..add('message', message)
-          ..add('error', error))
+          ..add('error', error)
+          ..add('active', active))
         .toString();
   }
 }
@@ -72,6 +81,10 @@ class HomeStateBuilder implements Builder<HomeState, HomeStateBuilder> {
   bool? get error => _$this._error;
   set error(bool? error) => _$this._error = error;
 
+  bool? _active;
+  bool? get active => _$this._active;
+  set active(bool? active) => _$this._active = active;
+
   HomeStateBuilder();
 
   HomeStateBuilder get _$this {
@@ -80,6 +93,7 @@ class HomeStateBuilder implements Builder<HomeState, HomeStateBuilder> {
       _isLoading = $v.isLoading;
       _message = $v.message;
       _error = $v.error;
+      _active = $v.active;
       _$v = null;
     }
     return this;
@@ -107,7 +121,9 @@ class HomeStateBuilder implements Builder<HomeState, HomeStateBuilder> {
             message: BuiltValueNullFieldError.checkNotNull(
                 message, r'HomeState', 'message'),
             error: BuiltValueNullFieldError.checkNotNull(
-                error, r'HomeState', 'error'));
+                error, r'HomeState', 'error'),
+            active: BuiltValueNullFieldError.checkNotNull(
+                active, r'HomeState', 'active'));
     replace(_$result);
     return _$result;
   }

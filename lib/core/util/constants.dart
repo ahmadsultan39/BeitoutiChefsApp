@@ -23,12 +23,16 @@ class Endpoints {
   static const addNewSubscription = "/subscriptions/";
   static const getChefMeals = "/meals";
   static const changeProfilePicture = "/profile/edit-profile";
+  static const changeAvailabilityStatus = "/change-availability-status";
   static const getChefProfile = "/profile";
   static const getChefBalance = "/profile/balance";
   static const getOrderHistory = "/profile/order-history";
   static const getOrdersMealsNotes = "/profile/notes";
   static const editDeliverMealTime = "/profile/edit-deliver-meal-time";
   static const editMaxMealPerDay = "/profile/edit-max-meal";
+  static const sendCode = "/send-code";
+  static const checkCodeAndAccessibility = "/check-code-and-accessibility";
+  static const requestRegister = "/request-register";
 
   static String timeOrders(String time) => "/orders/?time=$time";
 
@@ -59,9 +63,6 @@ class Endpoints {
 
   static String increaseMaxMealNumber(int mealId) =>
       "/meals/$mealId/add-portion";
-  static const sendCode = "/send-code";
-  static const checkCodeAndAccessibility = "/check-code-and-accessibility";
-  static const requestRegister = "/request-register";
 }
 
 class SharedPreferencesKeys {

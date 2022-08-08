@@ -71,7 +71,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     add(GetOrdersHistory());
   }
 
-
+  void addLogoutEvent() {
+    add(Logout());
+  }
 
   void clearMessage() {
     add(ClearMessage());
@@ -98,6 +100,31 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               (b) => b
                 ..error = false
                 ..message = '',
+            ),
+          );
+        }
+
+        /// *** Logout *** ///
+        if (event is Logout) {
+          emit(state.rebuild((b) => b..isLoading = true));
+
+          final result = await _logoutUseCase(NoParams());
+
+          result.fold(
+            (failure) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..message = failure.error
+                  ..error = true,
+              ),
+            ),
+            (r) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..isLoggedOut = true,
+              ),
             ),
           );
         }
@@ -206,7 +233,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               state.rebuild(
                 (b) => b
                   ..isLoading = false
-                  ..preparedOrder.addAll(preparedOrder),
+                  ..preparedOrder.replace(preparedOrder),
               ),
             ),
           );
@@ -274,21 +301,24 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         if (event is PickImage) {
           final result = await _pickImageUseCase(NoParams());
 
-          result.fold((failure) {
-            emit(
-              state.rebuild(
-                (b) => b
-                  ..error = true
-                  ..message = failure.error,
-              ),
-            );
-          }, (image) {
-            emit(
-              state.rebuild(
-                (b) => b..pickedImage = image,
-              ),
-            );
-          });
+          result.fold(
+            (failure) {
+              emit(
+                state.rebuild(
+                  (b) => b
+                    ..error = true
+                    ..message = failure.error,
+                ),
+              );
+            },
+            (image) {
+              emit(
+                state.rebuild(
+                  (b) => b..pickedImage = image,
+                ),
+              );
+            },
+          );
         }
       },
     );
