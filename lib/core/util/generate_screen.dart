@@ -83,6 +83,14 @@ class GenerateScreen {
             builder: (context) => const ChefBalancePage(),
           );
         }
+      case NameScreen.addSubscription:
+        {
+          return MaterialPageRoute(
+            builder: (context) =>  AddNewSubscriptionPage(
+              initSubscription: value.arguments as NewSubscription?,
+            ),
+          );
+        }
 
       default:
         return _errorRoute();

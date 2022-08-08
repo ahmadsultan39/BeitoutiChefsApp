@@ -1,5 +1,6 @@
 import 'package:beitouti_chefs/core/entities/category.dart';
 import 'package:beitouti_chefs/core/entities/meal.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 
 import '../../domain/entities/meals_info.dart';
@@ -12,7 +13,7 @@ abstract class ShowMenuState
 
   List<Category> get categories;
 
-  Map<int,List<Meal>> get meals;
+  Map<int,BuiltList<Meal>> get meals;
 
   MealsInfo get mealsInfo;
 

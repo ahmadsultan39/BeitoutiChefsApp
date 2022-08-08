@@ -83,6 +83,14 @@ class _AddMealPageState extends State<AddMealPage> {
     return BlocBuilder<AddMealBloc, AddMealState>(
       bloc: _bloc,
       builder: (context, state) {
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          message(
+            message: state.message,
+            isError: state.error,
+            context: context,
+            bloc: _bloc,
+          );
+        });
         return Scaffold(
             appBar: AppBar(
               title: Text(
@@ -123,7 +131,7 @@ class _AddMealPageState extends State<AddMealPage> {
                                             fit: BoxFit.cover)
                                         : widget.initMeal != null
                                             ? CachedNetworkImage(
-                                                imageUrl:
+                                                imageUrl: Endpoints.url +
                                                     widget.initMeal!.imageUrl)
                                             : Container(),
                                   ),

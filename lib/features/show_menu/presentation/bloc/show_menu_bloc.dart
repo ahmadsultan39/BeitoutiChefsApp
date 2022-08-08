@@ -5,6 +5,7 @@ import 'package:beitouti_chefs/features/show_menu/domain/use_cases/get_categorie
 import 'package:beitouti_chefs/features/show_menu/domain/use_cases/get_category_meals.dart';
 import 'package:beitouti_chefs/features/show_menu/domain/use_cases/increase_max_meal_number.dart';
 import 'package:bloc/bloc.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../../domain/use_cases/decrease_max_meal_number.dart';
@@ -33,7 +34,7 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
   }
 
   void addDeleteMealEvent(int mealId, int categoryId) {
-    add(DeleteMealEvent((b) => b..mealId = mealId));
+    add(DeleteMealEvent((b) => b..mealId = mealId..categoryId = categoryId));
   }
 
   void addChangeMealAvailabilityEvent(int mealId, int categoryId) {
@@ -54,9 +55,10 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
       ..categoryId = categoryId));
   }
 
-  void clearError() {
-    add(ClearError((b) => b));
+  void clearMessage() {
+    add(ClearMessage());
   }
+
 
   @factoryMethod
   ShowMenuBloc(
@@ -133,7 +135,8 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
             state.rebuild(
               (b) => b
                 ..isLoading = false
-                ..meals!.putIfAbsent(event.categoryId, () => meals),
+                ..meals!.update(event.categoryId, (value) => BuiltList.from(meals),ifAbsent: () => BuiltList.from(meals))
+                    ,
             ),
           );
         });
@@ -142,10 +145,7 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
       /***** Change Meal Availability *****/
       if (event is ChangeMealAvailabilityEvent) {
         emit(state.rebuild(
-          (b) => b
-            ..meals![event.categoryId]!
-                .firstWhere((element) => element.id == event.mealId)
-                .changeStatus(),
+          (b) => b..isLoading = true,
         ));
         final result = await changeMealAvailabilityUseCase(
             ChangeMealAvailabilityUseCaseParams(mealId: event.mealId));
@@ -153,75 +153,49 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
         result.fold((failure) {
           emit(state.rebuild(
             (b) => b
+            ..isLoading = false
               ..error = true
-              ..message = failure.error
-              ..meals![event.categoryId]!
-                      .firstWhere((element) => element.id == event.mealId)
-                      .isAvailable =
-                  !b.meals![event.categoryId]!
-                      .firstWhere((element) => element.id == event.mealId)
-                      .isAvailable!,
+              ..message = failure.error,
           ));
         }, (_) {
-          emit(
-            state.rebuild(
-              (b) => b,
-            ),
-          );
+          addGetCategoryMealsEvent(event.categoryId);
+          addGetActiveMealsCountEvent();
         });
       }
 
       /***** Increase Meal Max *****/
       if (event is IncreaseMaxMealNumberEvent) {
         emit(state.rebuild((b) => b
-          ..meals![event.categoryId]!
-              .firstWhere((element) => element.id == event.mealId)
-              .increaseMaxMealCount()));
+          ..isLoading = true));
         final result = await increaseMaxMealNumberUseCase(
             IncreaseMaxMealNumberUseCaseParams(mealId: event.mealId));
 
         result.fold((failure) {
           emit(state.rebuild(
             (b) => b
-              ..meals![event.categoryId]!
-                  .firstWhere((element) => element.id == event.mealId)
-                  .decreaseMaxMealCount()
               ..error = true
               ..message = failure.error,
           ));
         }, (_) {
-          emit(
-            state.rebuild(
-              (b) => b,
-            ),
-          );
+          addGetCategoryMealsEvent(event.categoryId);
         });
       }
 
       /***** Decrease Meal Max *****/
       if (event is DecreaseMaxMealNumberEvent) {
-        emit(state.rebuild((b) => b
-          ..meals![event.categoryId]!
-              .firstWhere((element) => element.id == event.mealId)
-              .decreaseMaxMealCount()));
+        emit(state.rebuild((b) => b..isLoading = true
+              ));
         final result = await decreaseMaxMealNumberUseCase(
             DecreaseMaxMealNumberUseCaseParams(mealId: event.mealId));
 
         result.fold((failure) {
           emit(state.rebuild(
             (b) => b
-              ..meals![event.categoryId]!
-                  .firstWhere((element) => element.id == event.mealId)
-                  .increaseMaxMealCount()
               ..error = true
               ..message = failure.error,
           ));
         }, (_) {
-          emit(
-            state.rebuild(
-              (b) => b,
-            ),
-          );
+          addGetCategoryMealsEvent(event.categoryId);
         });
       }
 
@@ -239,22 +213,19 @@ class ShowMenuBloc extends Bloc<ShowMenuEvent, ShowMenuState> {
               ..message = failure.error,
           ));
         }, (_) {
-          emit(
-            state.rebuild(
-              (b) => b
-                ..isLoading = false
-                ..meals![event.categoryId]!
-                    .removeWhere((element) => element.id == event.mealId),
-            ),
-          );
+          addGetCategoryMealsEvent(event.categoryId);
         });
       }
 
-      /***** ClearError *****/
-      if (event is ClearError) {
-        emit(state.rebuild((b) => b
-          ..error = false
-          ..message = ''));
+      /// *** ClearMessage *** //
+      if (event is ClearMessage) {
+        emit(
+          state.rebuild(
+                (b) => b
+              ..error = false
+              ..message = '',
+          ),
+        );
       }
     });
   }

@@ -12,8 +12,8 @@ abstract class BaseRemoteDataSource {
   @protected
   Future<T?> performPostRequest<T>({
     required String endpoint,
-    required dynamic data,
     required Options options,
+    dynamic data,
   });
 
   @protected
@@ -62,7 +62,7 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
       if (response.statusCode == 200 || response.statusCode == 201) {
         final BaseListResponseModel<T> finalResponse =
             BaseListResponseModel<T>.fromJson(json.decode(response.data));
-        if (finalResponse.data != null && finalResponse.data!.isNotEmpty) {
+        if (finalResponse.data != null) {
           debugPrint("Data is not null");
           return finalResponse.data!;
         } else {
@@ -125,8 +125,8 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
   @override
   Future<T?> performPostRequest<T>({
     required String endpoint,
-    required dynamic data,
     required Options options,
+    dynamic data,
     Map<String, dynamic>? queryParameters,
   }) async {
     debugPrint("performPostRequest");
@@ -138,6 +138,9 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
         queryParameters: queryParameters,
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
+        if (T.toString() == "String") {
+          return json.decode(response.data)["data"];
+        }
         final BaseResponseModel<T> finalResponse =
             BaseResponseModel<T>.fromJson(
           json.decode(response.data),
@@ -205,6 +208,9 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
         options: GetOptions.getOptionsWithToken(token),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
+        if (T.toString() == "String") {
+          return json.decode(response.data)["data"];
+        }
         final BaseResponseModel<T> finalResponse =
             BaseResponseModel<T>.fromJson(json.decode(response.data));
         if (finalResponse.data != null) {

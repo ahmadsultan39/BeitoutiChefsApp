@@ -6,6 +6,7 @@ import 'package:beitouti_chefs/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/util/constants.dart';
 import '../bloc/show_menu.dart';
 
 class ShowMenuPage extends StatelessWidget {
@@ -21,20 +22,27 @@ class ShowMenuPage extends StatelessWidget {
       body: BlocBuilder<ShowMenuBloc, ShowMenuState>(
         bloc: _bloc,
         builder: (context, state) {
+          WidgetsBinding.instance?.addPostFrameCallback((_) {
+            message(
+              message: state.message,
+              isError: state.error,
+              context: context,
+              bloc: _bloc,
+            );
+          });
           return Stack(
             children: [
               SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(height: 35),
                     MealsInfoTopTile(_bloc),
                     ..._bloc.state.categories
                         .map((e) => CategoryExpansionTile(e,_bloc)),
                   ],
                 ),
               ),
-              if (state.isLoading) Loader()
+              if (state.isLoading) const Loader()
             ],
           );
         },

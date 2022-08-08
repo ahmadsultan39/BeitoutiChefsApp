@@ -103,15 +103,14 @@ abstract class DeleteMealEvent extends ShowMenuEvent
   }
 }
 
-abstract class ClearError extends ShowMenuEvent
-    implements Built<ClearError, ClearErrorBuilder> {
-  //getter fields
+abstract class ClearMessage extends ShowMenuEvent
+    implements Built<ClearMessage, ClearMessageBuilder> {
+  ClearMessage._();
 
-  ClearError._();
+  factory ClearMessage([Function(ClearMessageBuilder b) updates]) =
+  _$ClearMessage;
 
-  factory ClearError([Function(ClearErrorBuilder b) updates]) = _$ClearError;
-
-  factory ClearError.initial() {
-    return ClearError((b) => b);
+  factory ClearMessage.initial() {
+    return ClearMessage((b) => b);
   }
 }

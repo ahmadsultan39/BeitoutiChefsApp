@@ -66,23 +66,9 @@ class SubscriptionsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   @override
   Future<String> addNewSubscription(
       {required String token, required NewSubscription newSubscription}) async {
-    try {
-      final response = await dio.post(
-        Endpoints.addNewSubscription,
-        options: GetOptions.getOptionsWithToken(token),
-        data: RequestBody.addSubscription(newSubscription: newSubscription),
-      );
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final result = json.decode(response.data)["data"]["message"] as String;
-        return result;
-      } else {
-        throw ServerException(error: ErrorMessage.someThingWentWrong);
-      }
-    } on DioError catch (e) {
-      final result =
-          BaseResponseModel<Null>.fromJson(json.decode(e.response!.data));
-      throw ServerException(error: result.errors!);
-    }
+    final response = await performPostRequest<String>(endpoint: Endpoints.addNewSubscription, data: RequestBody.addSubscription(newSubscription: newSubscription)
+          , options: GetOptions.getOptionsWithToken(token));
+    return response!;
   }
 
   @override
@@ -90,23 +76,11 @@ class SubscriptionsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required String token,
     required NewSubscription newSubscription,
   }) async {
-    try {
-      final response = await dio.post(
-        Endpoints.editSubscription(newSubscription.id!),
-        options: GetOptions.getOptionsWithToken(token),
-        data: RequestBody.addSubscription(newSubscription: newSubscription),
-      );
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final result = json.decode(response.data)["data"]["message"] as String;
-        return result;
-      } else {
-        throw ServerException(error: ErrorMessage.someThingWentWrong);
-      }
-    } on DioError catch (e) {
-      final result =
-          BaseResponseModel<Null>.fromJson(json.decode(e.response!.data));
-      throw ServerException(error: result.errors!);
-    }
+
+    final response = await performPutRequest<String>(endpoint: Endpoints.editSubscription(newSubscription.id!)
+        , data: RequestBody.addSubscription(newSubscription: newSubscription)
+        , options: GetOptions.getOptionsWithToken(token));
+    return response!;
   }
 
   @override

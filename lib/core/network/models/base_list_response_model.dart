@@ -7,6 +7,7 @@ import '../../../features/orders/data/models/order_meal_model.dart';
 import '../../../features/orders/data/models/orders_times_model.dart';
 import '../../../features/orders/data/models/time_order_model.dart';
 import '../../../features/orders/data/models/total_meal_model.dart';
+import '../../../features/subscriptions/data/models/add_subscription_meal_model.dart';
 import '../../../features/subscriptions/data/models/subscription_model.dart';
 import '../../models/category_model.dart';
 import '../../models/meal_model.dart';
@@ -54,6 +55,9 @@ class _Converter<T> implements JsonConverter<T, Object> {
     } else if (json is Map<String, dynamic> &&
         T.toString() == SubscriptionModel.className) {
       return SubscriptionModel.fromJson(json) as T;
+    } else if (json is Map<String, dynamic> &&
+        T.toString() == AddSubscriptionMealModel.className) {
+      return AddSubscriptionMealModel.fromJson(json) as T;
     }
 
     throw Exception('parse error');

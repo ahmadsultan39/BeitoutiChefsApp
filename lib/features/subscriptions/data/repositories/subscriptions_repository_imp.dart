@@ -30,8 +30,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
   @override
   Future<Either<Failure, List<Subscription>>> getSubscriptions() async {
     try {
-      final _token =
-          "102|NlAM78WP5Bi8VfmUZyXTIrTc00ifbWslhBzfpDMt"; //await _local.token
+      final _token = await _local.token;
       final result = await _remote.getSubscriptions(
         token: _token,
       );
@@ -44,8 +43,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
   @override
   Future<Either<Failure, void>> deleteSubscription({required int id}) async {
     try {
-      final _token =
-          "102|NlAM78WP5Bi8VfmUZyXTIrTc00ifbWslhBzfpDMt"; //await _local.token
+      final _token =await _local.token;
       await _remote.deleteSubscription(
         token: _token,
         id: id,
@@ -60,8 +58,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
   Future<Either<Failure, String>> editSubscriptionAvailability(
       {required int id}) async {
     try {
-      final _token =
-          "102|NlAM78WP5Bi8VfmUZyXTIrTc00ifbWslhBzfpDMt"; //await _local.token
+      final _token = await _local.token;
       final result = await _remote.editSubscriptionAvailability(
         token: _token,
         id: id,
@@ -76,8 +73,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
   Future<Either<Failure, String>> addNewSubscription(
       {required NewSubscription newSubscription}) async {
     try {
-      final _token =
-          "102|NlAM78WP5Bi8VfmUZyXTIrTc00ifbWslhBzfpDMt"; //await _local.token
+      final _token = await _local.token;
       final result = await _remote.addNewSubscription(
         token: _token,
         newSubscription: newSubscription,
@@ -92,8 +88,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
   Future<Either<Failure, String>> editSubscription(
       {required NewSubscription newSubscription}) async {
     try {
-      final _token =
-          "102|NlAM78WP5Bi8VfmUZyXTIrTc00ifbWslhBzfpDMt"; //await _local.token
+      final _token = await _local.token;
       final result = await _remote.editSubscription(
         token: _token,
         newSubscription: newSubscription,

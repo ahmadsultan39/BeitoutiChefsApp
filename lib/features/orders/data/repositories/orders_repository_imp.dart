@@ -19,7 +19,7 @@ class OrderRepositoryImp implements OrdersRepository {
   @override
   Future<Either<Failure, List<OrdersTimes>>> getOrdersTimes() async {
     try {
-      final _token = "102|NlAM78WP5Bi8VfmUZyXTIrTc00ifbWslhBzfpDMt"; //await _local.token;
+      final _token = await _local.token; //await _local.token;
       final result = await _remote.getOrdersTimes(
         token: _token,
       );
@@ -32,7 +32,7 @@ class OrderRepositoryImp implements OrdersRepository {
   @override
   Future<Either<Failure, List<TimeOrder>>> getTimeOrders({required String time}) async {
     try {
-      final _token = "102|NlAM78WP5Bi8VfmUZyXTIrTc00ifbWslhBzfpDMt"; //await _local.token
+      final _token = await _local.token; //await _local.token;
       final result = await _remote.getTimeOrders(
         token: _token,
         time: time,
@@ -46,7 +46,7 @@ class OrderRepositoryImp implements OrdersRepository {
   @override
   Future<Either<Failure, void>> changeStatus({required int orderId}) async {
     try {
-      final _token =  "102|NlAM78WP5Bi8VfmUZyXTIrTc00ifbWslhBzfpDMt"; //await _local.token;
+      final _token = await _local.token; //await _local.token;
       await _remote.changeStatus(
         token: _token,
         orderId: orderId,

@@ -79,14 +79,14 @@ abstract class EditSubscriptionEvent extends SubscriptionsEvent
 }
 
 
-abstract class ClearError extends SubscriptionsEvent
-    implements Built<ClearError, ClearErrorBuilder> {
+abstract class ClearMessage extends SubscriptionsEvent
+    implements Built<ClearMessage, ClearMessageBuilder> {
+  ClearMessage._();
 
-  ClearError._();
+  factory ClearMessage([Function(ClearMessageBuilder b) updates]) =
+  _$ClearMessage;
 
-  factory ClearError([Function(ClearErrorBuilder b) updates]) = _$ClearError;
-
-  factory ClearError.initial() {
-    return ClearError((b) => b);
+  factory ClearMessage.initial() {
+    return ClearMessage((b) => b);
   }
 }

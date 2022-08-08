@@ -10,6 +10,8 @@ abstract class HomeState implements Built<HomeState, HomeStateBuilder> {
 
   bool get error;
 
+  bool get active;
+
   HomeState._();
 
   factory HomeState([Function(HomeStateBuilder b) updates]) = _$HomeState;
@@ -17,6 +19,7 @@ abstract class HomeState implements Built<HomeState, HomeStateBuilder> {
   factory HomeState.initial() {
     return HomeState(
       (b) => b
+        ..active = false
         ..isLoading = false
         ..error = false
         ..message = "",

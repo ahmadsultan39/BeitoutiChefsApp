@@ -17,3 +17,18 @@ abstract class ClearMessage extends HomeEvent
     return ClearMessage((b) => b);
   }
 }
+
+abstract class ChangeAvailabilityEvent extends HomeEvent
+    implements Built<ChangeAvailabilityEvent, ChangeAvailabilityEventBuilder> {
+//getter fields
+
+  ChangeAvailabilityEvent._();
+
+  factory ChangeAvailabilityEvent(
+      [Function(ChangeAvailabilityEventBuilder b) updates]) =
+  _$ChangeAvailabilityEvent;
+
+  factory ChangeAvailabilityEvent.initial() {
+    return ChangeAvailabilityEvent((b) => b);
+  }
+}

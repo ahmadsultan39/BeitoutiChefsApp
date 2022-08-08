@@ -20,8 +20,8 @@ class SubscriptionModel extends Subscription {
   final bool isAvailable;
   @JsonKey(name: "starts_at")
   final String startsAt;
-  @JsonKey(name: "max_subscibers")
-  final int maxSubscribers;
+  @JsonKey(name: "max_subscribers")
+  final int? maxSubscribers;
   @JsonKey(name: "meals_cost")
   final int mealsCost;
   @JsonKey(name: "current_subscribers")

@@ -42,9 +42,10 @@ class AddMealBloc extends Bloc<AddMealEvent, AddMealState> {
     add(GetFinalPriceEvent((b) => b..price = price));
   }
 
-  void clearError() {
-    add(ClearError((b) => b));
+  void clearMessage() {
+    add(ClearMessage());
   }
+
 
   @factoryMethod
   AddMealBloc(this.pickImageUseCase, this.getCategoriesUseCase,
@@ -185,11 +186,15 @@ class AddMealBloc extends Bloc<AddMealEvent, AddMealState> {
         });
       }
 
-      /***** ClearError *****/
-      if (event is ClearError) {
-        emit(state.rebuild((b) => b
-          ..error = false
-          ..message = ''));
+      /// *** ClearMessage *** //
+      if (event is ClearMessage) {
+        emit(
+          state.rebuild(
+                (b) => b
+              ..error = false
+              ..message = '',
+          ),
+        );
       }
     });
   }

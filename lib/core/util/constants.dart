@@ -11,8 +11,8 @@ import '../../features/auth/data/models/request_register_model.dart';
 import '../../features/add_meal/domain/use_cases/add_meal.dart';
 
 class Endpoints {
-  static const baseUrl = "https://78f8-31-9-140-112.ngrok.io/api/chef";
-  static const url = "https://5188-188-133-25-71.ngrok.io";
+  static const baseUrl = "http://13e7-46-213-57-181.ngrok.io/api/chef";
+  static const url = "http://13e7-46-213-57-181.ngrok.io";
   static const logout = "/logout";
   static const getCategories = "/meals/categories";
   static const getMealsActiveCount = "/meals/active-count";
@@ -23,12 +23,16 @@ class Endpoints {
   static const addNewSubscription = "/subscriptions/";
   static const getChefMeals = "/meals";
   static const changeProfilePicture = "/profile/edit-profile";
+  static const changeAvailabilityStatus = "/change-availability-status";
   static const getChefProfile = "/profile";
   static const getChefBalance = "/profile/balance";
   static const getOrderHistory = "/profile/order-history";
   static const getOrdersMealsNotes = "/profile/notes";
   static const editDeliverMealTime = "/profile/edit-deliver-meal-time";
   static const editMaxMealPerDay = "/profile/edit-max-meal";
+  static const sendCode = "/send-code";
+  static const checkCodeAndAccessibility = "/check-code-and-accessibility";
+  static const requestRegister = "/request-register";
 
   static String timeOrders(String time) => "/orders/?time=$time";
 
@@ -59,9 +63,6 @@ class Endpoints {
 
   static String increaseMaxMealNumber(int mealId) =>
       "/meals/$mealId/add-portion";
-  static const sendCode = "/send-code";
-  static const checkCodeAndAccessibility = "/check-code-and-accessibility";
-  static const requestRegister = "/request-register";
 }
 
 class SharedPreferencesKeys {
@@ -145,9 +146,9 @@ class RequestBody {
     return form;
   }
 
-  static Future<String> addSubscription({
+  static String addSubscription({
     required NewSubscription newSubscription,
-  }) async {
+  }) {
     final form = json.encode({
       'name': newSubscription.name,
       'days_number': newSubscription.daysNumber,
@@ -172,16 +173,19 @@ class RequestBody {
   static FormData checkCode({
     required String phoneNumber,
     required String code,
+    required String fcmToken,
   }) {
     return FormData.fromMap({
       'phone_number': phoneNumber,
       'code': code,
+      'fcm_token': fcmToken,
     });
   }
 
   // Request Register
   static FormData requestRegister({
     required RegisterRequestModel request,
+    required String fcmToken,
   }) {
     if (request.certificatePath != null) {
       return FormData.fromMap({
@@ -199,6 +203,7 @@ class RequestBody {
         // 'profile_picture': request.profilePicture,
         'certificate': MultipartFile.fromFile(request.certificatePath!,
             filename: request.certificateName),
+        'fcm_token': fcmToken,
       });
     } else {
       return FormData.fromMap({
@@ -214,6 +219,7 @@ class RequestBody {
         'delivery_ends_at': request.deliveryEndsAt,
         'max_meals_per_day': request.maxMealsPerDay,
         // 'profile_picture': request.profilePicture,
+        'fcm_token': fcmToken,
       });
     }
   }

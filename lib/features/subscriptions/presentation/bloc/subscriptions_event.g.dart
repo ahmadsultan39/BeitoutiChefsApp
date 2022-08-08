@@ -467,57 +467,58 @@ class EditSubscriptionEventBuilder
   }
 }
 
-class _$ClearError extends ClearError {
-  factory _$ClearError([void Function(ClearErrorBuilder)? updates]) =>
-      (new ClearErrorBuilder()..update(updates))._build();
+class _$ClearMessage extends ClearMessage {
+  factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
+      (new ClearMessageBuilder()..update(updates))._build();
 
-  _$ClearError._() : super._();
+  _$ClearMessage._() : super._();
 
   @override
-  ClearError rebuild(void Function(ClearErrorBuilder) updates) =>
+  ClearMessage rebuild(void Function(ClearMessageBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ClearErrorBuilder toBuilder() => new ClearErrorBuilder()..replace(this);
+  ClearMessageBuilder toBuilder() => new ClearMessageBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ClearError;
+    return other is ClearMessage;
   }
 
   @override
   int get hashCode {
-    return 507656265;
+    return 147402354;
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper(r'ClearError').toString();
+    return newBuiltValueToStringHelper(r'ClearMessage').toString();
   }
 }
 
-class ClearErrorBuilder implements Builder<ClearError, ClearErrorBuilder> {
-  _$ClearError? _$v;
+class ClearMessageBuilder
+    implements Builder<ClearMessage, ClearMessageBuilder> {
+  _$ClearMessage? _$v;
 
-  ClearErrorBuilder();
+  ClearMessageBuilder();
 
   @override
-  void replace(ClearError other) {
+  void replace(ClearMessage other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$ClearError;
+    _$v = other as _$ClearMessage;
   }
 
   @override
-  void update(void Function(ClearErrorBuilder)? updates) {
+  void update(void Function(ClearMessageBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  ClearError build() => _build();
+  ClearMessage build() => _build();
 
-  _$ClearError _build() {
-    final _$result = _$v ?? new _$ClearError._();
+  _$ClearMessage _build() {
+    final _$result = _$v ?? new _$ClearMessage._();
     replace(_$result);
     return _$result;
   }

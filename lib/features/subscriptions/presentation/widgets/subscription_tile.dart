@@ -50,7 +50,7 @@ class SubscriptionTile extends StatelessWidget {
                                       [...subscription.meals.map((e) => e.id)],
                                       subscription.startsAt,
                                       subscription.mealDeliveryTime,
-                                      subscription.maxSubscribers,
+                                      subscription.maxSubscribers ?? 0,
                                       subscription.mealsCost,
                                       subscription.id,
                                     ));

@@ -1,4 +1,3 @@
-import 'package:beitouti_chefs/features/home/presentation/pages/home_page.dart';
 import 'package:beitouti_chefs/features/splash/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,12 +9,14 @@ import '../core/util/generate_screen.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   State<App> createState() => _AppState();
 }
 
 class _AppState extends State<App> {
+
   @override
   Widget build(BuildContext context) {
     // For portrait use only
@@ -28,6 +29,7 @@ class _AppState extends State<App> {
       designSize: const Size(375, 812),
       builder: (context, child) {
         return MaterialApp(
+          navigatorKey: App.navigatorKey,
           title: 'Beitouti Chefs',
           debugShowCheckedModeBanner: false,
           onGenerateRoute: GenerateScreen.onGenerate,
