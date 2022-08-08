@@ -85,11 +85,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       icon: Icons.balance,
                       screenName: NameScreen.chefBalanceScreen,
                     ),
-                    const ProfileTile(
+                    ProfileTile(
                       title: 'تسجيل الخروج',
                       icon: Icons.logout,
                       isLogout: true,
-                      logoutFunction: _bloc.a,
+                      logoutFunction: (){},
                     ),
                   ],
                 ),
