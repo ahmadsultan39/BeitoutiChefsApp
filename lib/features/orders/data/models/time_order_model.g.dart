@@ -11,7 +11,7 @@ TimeOrderModel _$TimeOrderModelFromJson(Map<String, dynamic> json) =>
       json['id'] as int,
       json['selected_delivery_time'] as String,
       json['subscription'] as int?,
-      json['notes'] as String,
+      json['notes'] as String?,
       (json['meals'] as List<dynamic>)
           .map((e) => OrderMealModel.fromJson(e as Map<String, dynamic>))
           .toList(),

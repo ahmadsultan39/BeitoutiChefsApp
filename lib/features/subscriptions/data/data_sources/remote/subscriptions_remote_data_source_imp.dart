@@ -59,15 +59,13 @@ class SubscriptionsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   }
 
   @override
-  Future<String> editSubscription({
+  Future<void> editSubscription({
     required String token,
     required NewSubscription newSubscription,
   }) async {
-
-    final response = await performPutRequest<String>(endpoint: Endpoints.editSubscription(newSubscription.id!)
+  performPutRequest<Null>(endpoint: Endpoints.editSubscription(newSubscription.id!)
         , data: RequestBody.addSubscription(newSubscription: newSubscription)
         , options: GetOptions.getOptionsWithToken(token));
-    return response!;
   }
 
   @override

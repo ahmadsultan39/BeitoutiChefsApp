@@ -14,6 +14,6 @@ abstract class SubscriptionsRemoteDataSource extends BaseRemoteDataSource {
 
   Future<String> addNewSubscription({required String token,required NewSubscription newSubscription});
 
-  Future<String> editSubscription({required String token,required NewSubscription newSubscription});
+  Future<void> editSubscription({required String token,required NewSubscription newSubscription});
 
 }
