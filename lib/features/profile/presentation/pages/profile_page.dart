@@ -142,18 +142,21 @@ class ProfileTile extends StatelessWidget {
           if (isLogout) {
             logoutFunction!();
           } else {
-            WidgetsBinding.instance?.addPostFrameCallback(
-              (_) {
-                Navigator.of(context).pushNamed(screenName!);
-              },
-            );
+            Navigator.of(context).pushNamed(screenName!);
           }
         },
         child: Container(
           height: 55.h,
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary.withOpacity(0.3),
-            borderRadius: BorderRadius.circular(15),
+            color: Theme.of(context).colorScheme.background,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black38,
+                offset: Offset(0, 5),
+                blurRadius: 10,
+              ),
+            ],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -171,6 +174,8 @@ class ProfileTile extends StatelessWidget {
               ),
               Icon(
                 icon,
+                size: 25.sp,
+                color: Theme.of(context).colorScheme.tertiary,
               ),
             ],
           ),

@@ -25,7 +25,12 @@ class _MealsNotesPageState extends State<MealsNotesPage> {
     return BlocBuilder<ProfileBloc, ProfileState>(
       bloc: _bloc,
       builder: (context, state) {
-        return Container();
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("الملاحظات"),
+          ),
+          backgroundColor: Theme.of(context).colorScheme.background,
+        );
       },
     );
   }

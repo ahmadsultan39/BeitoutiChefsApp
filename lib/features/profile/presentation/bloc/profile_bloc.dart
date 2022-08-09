@@ -247,7 +247,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             ),
           );
 
-          final result = await _getOrdersHistoryUseCase(NoParams());
+          final result = await _getChefBalanceUseCase(NoParams());
 
           result.fold(
             (failure) => emit(
@@ -258,11 +258,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                   ..message = failure.error,
               ),
             ),
-            (preparedOrder) => emit(
+            (chefBalance) => emit(
               state.rebuild(
                 (b) => b
                   ..isLoading = false
-                  ..preparedOrder.addAll(preparedOrder),
+                  ..chefBalance = chefBalance,
               ),
             ),
           );

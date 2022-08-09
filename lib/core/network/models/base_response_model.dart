@@ -1,5 +1,7 @@
 library base_response_model;
 
+import 'package:beitouti_chefs/features/profile/data/models/balance_model.dart';
+import 'package:beitouti_chefs/features/profile/data/models/chef_balance_model.dart';
 import 'package:beitouti_chefs/features/profile/data/models/profile_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -54,6 +56,10 @@ T? _dataFromJson<T>(Object? data) {
       return OrderMealModel.fromJson(data) as T;
     } else if (T.toString() == ProfileModel.className) {
       return ProfileModel.fromJson(data) as T;
+    } else if (T.toString() == ChefBalanceModel.className) {
+      return ChefBalanceModel.fromJson(data) as T;
+    } else if (T.toString() == BalanceModel.className) {
+      return BalanceModel.fromJson(data) as T;
     } else if (T.toString() == 'Null') {
       debugPrint('Null Data');
       return null;

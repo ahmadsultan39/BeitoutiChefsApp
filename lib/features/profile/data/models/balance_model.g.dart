@@ -8,13 +8,13 @@ part of 'balance_model.dart';
 
 BalanceModel _$BalanceModelFromJson(Map<String, dynamic> json) => BalanceModel(
       balance: json['balance'] as int,
-      received: json['received'] as int,
+  recieved: json['recieved'] as int,
       ordersCount: json['orders_count'] as int,
     );
 
 Map<String, dynamic> _$BalanceModelToJson(BalanceModel instance) =>
     <String, dynamic>{
       'balance': instance.balance,
-      'received': instance.received,
+      'recieved': instance.received,
       'orders_count': instance.ordersCount,
     };
