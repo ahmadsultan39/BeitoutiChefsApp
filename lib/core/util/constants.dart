@@ -11,8 +11,8 @@ import '../../features/auth/data/models/request_register_model.dart';
 import '../../features/add_meal/domain/use_cases/add_meal.dart';
 
 class Endpoints {
-  static const baseUrl = "http://13e7-46-213-57-181.ngrok.io/api/chef";
-  static const url = "http://13e7-46-213-57-181.ngrok.io";
+  static const baseUrl = "http://4183-46-213-207-239.ngrok.io/api/chef";
+  static const url = "http://4183-46-213-207-239.ngrok.io";
   static const logout = "/logout";
   static const getCategories = "/meals/categories";
   static const getMealsActiveCount = "/meals/active-count";
@@ -26,13 +26,15 @@ class Endpoints {
   static const changeAvailabilityStatus = "/change-availability-status";
   static const getChefProfile = "/profile";
   static const getChefBalance = "/profile/balance";
-  static const getOrderHistory = "/profile/order-history";
   static const getOrdersMealsNotes = "/profile/notes";
   static const editDeliverMealTime = "/profile/edit-deliver-meal-time";
   static const editMaxMealPerDay = "/profile/edit-max-meal";
   static const sendCode = "/send-code";
   static const checkCodeAndAccessibility = "/check-code-and-accessibility";
   static const requestRegister = "/request-register";
+
+  static String getOrderHistory(int page) =>
+      "/profile/order-history?page=$page";
 
   static String timeOrders(String time) => "/orders/?time=$time";
 

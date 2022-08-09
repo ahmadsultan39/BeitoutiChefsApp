@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/data/base_remote_datasource.dart';
+import '../../../../../core/network/models/paginate_response_model.dart';
 import 'profile_remote_data_source.dart';
 
 @LazySingleton(as: ProfileRemoteDataSource)
@@ -93,12 +94,13 @@ class ProfileRemoteDataSourceImp extends BaseRemoteDataSourceImpl
       );
 
   @override
-  Future<List<PreparedOrderModel>> getOrdersHistory({
+  Future<PaginateResponseModel<PreparedOrderModel>> getOrdersHistory({
     required String token,
+    required int page,
   }) async =>
-      await performGetListRequest<PreparedOrderModel>(
-        endpoint: Endpoints.getOrderHistory,
-        token: token,
+      await performGetRequest<PaginateResponseModel<PreparedOrderModel>>(
+        Endpoints.getOrderHistory(page),
+        token,
       );
 
   @override
@@ -106,7 +108,7 @@ class ProfileRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required String token,
   }) async =>
       await performGetListRequest<OrderMealNoteModel>(
-        endpoint: Endpoints.getOrderHistory,
+        endpoint: Endpoints.getOrdersMealsNotes,
         token: token,
       );
 }

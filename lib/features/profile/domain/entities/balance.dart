@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 class Balance extends Equatable {
   final int balance;
+  @JsonKey(name: 'recieved')
   final int received;
   @JsonKey(name: 'orders_count')
   final int ordersCount;

@@ -1,3 +1,5 @@
+import 'package:beitouti_chefs/core/entities/paginate_list.dart';
+import 'package:beitouti_chefs/core/network/params/paginate_list_params.dart';
 import 'package:beitouti_chefs/features/profile/domain/entities/prepared_order.dart';
 import 'package:beitouti_chefs/features/profile/domain/entities/prepared_order.dart';
 import 'package:beitouti_chefs/features/profile/domain/repositories/profile_repository.dart';
@@ -10,13 +12,13 @@ import '../../../../core/usecase/usecase.dart';
 
 @lazySingleton
 class GetOrdersHistoryUseCase
-    implements UseCase<List<PreparedOrder>, NoParams> {
+    implements UseCase<PaginateList<PreparedOrder>, PaginateListParams> {
   final ProfileRepository _repository;
 
   GetOrdersHistoryUseCase(this._repository);
 
   @override
-  Future<Either<Failure, List<PreparedOrder>>> call(NoParams params) {
-    return _repository.getOrdersHistory();
+  Future<Either<Failure, PaginateList<PreparedOrder>>> call(PaginateListParams params) {
+    return _repository.getOrdersHistory(params.page);
   }
 }

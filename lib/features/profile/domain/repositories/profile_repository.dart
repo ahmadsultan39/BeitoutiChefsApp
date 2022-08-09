@@ -3,15 +3,16 @@ import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/data/base_repository.dart';
+import '../../../../core/entities/paginate_list.dart';
 import '../../data/models/chef_balance_model.dart';
 import '../../data/models/order_meal_note_model.dart';
-import '../../data/models/prepared_order_model.dart';
 import '../../data/models/profile_model.dart';
+import '../entities/prepared_order.dart';
 
 abstract class ProfileRepository extends BaseRepository {
   Future<Either<Failure, List<OrderMealNoteModel>>> getOrderMealsNotes();
 
-  Future<Either<Failure, List<PreparedOrderModel>>> getOrdersHistory();
+  Future<Either<Failure, PaginateList<PreparedOrder>>> getOrdersHistory(int page);
 
   Future<Either<Failure, ChefBalanceModel>> getChefBalance();
 

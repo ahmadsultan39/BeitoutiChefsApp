@@ -10,7 +10,9 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/data/base_local_data_source.dart';
 import '../../../../core/data/base_repository.dart';
+import '../../../../core/entities/paginate_list.dart';
 import '../../../../core/network/network_info.dart';
+import '../../domain/entities/prepared_order.dart';
 import '../../domain/repositories/profile_repository.dart';
 import '../data_sources/local/profile_local_data_source.dart';
 import '../data_sources/remote/profile_remote_data_source.dart';
@@ -113,11 +115,32 @@ class ProfileRepositoryImp extends BaseRepositoryImpl
   }
 
   @override
-  Future<Either<Failure, List<PreparedOrderModel>>> getOrdersHistory() async {
+  Future<Either<Failure, PaginateList<PreparedOrder>>>
+      getOrdersHistory(int page) async {
     try {
       final token = await _local.token;
-      final ordersHistory = await _http.getOrdersHistory(token: token);
-      return Right(ordersHistory);
+      final result = await _http.getOrdersHistory(token: token,page: page);
+      final List<PreparedOrder> list = [];
+      for (PreparedOrderModel preparedOrderModel in result.data) {
+        list.add(
+          PreparedOrder(
+            mealsCost: preparedOrderModel.mealsCost,
+            id: preparedOrderModel.id,
+            status: preparedOrderModel.status,
+            paidToChef: preparedOrderModel.paidToChef,
+            preparedAt: preparedOrderModel.preparedAt,
+            type: preparedOrderModel.type,
+          ),
+        );
+      }
+
+      return Right(
+        PaginateList(
+          total: result.total,
+          pages: result.numPages,
+          data: list,
+        ),
+      );
     } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }

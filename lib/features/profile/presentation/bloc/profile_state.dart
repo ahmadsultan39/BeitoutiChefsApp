@@ -1,4 +1,5 @@
 import 'package:beitouti_chefs/core/bloc/base_state.dart';
+import 'package:beitouti_chefs/core/entities/pagination_state_data.dart';
 import 'package:beitouti_chefs/features/profile/domain/entities/chef_balance.dart';
 import 'package:beitouti_chefs/features/profile/domain/entities/order_meal_note.dart';
 import 'package:beitouti_chefs/features/profile/domain/entities/prepared_order.dart';
@@ -22,9 +23,9 @@ abstract class ProfileState
 
   XFile? get pickedImage;
 
-  BuiltList<OrderMealNote> get orderMealsNotes;
+  PaginationStateData<PreparedOrder> get preparedOrder;
 
-  BuiltList<PreparedOrder> get preparedOrder;
+  BuiltList<OrderMealNote> get orderMealsNotes;
 
   ChefBalance? get chefBalance;
 
@@ -45,8 +46,8 @@ abstract class ProfileState
         ..chefBalance = null
         ..profile = null
         ..pickedImage = null
-        ..preparedOrder.replace([])
-        ..orderMealsNotes.replace([]),
+        ..orderMealsNotes.replace([])
+        ..preparedOrder.replace(PaginationStateData<PreparedOrder>.initial()),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:beitouti_chefs/core/network/params/paginate_list_params.dart';
 import 'package:beitouti_chefs/core/usecase/usecase.dart';
 import 'package:beitouti_chefs/features/add_meal/domain/use_cases/pick_image.dart';
 import 'package:beitouti_chefs/features/profile/domain/use_cases/change_profile_picture_use_case.dart';
@@ -68,7 +69,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   void addGetOrdersHistoryEvent() {
-    add(GetOrdersHistory());
+    add(GetOrdersHistory((b) => b..page = state.preparedOrder.currentPage));
   }
 
   void addLogoutEvent() {
@@ -212,31 +213,39 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
         /// *** GetOrderHistory *** ///
         if (event is GetOrdersHistory) {
-          emit(
-            state.rebuild(
-              (b) => b..isLoading = true,
-            ),
-          );
+          if (!state.preparedOrder.isFinished) {
+            if (event.page == 1) {
+              emit(state.rebuild((b) => b..isLoading = true));
+            } else {
+              emit(state.rebuild((b) => b..preparedOrder.isLoading = true));
+            }
 
-          final result = await _getOrdersHistoryUseCase(NoParams());
+            final result = await _getOrdersHistoryUseCase(
+              PaginateListParams(event.page),
+            );
 
-          result.fold(
-            (failure) => emit(
-              state.rebuild(
-                (b) => b
-                  ..isLoading = false
-                  ..error = true
-                  ..message = failure.error,
+            result.fold(
+              (failure) => emit(
+                state.rebuild(
+                  (b) => b
+                    ..isLoading = false
+                    ..error = true
+                    ..message = failure.error,
+                ),
               ),
-            ),
-            (preparedOrder) => emit(
-              state.rebuild(
-                (b) => b
-                  ..isLoading = false
-                  ..preparedOrder.replace(preparedOrder),
+              (preparedOrder) => emit(
+                state.rebuild(
+                  (b) => b
+                    ..isLoading = false
+                    ..preparedOrder.items.addAll(preparedOrder.data)
+                    ..preparedOrder.isLoading = false
+                    ..preparedOrder.currentPage = event.page
+                    ..preparedOrder.isFinished =
+                        event.page == preparedOrder.pages,
+                ),
               ),
-            ),
-          );
+            );
+          }
         }
 
         /// *** GetChefBalance *** ///

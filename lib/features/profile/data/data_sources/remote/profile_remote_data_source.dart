@@ -5,6 +5,7 @@ import 'package:beitouti_chefs/features/profile/data/models/profile_model.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/data/base_remote_datasource.dart';
+import '../../../../../core/network/models/paginate_response_model.dart';
 
 abstract class ProfileRemoteDataSource extends BaseRemoteDataSource {
   Future<void> changeProfilePicture({
@@ -31,8 +32,9 @@ abstract class ProfileRemoteDataSource extends BaseRemoteDataSource {
     required String token,
   });
 
-  Future<List<PreparedOrderModel>> getOrdersHistory({
+  Future<PaginateResponseModel<PreparedOrderModel>> getOrdersHistory({
     required String token,
+    required int page,
   });
 
   Future<ChefBalanceModel> getChefBalance({

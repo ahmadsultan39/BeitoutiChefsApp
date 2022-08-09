@@ -1,7 +1,9 @@
 library base_response_model;
 
+import 'package:beitouti_chefs/core/network/models/paginate_response_model.dart';
 import 'package:beitouti_chefs/features/profile/data/models/balance_model.dart';
 import 'package:beitouti_chefs/features/profile/data/models/chef_balance_model.dart';
+import 'package:beitouti_chefs/features/profile/data/models/prepared_order_model.dart';
 import 'package:beitouti_chefs/features/profile/data/models/profile_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -60,6 +62,8 @@ T? _dataFromJson<T>(Object? data) {
       return ChefBalanceModel.fromJson(data) as T;
     } else if (T.toString() == BalanceModel.className) {
       return BalanceModel.fromJson(data) as T;
+    } else if (T.toString() == PreparedOrderModel.paginateName) {
+      return PaginateResponseModel<PreparedOrderModel>.fromJson(data) as T;
     } else if (T.toString() == 'Null') {
       debugPrint('Null Data');
       return null;

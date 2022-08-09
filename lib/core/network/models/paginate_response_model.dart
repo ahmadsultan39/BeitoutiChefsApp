@@ -1,5 +1,6 @@
 library paginate_response_model;
 
+import 'package:beitouti_chefs/features/profile/data/models/prepared_order_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -14,6 +15,7 @@ class PaginateResponseModel<T extends Equatable> extends PaginateList {
   final int count;
   @JsonKey(name: 'last_page')
   final int numPages;
+  @JsonKey(name: 'per_page')
   final int perPage;
 
   @_Converter()
@@ -40,10 +42,10 @@ class _Converter<T> implements JsonConverter<T, Object?> {
   @override
   T fromJson(Object? json) {
     debugPrint('T is ${T.toString()}');
-    // if (json is Map<String, dynamic> &&
-    //     T.toString() == HomeMealModel.className) {
-    //   return HomeMealModel.fromJson(json) as T;
-    // }
+    if (json is Map<String, dynamic> &&
+        T.toString() == PreparedOrderModel.className) {
+      return PreparedOrderModel.fromJson(json) as T;
+    }
 
     //     T.toString() == NewSongModel.className) {
     //   return NewSongModel.fromJson(json) as T;

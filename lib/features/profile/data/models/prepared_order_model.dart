@@ -8,6 +8,7 @@ part 'prepared_order_model.g.dart';
 @JsonSerializable()
 class PreparedOrderModel extends PreparedOrder {
   static const String className = 'PreparedOrderModel';
+  static const String paginateName = 'PaginateResponseModel<PreparedOrderModel>';
 
   const PreparedOrderModel({
     required int id,

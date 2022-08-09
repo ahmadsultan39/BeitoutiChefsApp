@@ -75,6 +75,8 @@ abstract class GetOrdersHistory extends ProfileEvent
     implements Built<GetOrdersHistory, GetOrdersHistoryBuilder> {
   //getter fields
 
+  int get page;
+
   GetOrdersHistory._();
 
   factory GetOrdersHistory([Function(GetOrdersHistoryBuilder b) updates]) =

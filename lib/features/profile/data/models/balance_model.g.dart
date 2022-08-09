@@ -8,7 +8,7 @@ part of 'balance_model.dart';
 
 BalanceModel _$BalanceModelFromJson(Map<String, dynamic> json) => BalanceModel(
       balance: json['balance'] as int,
-  recieved: json['recieved'] as int,
+      received: json['recieved'] as int,
       ordersCount: json['orders_count'] as int,
     );
 

@@ -10,11 +10,11 @@ class BalanceModel extends Balance {
 
   const BalanceModel({
     required int balance,
-    required int recieved,
+    required int received,
     required int ordersCount,
   }) : super(
           balance: balance,
-          received: recieved,
+          received: received,
           ordersCount: ordersCount,
         );
 

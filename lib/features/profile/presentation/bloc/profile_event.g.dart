@@ -290,11 +290,16 @@ class GetChefBalanceBuilder
 }
 
 class _$GetOrdersHistory extends GetOrdersHistory {
+  @override
+  final int page;
+
   factory _$GetOrdersHistory(
           [void Function(GetOrdersHistoryBuilder)? updates]) =>
       (new GetOrdersHistoryBuilder()..update(updates))._build();
 
-  _$GetOrdersHistory._() : super._();
+  _$GetOrdersHistory._({required this.page}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(page, r'GetOrdersHistory', 'page');
+  }
 
   @override
   GetOrdersHistory rebuild(void Function(GetOrdersHistoryBuilder) updates) =>
@@ -307,17 +312,18 @@ class _$GetOrdersHistory extends GetOrdersHistory {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GetOrdersHistory;
+    return other is GetOrdersHistory && page == other.page;
   }
 
   @override
   int get hashCode {
-    return 711951771;
+    return $jf($jc(0, page.hashCode));
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper(r'GetOrdersHistory').toString();
+    return (newBuiltValueToStringHelper(r'GetOrdersHistory')..add('page', page))
+        .toString();
   }
 }
 
@@ -325,7 +331,20 @@ class GetOrdersHistoryBuilder
     implements Builder<GetOrdersHistory, GetOrdersHistoryBuilder> {
   _$GetOrdersHistory? _$v;
 
+  int? _page;
+  int? get page => _$this._page;
+  set page(int? page) => _$this._page = page;
+
   GetOrdersHistoryBuilder();
+
+  GetOrdersHistoryBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _page = $v.page;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(GetOrdersHistory other) {
@@ -342,7 +361,10 @@ class GetOrdersHistoryBuilder
   GetOrdersHistory build() => _build();
 
   _$GetOrdersHistory _build() {
-    final _$result = _$v ?? new _$GetOrdersHistory._();
+    final _$result = _$v ??
+        new _$GetOrdersHistory._(
+            page: BuiltValueNullFieldError.checkNotNull(
+                page, r'GetOrdersHistory', 'page'));
     replace(_$result);
     return _$result;
   }

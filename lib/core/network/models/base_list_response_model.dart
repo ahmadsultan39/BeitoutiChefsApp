@@ -1,5 +1,6 @@
 library base_list_response_model;
 
+import 'package:beitouti_chefs/features/profile/data/models/order_meal_note_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -58,6 +59,9 @@ class _Converter<T> implements JsonConverter<T, Object> {
     } else if (json is Map<String, dynamic> &&
         T.toString() == AddSubscriptionMealModel.className) {
       return AddSubscriptionMealModel.fromJson(json) as T;
+    } else if (json is Map<String, dynamic> &&
+        T.toString() == OrderMealNoteModel.className) {
+      return OrderMealNoteModel.fromJson(json) as T;
     }
 
     throw Exception('parse error');
