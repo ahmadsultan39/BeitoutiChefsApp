@@ -30,7 +30,7 @@ class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
       final token = await _local.token;
       final result = await _remote.addCategory(token: token, name: name);
       return Right(result);
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       print("add meal repo error in repo $e");
       return Left(ServerFailure(error: e.error));
     }
@@ -42,8 +42,8 @@ class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
       final token = await _local.token;
       await _remote.addMeal(token: token, params: params);
       return Right(null);
-    } on ServerException catch (e) {
-      print("add meal repo error in repo $e");
+    } on HandledException catch (e) {
+      print("add meal repo error in repo ${e.error}");
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -54,7 +54,7 @@ class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
       final token = await _local.token;
       await _remote.editMeal(token: token, params: params);
       return Right(null);
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       print("add meal repo error in repo $e");
       return Left(ServerFailure(error: e.error));
     }
@@ -66,7 +66,7 @@ class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
       final token = await _local.token;
       final result = await _remote.getCategories(token);
       return Right(result);
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       print("add meal repo error in repo $e");
       return Left(ServerFailure(error: e.error));
     }
@@ -78,7 +78,7 @@ class AddMealRepoImp extends BaseRepositoryImpl implements AddMealRepository {
       final token = await _local.token;
       final result = await _remote.getFinalPrice(token: token, price: price);
       return Right(result);
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       print("add meal repo error in repo $e");
       return Left(ServerFailure(error: e.error));
     }

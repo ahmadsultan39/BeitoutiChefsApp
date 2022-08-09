@@ -42,59 +42,26 @@ class ShowMenuRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   @override
   Future<void> changeMealAvailability(
       {required String token, required int mealId}) async {
-    final response = await dio.put(
-      Endpoints.changeMealAvailability(mealId),
-      options: GetOptions.getOptionsWithToken(token),
-    );
-    if (response.statusCode == 200) {
-      final result =
-          BaseResponseModel<Null>.fromJson(json.decode(response.data));
-    } else {
-      throw ServerException(error: ErrorMessage.someThingWentWrong);
-    }
+    await performPutRequest<Null>(endpoint: Endpoints.changeMealAvailability(mealId), options: GetOptions.getOptionsWithToken(token));
   }
 
   @override
   Future<void> decreaseMaxMealNumber(
       {required String token, required int mealId}) async {
-    final response = await dio.put(
-      Endpoints.decreaseMaxMealNumber(mealId),
-      options: GetOptions.getOptionsWithToken(token),
-    );
-    if (response.statusCode == 200) {
-      final result =
-          BaseResponseModel<Null>.fromJson(json.decode(response.data));
-    } else {
-      throw ServerException(error: ErrorMessage.someThingWentWrong);
-    }
+    await performPutRequest<Null>(endpoint: Endpoints.decreaseMaxMealNumber(mealId),
+        options: GetOptions.getOptionsWithToken(token));
   }
 
   @override
   Future<void> deleteMeal({required String token, required int mealId}) async {
-    final response = await dio.delete(
-      Endpoints.deleteMeal(mealId),
-      options: GetOptions.getOptionsWithToken(token),
-    );
-    if (response.statusCode == 200) {
-      final result =
-          BaseResponseModel<Null>.fromJson(json.decode(response.data));
-    } else {
-      throw ServerException(error: ErrorMessage.someThingWentWrong);
-    }
+    await performDeleteRequest<Null>(endpoint: Endpoints.deleteMeal(mealId),
+        token: token);
   }
 
   @override
   Future<void> increaseMaxMealNumber(
       {required String token, required int mealId}) async {
-    final response = await dio.put(
-      Endpoints.increaseMaxMealNumber(mealId),
-      options: GetOptions.getOptionsWithToken(token),
-    );
-    if (response.statusCode == 200) {
-      final result =
-          BaseResponseModel<Null>.fromJson(json.decode(response.data));
-    } else {
-      throw ServerException(error: 'ErrorMessage.ERROR401');
-    }
+    await performPutRequest<Null>(endpoint: Endpoints.increaseMaxMealNumber(mealId),
+        options: GetOptions.getOptionsWithToken(token));
   }
 }

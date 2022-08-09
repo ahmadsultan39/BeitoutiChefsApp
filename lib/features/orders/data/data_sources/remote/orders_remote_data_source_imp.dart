@@ -35,22 +35,7 @@ class OrdersRemoteDataSourceImp extends BaseRemoteDataSourceImpl
 
   @override
   Future<void> changeStatus({required String token, required int orderId}) async {
-    try {
-      final response = await dio.put(
-        Endpoints.changeOrderStatus(orderId),
-        options: GetOptions.getOptionsWithToken(token),
-      );
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return;
-      } else {
-        throw ServerException(error: ErrorMessage.someThingWentWrong);
-      }
-    } on DioError catch (e) {
-      // final result =
-      // BaseResponseModel<Null>.fromJson(json.decode(e.response!.data));
-      // if (result.status! == 3) {
-        throw ServerException(error: ErrorMessage.someThingWentWrong);
-      // }
-    }
+    await performPutRequest<Null>(endpoint:  Endpoints.changeOrderStatus(orderId),
+        options: GetOptions.getOptionsWithToken(token));
   }
 }

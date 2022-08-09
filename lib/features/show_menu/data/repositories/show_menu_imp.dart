@@ -38,7 +38,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
       return Right(
         result,
       );
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
@@ -56,7 +56,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
       return Right(
         result,
       );
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
@@ -75,7 +75,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
       return Right(
         result,
       );
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
@@ -92,7 +92,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
         mealId: mealId,
       );
       return Right(null);
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
@@ -109,7 +109,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
         mealId: mealId,
       );
       return Right(null);
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
@@ -126,7 +126,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
         mealId: mealId,
       );
       return Right(null);
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
   return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));
@@ -142,7 +142,7 @@ class ShowMenuRepositoryImp extends BaseRepositoryImpl
         mealId: mealId,
       );
       return Right(null);
-    } on ServerException catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     } catch (e) {
       return Left(ServerFailure(error: ErrorMessage.someThingWentWrong));

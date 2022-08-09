@@ -158,6 +158,7 @@ class AddMealBloc extends Bloc<AddMealEvent, AddMealState> {
           emit(
             state.rebuild(
               (b) => b
+              ..popScreen = true
                 ..isLoading = false,
             ),
           );
@@ -180,6 +181,7 @@ class AddMealBloc extends Bloc<AddMealEvent, AddMealState> {
           emit(
             state.rebuild(
               (b) => b
+              ..popScreen = true
                 ..isLoading = false,
             ),
           );

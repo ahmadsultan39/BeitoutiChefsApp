@@ -19,12 +19,12 @@ class OrderRepositoryImp implements OrdersRepository {
   @override
   Future<Either<Failure, List<OrdersTimes>>> getOrdersTimes() async {
     try {
-      final _token = await _local.token; //await _local.token;
+      final _token = await _local.token;
       final result = await _remote.getOrdersTimes(
         token: _token,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -32,13 +32,13 @@ class OrderRepositoryImp implements OrdersRepository {
   @override
   Future<Either<Failure, List<TimeOrder>>> getTimeOrders({required String time}) async {
     try {
-      final _token = await _local.token; //await _local.token;
+      final _token = await _local.token;
       final result = await _remote.getTimeOrders(
         token: _token,
         time: time,
       );
       return Right(result);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }
@@ -46,13 +46,13 @@ class OrderRepositoryImp implements OrdersRepository {
   @override
   Future<Either<Failure, void>> changeStatus({required int orderId}) async {
     try {
-      final _token = await _local.token; //await _local.token;
+      final _token =  await _local.token;
       await _remote.changeStatus(
         token: _token,
         orderId: orderId,
       );
       return const Right(null);
-    } on ImplementedError catch (e) {
+    } on HandledException catch (e) {
       return Left(ServerFailure(error: e.error));
     }
   }

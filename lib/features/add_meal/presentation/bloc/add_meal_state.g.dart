@@ -8,6 +8,8 @@ part of 'add_meal_state.dart';
 
 class _$AddMealState extends AddMealState {
   @override
+  final bool popScreen;
+  @override
   final bool isLoading;
   @override
   final String? imageUrl;
@@ -42,7 +44,8 @@ class _$AddMealState extends AddMealState {
       (new AddMealStateBuilder()..update(updates))._build();
 
   _$AddMealState._(
-      {required this.isLoading,
+      {required this.popScreen,
+      required this.isLoading,
       this.imageUrl,
       this.pickedImage,
       this.name,
@@ -58,6 +61,8 @@ class _$AddMealState extends AddMealState {
       required this.error,
       required this.message})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        popScreen, r'AddMealState', 'popScreen');
     BuiltValueNullFieldError.checkNotNull(
         isLoading, r'AddMealState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(
@@ -79,6 +84,7 @@ class _$AddMealState extends AddMealState {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is AddMealState &&
+        popScreen == other.popScreen &&
         isLoading == other.isLoading &&
         imageUrl == other.imageUrl &&
         pickedImage == other.pickedImage &&
@@ -113,7 +119,10 @@ class _$AddMealState extends AddMealState {
                                                     $jc(
                                                         $jc(
                                                             $jc(
-                                                                0,
+                                                                $jc(
+                                                                    0,
+                                                                    popScreen
+                                                                        .hashCode),
                                                                 isLoading
                                                                     .hashCode),
                                                             imageUrl.hashCode),
@@ -135,6 +144,7 @@ class _$AddMealState extends AddMealState {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'AddMealState')
+          ..add('popScreen', popScreen)
           ..add('isLoading', isLoading)
           ..add('imageUrl', imageUrl)
           ..add('pickedImage', pickedImage)
@@ -157,6 +167,10 @@ class _$AddMealState extends AddMealState {
 class AddMealStateBuilder
     implements Builder<AddMealState, AddMealStateBuilder> {
   _$AddMealState? _$v;
+
+  bool? _popScreen;
+  bool? get popScreen => _$this._popScreen;
+  set popScreen(bool? popScreen) => _$this._popScreen = popScreen;
 
   bool? _isLoading;
   bool? get isLoading => _$this._isLoading;
@@ -225,6 +239,7 @@ class AddMealStateBuilder
   AddMealStateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _popScreen = $v.popScreen;
       _isLoading = $v.isLoading;
       _imageUrl = $v.imageUrl;
       _pickedImage = $v.pickedImage;
@@ -262,6 +277,8 @@ class AddMealStateBuilder
   _$AddMealState _build() {
     final _$result = _$v ??
         new _$AddMealState._(
+            popScreen: BuiltValueNullFieldError.checkNotNull(
+                popScreen, r'AddMealState', 'popScreen'),
             isLoading: BuiltValueNullFieldError.checkNotNull(
                 isLoading, r'AddMealState', 'isLoading'),
             imageUrl: imageUrl,

@@ -27,30 +27,17 @@ class AddMealRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   @override
   Future<CategoryModel> addCategory(
       {required String token, required String name}) async {
-    final response = await dio.post(Endpoints.createCategory,
-        options: GetOptions.getOptionsWithToken(token),
-        data: RequestBody.createCategory(name: name));
-    if (response.statusCode == 200) {
-      final result =
-          BaseResponseModel<CategoryModel>.fromJson(json.decode(response.data));
-      return result.data!;
-    } else {
-      throw ServerException(error: ErrorMessage.someThingWentWrong);
-    }
+    return (await performPostRequest<CategoryModel>(endpoint: Endpoints.createCategory, data: RequestBody.createCategory(name: name),
+        options: GetOptions.getOptionsWithToken(token)))!;
   }
-
 
   @override
   Future<void> addMeal(
       {required String token, required AddMealUseCaseParams params}) async {
-    final response = await dio.post(Endpoints.addMeal,
-        options: GetOptions.getOptionsWithToken(token),
-        data: await RequestBody.addMeal(params: params));
-    if (response.statusCode == 200) {
-      return;
-    } else {
-      throw ServerException(error: ErrorMessage.someThingWentWrong);
-    }
+    await performPostRequest<Null>(
+        endpoint: Endpoints.addMeal,
+        data: await RequestBody.addMeal(params: params),
+        options: GetOptions.getOptionsWithToken(token));
   }
 
   @override
@@ -58,14 +45,9 @@ class AddMealRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required String token,
     required EditMealUseCaseParams params,
   }) async {
-    final response = await dio.post(Endpoints.editMeal(params.mealId),
-        options: GetOptions.getOptionsWithToken(token),
-        data: await RequestBody.editMeal(params: params));
-    if (response.statusCode == 200) {
-      return;
-    } else {
-      throw ServerException(error: ErrorMessage.someThingWentWrong);
-    }
+    await performPostRequest<Null>(endpoint: Endpoints.editMeal(params.mealId),
+        data: await RequestBody.editMeal(params: params),
+        options: GetOptions.getOptionsWithToken(token));
   }
 
   @override
