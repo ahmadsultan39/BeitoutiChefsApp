@@ -36,6 +36,7 @@ class TimeTile extends StatelessWidget {
                         SingleChildScrollView(
                           child: Column(
                             children: [
+
                               ...bloc.state.orders.map(
                                 (timeOrder) => TimeOrderTile(
                                   timeOrder: timeOrder,

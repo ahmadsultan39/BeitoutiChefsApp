@@ -21,6 +21,6 @@ class TimeOrderModel extends TimeOrder {
   final List<OrderMealModel> meals;
 
   const TimeOrderModel(int id, this.selectedDeliveryTime, this.subscriptionId,
-      String notes, this.meals,String status)
+      String? notes, this.meals,String status)
       : super(id, selectedDeliveryTime, subscriptionId, notes, meals,status);
 }

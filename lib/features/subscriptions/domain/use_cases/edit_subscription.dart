@@ -9,13 +9,13 @@ import '../repositories/subscriptions_repository.dart';
 
 @lazySingleton
 class EditSubscriptionUseCase
-    implements UseCase<String, ParamsEditSubscriptionUseCase> {
+    implements UseCase<void, ParamsEditSubscriptionUseCase> {
   final SubscriptionsRepository _repository;
 
   EditSubscriptionUseCase(this._repository);
 
   @override
-  Future<Either<Failure, String>> call(ParamsEditSubscriptionUseCase params) {
+  Future<Either<Failure, void>> call(ParamsEditSubscriptionUseCase params) {
     return _repository.editSubscription(newSubscription: params.newSubscription);
   }
 }
