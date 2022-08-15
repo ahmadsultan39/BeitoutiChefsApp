@@ -31,6 +31,8 @@ abstract class ProfileState
 
   Profile? get profile;
 
+  bool get pop;
+
   ProfileState._();
 
   factory ProfileState([Function(ProfileStateBuilder b) updates]) =
@@ -42,6 +44,7 @@ abstract class ProfileState
         ..isLoading = false
         ..message = ""
         ..error = false
+        ..pop = false
         ..isLoggedOut = false
         ..chefBalance = null
         ..profile = null

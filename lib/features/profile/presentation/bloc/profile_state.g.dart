@@ -25,6 +25,8 @@ class _$ProfileState extends ProfileState {
   final ChefBalance? chefBalance;
   @override
   final Profile? profile;
+  @override
+  final bool pop;
 
   factory _$ProfileState([void Function(ProfileStateBuilder)? updates]) =>
       (new ProfileStateBuilder()..update(updates))._build();
@@ -38,7 +40,8 @@ class _$ProfileState extends ProfileState {
       required this.preparedOrder,
       required this.orderMealsNotes,
       this.chefBalance,
-      this.profile})
+      this.profile,
+      required this.pop})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(message, r'ProfileState', 'message');
     BuiltValueNullFieldError.checkNotNull(error, r'ProfileState', 'error');
@@ -50,6 +53,7 @@ class _$ProfileState extends ProfileState {
         preparedOrder, r'ProfileState', 'preparedOrder');
     BuiltValueNullFieldError.checkNotNull(
         orderMealsNotes, r'ProfileState', 'orderMealsNotes');
+    BuiltValueNullFieldError.checkNotNull(pop, r'ProfileState', 'pop');
   }
 
   @override
@@ -71,7 +75,8 @@ class _$ProfileState extends ProfileState {
         preparedOrder == other.preparedOrder &&
         orderMealsNotes == other.orderMealsNotes &&
         chefBalance == other.chefBalance &&
-        profile == other.profile;
+        profile == other.profile &&
+        pop == other.pop;
   }
 
   @override
@@ -82,14 +87,18 @@ class _$ProfileState extends ProfileState {
                 $jc(
                     $jc(
                         $jc(
-                            $jc($jc($jc(0, message.hashCode), error.hashCode),
-                                isLoading.hashCode),
-                            isLoggedOut.hashCode),
-                        pickedImage.hashCode),
-                    preparedOrder.hashCode),
-                orderMealsNotes.hashCode),
-            chefBalance.hashCode),
-        profile.hashCode));
+                            $jc(
+                                $jc(
+                                    $jc($jc(0, message.hashCode),
+                                        error.hashCode),
+                                    isLoading.hashCode),
+                                isLoggedOut.hashCode),
+                            pickedImage.hashCode),
+                        preparedOrder.hashCode),
+                    orderMealsNotes.hashCode),
+                chefBalance.hashCode),
+            profile.hashCode),
+        pop.hashCode));
   }
 
   @override
@@ -103,7 +112,8 @@ class _$ProfileState extends ProfileState {
           ..add('preparedOrder', preparedOrder)
           ..add('orderMealsNotes', orderMealsNotes)
           ..add('chefBalance', chefBalance)
-          ..add('profile', profile))
+          ..add('profile', profile)
+          ..add('pop', pop))
         .toString();
   }
 }
@@ -153,6 +163,10 @@ class ProfileStateBuilder
   Profile? get profile => _$this._profile;
   set profile(Profile? profile) => _$this._profile = profile;
 
+  bool? _pop;
+  bool? get pop => _$this._pop;
+  set pop(bool? pop) => _$this._pop = pop;
+
   ProfileStateBuilder();
 
   ProfileStateBuilder get _$this {
@@ -167,6 +181,7 @@ class ProfileStateBuilder
       _orderMealsNotes = $v.orderMealsNotes.toBuilder();
       _chefBalance = $v.chefBalance;
       _profile = $v.profile;
+      _pop = $v.pop;
       _$v = null;
     }
     return this;
@@ -203,7 +218,9 @@ class ProfileStateBuilder
               preparedOrder: preparedOrder.build(),
               orderMealsNotes: orderMealsNotes.build(),
               chefBalance: chefBalance,
-              profile: profile);
+              profile: profile,
+              pop: BuiltValueNullFieldError.checkNotNull(
+                  pop, r'ProfileState', 'pop'));
     } catch (_) {
       late String _$failedField;
       try {

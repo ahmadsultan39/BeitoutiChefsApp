@@ -41,12 +41,14 @@ class _ProfilePageState extends State<ProfilePage> {
       child: BlocBuilder<ProfileBloc, ProfileState>(
         bloc: _bloc,
         builder: (context, state) {
-          message(
-            bloc: _bloc,
-            isError: state.error,
-            message: state.message,
-            context: context,
-          );
+          WidgetsBinding.instance?.addPostFrameCallback((_) {
+            message(
+              message: state.message,
+              isError: state.error,
+              context: context,
+              bloc: _bloc,
+            );
+          });
           return Stack(
             children: [
               if (state.profile != null)
@@ -81,10 +83,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: Icons.history,
                         screenName: NameScreen.ordersHistoryScreen,
                       ),
-                      const ProfileTile(
+                       ProfileTile(
                         title: 'تعديل إعدادات الطلب',
                         icon: Icons.settings,
                         screenName: NameScreen.editOrderSettingsScreen,
+                        arguments: state.profile,
                       ),
                       const ProfileTile(
                         title: 'الملاحظات',
@@ -120,6 +123,7 @@ class ProfileTile extends StatelessWidget {
   final bool isLogout;
   final String? screenName;
   final VoidCallback? logoutFunction;
+  final Object? arguments;
 
   const ProfileTile({
     Key? key,
@@ -128,6 +132,7 @@ class ProfileTile extends StatelessWidget {
     this.screenName,
     this.isLogout = false,
     this.logoutFunction,
+    this.arguments,
   }) : super(key: key);
 
   @override
@@ -142,7 +147,7 @@ class ProfileTile extends StatelessWidget {
           if (isLogout) {
             logoutFunction!();
           } else {
-            Navigator.of(context).pushNamed(screenName!);
+            Navigator.of(context).pushNamed(screenName!, arguments: arguments);
           }
         },
         child: Container(

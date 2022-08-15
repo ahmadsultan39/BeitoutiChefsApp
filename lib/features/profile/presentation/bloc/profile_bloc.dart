@@ -157,6 +157,65 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           );
         }
 
+        /// *** EditDeliverMealTime *** ///
+        if (event is EditDeliverMealTime) {
+          emit(state.rebuild((b) => b..isLoading = true));
+
+          final result = await _editDeliverTimeUseCase(
+            ParamsEditDeliverTimeUseCase(
+                startsAt: event.deliveryStartsAt, endsAt: event.deliveryEndsAt),
+          );
+
+          result.fold(
+            (failure) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..error = true
+                  ..message = failure.error,
+              ),
+            ),
+            (success) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..pop = true
+                  ..message = 'تم تغيير التوقيت بنجاح',
+              ),
+            ),
+          );
+        }
+
+        /// *** EditMaxMealsPerDay *** ///
+        if (event is EditMaxMealsPerDay) {
+          emit(state.rebuild((b) => b..isLoading = true));
+
+          final result = await _editMaxMealsPerDayUseCase(
+            ParamsEditMaxMealsPerDayUseCase(
+              maxMealsPerDay: event.maxMealsPerDay,
+            ),
+          );
+
+          result.fold(
+            (failure) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..error = true
+                  ..message = failure.error,
+              ),
+            ),
+            (success) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..pop = true
+                  ..message = 'تم تغيير العدد بنجاح',
+              ),
+            ),
+          );
+        }
+
         /// *** Logout *** ///
         if (event is Logout) {
           emit(state.rebuild((b) => b..isLoading = true));

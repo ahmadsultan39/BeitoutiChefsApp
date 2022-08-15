@@ -1,3 +1,4 @@
+import 'package:beitouti_chefs/features/profile/domain/entities/profile.dart';
 import 'package:beitouti_chefs/features/profile/presentation/pages/chef_balance_page.dart';
 import 'package:beitouti_chefs/features/profile/presentation/pages/edit_order_settings_page.dart';
 import 'package:beitouti_chefs/features/profile/presentation/pages/meals_notes_page.dart';
@@ -74,7 +75,7 @@ class GenerateScreen {
       case NameScreen.editOrderSettingsScreen:
         {
           return MaterialPageRoute(
-            builder: (context) => const EditOrderSettingsPage(),
+            builder: (context) =>  EditOrderSettingsPage(profile: value.arguments as Profile),
           );
         }
       case NameScreen.chefBalanceScreen:
