@@ -40,14 +40,15 @@ class _OrdersPageState extends State<OrdersPage> {
                   constraints: BoxConstraints(minHeight: 300.h),
                   child: SingleChildScrollView(
                     physics: const AlwaysScrollableScrollPhysics(),
-                    child: !state.isOrdersTimesLoading && state.times.length == 0
+                    child: !state.isOrdersTimesLoading && state.times.isEmpty
                         ? const Center(
                             child: Text("لا يوجد طلبات لعرضها"),
                           )
                         : Column(
                             children: [
                               ...state.times.map(
-                                  (time) => TimeTile(time: time, bloc: _bloc)),
+                                (time) => TimeTile(time: time, bloc: _bloc),
+                              ),
                             ],
                           ),
                   ),

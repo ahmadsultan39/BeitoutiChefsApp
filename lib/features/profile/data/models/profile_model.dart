@@ -16,9 +16,11 @@ class ProfileModel extends Profile {
     required String profilePicture,
     required String deliveryEndsAt,
     required String deliveryStartsAt,
+    required int maxMealsPerDay,
     required bool isAvailable,
   }) : super(
           name: name,
+          maxMealsPerDay: maxMealsPerDay,
           email: email,
           phoneNumber: phoneNumber,
           locationName: locationName,

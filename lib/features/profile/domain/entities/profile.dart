@@ -15,6 +15,9 @@ class Profile extends Equatable {
   @JsonKey(name: 'profile_picture')
   final String profilePicture;
 
+  @JsonKey(name: 'max_meals_per_day')
+  final int maxMealsPerDay;
+
   @JsonKey(name: 'delivery_ends_at')
   final String deliveryEndsAt;
 
@@ -28,6 +31,7 @@ class Profile extends Equatable {
     required this.name,
     required this.email,
     required this.phoneNumber,
+    required this.maxMealsPerDay,
     required this.locationName,
     required this.profilePicture,
     required this.deliveryEndsAt,

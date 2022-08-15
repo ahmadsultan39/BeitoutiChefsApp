@@ -11,8 +11,8 @@ import '../../features/auth/data/models/request_register_model.dart';
 import '../../features/add_meal/domain/use_cases/add_meal.dart';
 
 class Endpoints {
-  static const baseUrl = "http://4183-46-213-207-239.ngrok.io/api/chef";
-  static const url = "http://4183-46-213-207-239.ngrok.io";
+  static const baseUrl = "http://935f-94-47-182-14.ngrok.io/api/chef";
+  static const url = "http://935f-94-47-182-14.ngrok.io";
   static const logout = "/logout";
   static const getCategories = "/meals/categories";
   static const getMealsActiveCount = "/meals/active-count";

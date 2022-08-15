@@ -37,13 +37,15 @@ class TimeTile extends StatelessWidget {
                           child: Column(
                             children: [
                               ...bloc.state.orders.map(
-                                (timeOrder) =>
-                                    TimeOrderTile(timeOrder: timeOrder, bloc: bloc),
+                                (timeOrder) => TimeOrderTile(
+                                  timeOrder: timeOrder,
+                                  bloc: bloc,
+                                ),
                               ),
                             ],
                           ),
                         ),
-                        if(state.isTimeOrdersLoading) const Loader()
+                        if (state.isTimeOrdersLoading) const Loader()
                       ],
                     ),
                   );

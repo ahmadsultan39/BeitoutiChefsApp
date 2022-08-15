@@ -14,6 +14,7 @@ ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) => ProfileModel(
       profilePicture: json['profile_picture'] as String,
       deliveryEndsAt: json['delivery_ends_at'] as String,
       deliveryStartsAt: json['delivery_starts_at'] as String,
+      maxMealsPerDay: json['max_meals_per_day'] as int,
       isAvailable: json['is_available'] as bool,
     );
 
@@ -24,6 +25,7 @@ Map<String, dynamic> _$ProfileModelToJson(ProfileModel instance) =>
       'phone_number': instance.phoneNumber,
       'location_name': instance.locationName,
       'profile_picture': instance.profilePicture,
+      'max_meals_per_day': instance.maxMealsPerDay,
       'delivery_ends_at': instance.deliveryEndsAt,
       'delivery_starts_at': instance.deliveryStartsAt,
       'is_available': instance.isAvailable,
