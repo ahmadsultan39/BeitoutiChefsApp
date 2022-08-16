@@ -32,7 +32,7 @@ import 'features/add_meal/domain/use_cases/add_meal.dart' as _i78;
 import 'features/add_meal/domain/use_cases/edit_meal.dart' as _i86;
 import 'features/add_meal/domain/use_cases/get_categories.dart' as _i88;
 import 'features/add_meal/domain/use_cases/get_final_price.dart' as _i89;
-import 'features/add_meal/domain/use_cases/pick_image.dart' as _i99;
+import 'features/add_meal/domain/use_cases/pick_image.dart' as _i98;
 import 'features/add_meal/presentation/bloc/add_meal_bloc.dart' as _i103;
 import 'features/auth/data/data_sources/local/auth_local_data_source.dart'
     as _i37;
@@ -98,7 +98,7 @@ import 'features/profile/domain/use_cases/get_orders_history_use_case.dart'
     as _i91;
 import 'features/profile/domain/use_cases/get_profile_use_case.dart' as _i93;
 import 'features/profile/domain/use_cases/logout_use_case.dart' as _i96;
-import 'features/profile/domain/use_cases/pick_image_use_case.dart' as _i98;
+import 'features/profile/domain/use_cases/pick_image_use_case.dart' as _i99;
 import 'features/profile/presentation/bloc/profile_bloc.dart' as _i100;
 import 'features/show_menu/data/data_sources/local/show_menu_local_data_source.dart'
     as _i16;
@@ -340,9 +340,9 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i94.GetTimeOrdersUseCase>(),
       get<_i82.ChangeStatusUseCase>()));
   gh.lazySingleton<_i98.PickImageUseCase>(
-      () => _i98.PickImageUseCase(get<_i68.ProfileRepository>()));
+      () => _i98.PickImageUseCase(get<_i76.AddMealRepository>()));
   gh.lazySingleton<_i99.PickImageUseCase>(
-      () => _i99.PickImageUseCase(get<_i76.AddMealRepository>()));
+      () => _i99.PickImageUseCase(get<_i68.ProfileRepository>()));
   gh.factory<_i100.ProfileBloc>(() => _i100.ProfileBloc(
       get<_i81.ChangeProfilePictureUseCase>(),
       get<_i96.LogoutUseCase>(),
@@ -352,13 +352,13 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i87.GetChefBalanceUseCase>(),
       get<_i93.GetProfileUseCase>(),
       get<_i85.EditMaxMealsPerDayUseCase>(),
-      get<_i99.PickImageUseCase>()));
+      get<_i98.PickImageUseCase>()));
   gh.factory<_i101.SplashBloc>(
       () => _i101.SplashBloc(get<_i83.CheckAuthUseCase>()));
   gh.lazySingleton<_i102.AddCategoryUseCase>(
       () => _i102.AddCategoryUseCase(get<_i76.AddMealRepository>()));
   gh.factory<_i103.AddMealBloc>(() => _i103.AddMealBloc(
-      get<_i99.PickImageUseCase>(),
+      get<_i98.PickImageUseCase>(),
       get<_i53.GetCategoriesUseCase>(),
       get<_i102.AddCategoryUseCase>(),
       get<_i78.AddMealUseCase>(),

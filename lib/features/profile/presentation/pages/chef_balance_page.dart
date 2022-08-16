@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../../../../core/util/constants.dart';
 import '../../../../injection.dart';
 import '../bloc/profile.dart';
 
@@ -29,6 +30,14 @@ class _ChefBalancePageState extends State<ChefBalancePage> {
     return BlocBuilder<ProfileBloc, ProfileState>(
       bloc: _bloc,
       builder: (context, state) {
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          message(
+            message: state.message,
+            isError: state.error,
+            context: context,
+            bloc: _bloc,
+          );
+        });
         return Scaffold(
           backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(

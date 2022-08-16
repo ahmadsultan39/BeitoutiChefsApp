@@ -1,6 +1,5 @@
 import 'package:beitouti_chefs/features/subscriptions/domain/entities/add_subscription_meal.dart';
 import 'package:beitouti_chefs/features/subscriptions/domain/entities/new_subscription.dart';
-import 'package:beitouti_chefs/features/subscriptions/domain/entities/subscription.dart';
 import 'package:beitouti_chefs/features/subscriptions/domain/use_cases/add_new_subscription.dart';
 import 'package:beitouti_chefs/features/subscriptions/domain/use_cases/edit_subscription.dart';
 import 'package:flutter/material.dart';
