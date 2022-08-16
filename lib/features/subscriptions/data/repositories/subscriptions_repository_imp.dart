@@ -70,7 +70,7 @@ class SubscriptionsRepositoryImp extends BaseRepositoryImpl
   }
 
   @override
-  Future<Either<Failure, String>> addNewSubscription(
+  Future<Either<Failure, void>> addNewSubscription(
       {required NewSubscription newSubscription}) async {
     try {
       final _token = await _local.token;

@@ -14,7 +14,7 @@ abstract class SubscriptionsRepository extends BaseRepository {
 
   Future<Either<Failure, String>> editSubscriptionAvailability({required int id});
 
-  Future<Either<Failure, String>> addNewSubscription({required NewSubscription newSubscription});
+  Future<Either<Failure, void>> addNewSubscription({required NewSubscription newSubscription});
 
   Future<Either<Failure, void>> editSubscription({required NewSubscription newSubscription});
 }

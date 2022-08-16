@@ -188,7 +188,7 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
           emit(
             state.rebuild(
                   (b) => b
-                  ..message = "تم التعديل بنجاح"
+                  // ..message = "تم التعديل بنجاح"
                     ..popScreen = true
                     ..isLoading = false,
             ),

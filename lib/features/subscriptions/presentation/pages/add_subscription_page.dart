@@ -92,9 +92,9 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
     final theme = Theme.of(context);
     return BlocConsumer<SubscriptionsBloc, SubscriptionsState>(
       bloc: _bloc,
-      listener: (context,state) {
+      listener:(context,state){
         if (state.popScreen){
-          Navigator.of(context).pop();
+                      Navigator.of(context).pop();
         }
       },
       builder: (context, state) {
@@ -106,6 +106,7 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
             bloc: _bloc,
           );
         });
+
         return Scaffold(
             appBar: AppBar(
               title: Text(

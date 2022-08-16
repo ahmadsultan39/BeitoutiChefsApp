@@ -51,11 +51,12 @@ class SubscriptionsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   }
 
   @override
-  Future<String> addNewSubscription(
+  Future<void> addNewSubscription(
       {required String token, required NewSubscription newSubscription}) async {
-    final response = await performPostRequest<String>(endpoint: Endpoints.addNewSubscription, data: RequestBody.addSubscription(newSubscription: newSubscription)
+    // final response =
+    await performPostRequest<Null>(endpoint: Endpoints.addNewSubscription, data: RequestBody.addSubscription(newSubscription: newSubscription)
           , options: GetOptions.getOptionsWithToken(token));
-    return response!;
+    // return response!;
   }
 
   @override
@@ -63,7 +64,7 @@ class SubscriptionsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required String token,
     required NewSubscription newSubscription,
   }) async {
-  performPutRequest<Null>(endpoint: Endpoints.editSubscription(newSubscription.id!)
+  await performPutRequest<Null>(endpoint: Endpoints.editSubscription(newSubscription.id!)
         , data: RequestBody.addSubscription(newSubscription: newSubscription)
         , options: GetOptions.getOptionsWithToken(token));
   }
