@@ -30,8 +30,8 @@ import 'features/add_meal/domain/repositories/add_meal_repository.dart' as _i76;
 import 'features/add_meal/domain/use_cases/add_category.dart' as _i103;
 import 'features/add_meal/domain/use_cases/add_meal.dart' as _i78;
 import 'features/add_meal/domain/use_cases/edit_meal.dart' as _i86;
-import 'features/add_meal/domain/use_cases/get_categories.dart' as _i89;
-import 'features/add_meal/domain/use_cases/get_final_price.dart' as _i90;
+import 'features/add_meal/domain/use_cases/get_categories.dart' as _i90;
+import 'features/add_meal/domain/use_cases/get_final_price.dart' as _i89;
 import 'features/add_meal/domain/use_cases/pick_image.dart' as _i100;
 import 'features/add_meal/presentation/bloc/add_meal_bloc.dart' as _i104;
 import 'features/auth/data/data_sources/local/auth_local_data_source.dart'
@@ -367,7 +367,7 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i53.GetCategoriesUseCase>(),
       get<_i103.AddCategoryUseCase>(),
       get<_i78.AddMealUseCase>(),
-      get<_i90.GetFinalPriceUseCase>(),
+      get<_i89.GetFinalPriceUseCase>(),
       get<_i86.EditMealUseCase>()));
   return get;
 }

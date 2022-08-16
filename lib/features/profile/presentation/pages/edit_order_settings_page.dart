@@ -100,134 +100,137 @@ class _EditOrderSettingsPageState extends State<EditOrderSettingsPage> {
             body: Stack(
               children: [
                 SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: Row(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text("بداية وقت التوصيل"),
-                            ),
-                            DropdownButton<String>(
-                              value: int.parse(
-                                          deliveryStartsAt!.split(":").first) <=
-                                      9
-                                  ? deliveryStartsAt!.split(":").first[1]
-                                  : deliveryStartsAt!.split(":").first,
-                              icon: const Icon(Icons.keyboard_arrow_down),
-                              items: [
-                                "1",
-                                "2",
-                                "3",
-                                "4",
-                                "5",
-                                "6",
-                                "7",
-                                "8",
-                                "9",
-                                "10",
-                                "11",
-                                "12",
-                                "13",
-                                "14",
-                                "15",
-                                "16",
-                                "17",
-                                "18",
-                                "19",
-                                "20",
-                                "21",
-                                "22",
-                                "23",
-                                "24"
-                              ].map((items) {
-                                return DropdownMenuItem(
-                                  value: items,
-                                  child: Text(items),
-                                );
-                              }).toList(),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  deliveryStartsAt = int.parse(newValue!) <= 9
-                                      ? "0" + newValue + ":00:00"
-                                      : newValue + ":00:00";
-                                });
-                              },
-                            ),
-                          ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("بداية وقت التوصيل"),
+                              ),
+                              DropdownButton<String>(
+                                value: int.parse(
+                                            deliveryStartsAt!.split(":").first) <=
+                                        9
+                                    ? deliveryStartsAt!.split(":").first[1]
+                                    : deliveryStartsAt!.split(":").first,
+                                icon: const Icon(Icons.keyboard_arrow_down),
+                                items: [
+                                  "1",
+                                  "2",
+                                  "3",
+                                  "4",
+                                  "5",
+                                  "6",
+                                  "7",
+                                  "8",
+                                  "9",
+                                  "10",
+                                  "11",
+                                  "12",
+                                  "13",
+                                  "14",
+                                  "15",
+                                  "16",
+                                  "17",
+                                  "18",
+                                  "19",
+                                  "20",
+                                  "21",
+                                  "22",
+                                  "23",
+                                  "24"
+                                ].map((items) {
+                                  return DropdownMenuItem(
+                                    value: items,
+                                    child: Text(items),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    deliveryStartsAt = int.parse(newValue!) <= 9
+                                        ? "0" + newValue + ":00:00"
+                                        : newValue + ":00:00";
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: Row(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text("نهاية وقت التوصيل"),
-                            ),
-                            DropdownButton<String>(
-                              value: deliveryEndsAt?.split(":").first,
-                              icon: const Icon(Icons.keyboard_arrow_down),
-                              items: [
-                                "1",
-                                "2",
-                                "3",
-                                "4",
-                                "5",
-                                "6",
-                                "7",
-                                "8",
-                                "9",
-                                "10",
-                                "11",
-                                "12",
-                                "13",
-                                "14",
-                                "15",
-                                "16",
-                                "17",
-                                "18",
-                                "19",
-                                "20",
-                                "21",
-                                "22",
-                                "23",
-                                "24"
-                              ].map((items) {
-                                return DropdownMenuItem(
-                                  value: items,
-                                  child: Text(items),
-                                );
-                              }).toList(),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  deliveryEndsAt = newValue! + ":00:00";
-                                });
-                              },
-                            ),
-                          ],
+                        Container(
+                          margin: const EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("نهاية وقت التوصيل"),
+                              ),
+                              DropdownButton<String>(
+                                value: deliveryEndsAt?.split(":").first,
+                                icon: const Icon(Icons.keyboard_arrow_down),
+                                items: [
+                                  "1",
+                                  "2",
+                                  "3",
+                                  "4",
+                                  "5",
+                                  "6",
+                                  "7",
+                                  "8",
+                                  "9",
+                                  "10",
+                                  "11",
+                                  "12",
+                                  "13",
+                                  "14",
+                                  "15",
+                                  "16",
+                                  "17",
+                                  "18",
+                                  "19",
+                                  "20",
+                                  "21",
+                                  "22",
+                                  "23",
+                                  "24"
+                                ].map((items) {
+                                  return DropdownMenuItem(
+                                    value: items,
+                                    child: Text(items),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    deliveryEndsAt = newValue! + ":00:00";
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 8.h),
-                      Row(
-                        children: [
-                          const Text("العدد الأعظمي للتحضير"),
-                          SizedBox(
-                            width: 35.w,
-                            child: Container(
-                              clipBehavior: Clip.none,
-                              child: TextField(
-                                controller: maxMealsController,
-                                textAlign: TextAlign.center,
+                        SizedBox(height: 8.h),
+                        Row(
+                          children: [
+                            const Text("العدد الأعظمي للتحضير"),
+                            SizedBox(
+                              width: 35.w,
+                              child: Container(
+                                clipBehavior: Clip.none,
+                                child: TextField(
+                                  controller: maxMealsController,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ),
-                          ),
-                          const Text("وجبة")
-                        ],
-                      ),
-                    ],
+                            const Text("وجبة")
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 if (state.isLoading) const Loader(),

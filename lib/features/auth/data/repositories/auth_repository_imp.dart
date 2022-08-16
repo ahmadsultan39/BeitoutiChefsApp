@@ -36,7 +36,7 @@ class AuthRepositoryImp implements AuthRepository {
     required String code,
   }) async {
     try {
-      String? fcmToken;// = await FirebaseMessaging.instance.getToken();
+      String? fcmToken = await FirebaseMessaging.instance.getToken();
       fcmToken = fcmToken ?? "";
       final accessibilityStatus = await _http.checkCodeAndAccessibility(
         phoneNumber: phoneNumber,

@@ -36,7 +36,7 @@ class _CategoryExpansionTileState extends State<CategoryExpansionTile> {
                     color: theme.colorScheme.secondary,
                     borderRadius: const BorderRadius.all(Radius.circular(20))),
                 margin: EdgeInsets.symmetric(vertical: 8.w, horizontal: 5),
-                constraints: BoxConstraints(maxHeight: 530.h),
+                // constraints: BoxConstraints(maxHeight: 440.h),
                 child: ExpansionTile(
                   onExpansionChanged: (open) {
                         if (open) {
@@ -59,7 +59,7 @@ class _CategoryExpansionTileState extends State<CategoryExpansionTile> {
                             bottomLeft: Radius.circular(20),
                             bottomRight: Radius.circular(20),
                           )),
-                      constraints: BoxConstraints(maxHeight: 460.h),
+                      constraints: BoxConstraints(maxHeight: 400.h),
 
                       child: ListView.builder(
                         shrinkWrap: true,

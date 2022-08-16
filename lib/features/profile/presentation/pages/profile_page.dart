@@ -102,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       ProfileTile(
                         title: 'الدعم',
-                        icon: Icons.balance,
+                        icon: Icons.contact_support_outlined,
                         isFunctionCall: true,
                         function: () async {
                           const url = "tel:0953954152";

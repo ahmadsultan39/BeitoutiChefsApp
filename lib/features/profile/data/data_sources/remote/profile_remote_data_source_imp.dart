@@ -23,7 +23,7 @@ class ProfileRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   }) async =>
       await performPostRequest<Null>(
         endpoint: Endpoints.changeProfilePicture,
-        data: RequestBody.changeProfilePicture(
+        data: await RequestBody.changeProfilePicture(
           image: image,
         ),
         options: GetOptions.getOptionsWithToken(token),

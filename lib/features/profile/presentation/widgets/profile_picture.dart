@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:beitouti_chefs/core/util/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -51,7 +52,8 @@ class ProfilePicture extends StatelessWidget {
                       )
                     : profilePicture.isNotEmpty
                         ? CachedNetworkImage(
-                            imageUrl: profilePicture,
+                            imageUrl: Endpoints.url + profilePicture,
+                            fit: BoxFit.cover,
                           )
                         : const DefaultImage(),
               ),

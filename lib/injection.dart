@@ -80,5 +80,5 @@ Dio getDio() {
 Future<void> _messageHandler(RemoteMessage message) async {
   print('background message ${message.notification!.body}');
   print('background message ${message.data['data']}');
-  NotificationInitializer.showNotification(message);
+  // NotificationInitializer.showNotification(message);
 }

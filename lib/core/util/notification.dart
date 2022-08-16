@@ -46,7 +46,7 @@ class NotificationInitializer {
 
   static void initializeNotification() async {
     var initializationSettingsAndroid =
-    const AndroidInitializationSettings('@mipmap/ic_launcher');
+    const AndroidInitializationSettings('@mipmap/launcher_icon');
     var initializationSettingsIOS = new IOSInitializationSettings();
     var initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);

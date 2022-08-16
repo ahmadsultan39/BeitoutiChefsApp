@@ -188,10 +188,10 @@ class RequestBody {
   }
 
   // Request Register
-  static FormData requestRegister({
+  static Future<FormData> requestRegister({
     required RegisterRequestModel request,
     required String fcmToken,
-  }) {
+  }) async {
     if (request.certificatePath != null) {
       return FormData.fromMap({
         'phone_number': request.phoneNumber,
@@ -206,7 +206,7 @@ class RequestBody {
         'delivery_ends_at': request.deliveryEndsAt,
         'max_meals_per_day': request.maxMealsPerDay,
         // 'profile_picture': request.profilePicture,
-        'certificate': MultipartFile.fromFile(request.certificatePath!,
+        'certificate': await MultipartFile.fromFile(request.certificatePath!,
             filename: request.certificateName),
         'fcm_token': fcmToken,
       });
@@ -230,10 +230,10 @@ class RequestBody {
   }
 
   // Change profile picture
-  static FormData changeProfilePicture({required XFile image}) {
+  static Future<FormData> changeProfilePicture({required XFile image}) async {
     return FormData.fromMap(
       {
-        'profile_picture': MultipartFile.fromFile(
+        'profile_picture': await MultipartFile.fromFile(
           image.path,
           filename: image.name,
         ),
