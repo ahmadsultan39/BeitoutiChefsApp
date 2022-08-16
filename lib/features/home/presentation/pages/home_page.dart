@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 GButton(
-                  icon: Icons.subscriptions,
+                  icon: Icons.list,
                   text: 'الاشتراكات',
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.w,
