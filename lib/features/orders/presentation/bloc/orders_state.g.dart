@@ -14,13 +14,21 @@ class _$OrdersState extends OrdersState {
   @override
   final bool error;
   @override
-  final List<OrdersTimes> times;
+  final BuiltList<OrdersTimes> todayTimes;
   @override
-  final List<TimeOrder> orders;
+  final BuiltList<OrdersTimes> tomorrowTimes;
   @override
-  final bool isOrdersTimesLoading;
+  final BuiltList<TimeOrder> todayOrders;
   @override
-  final bool isTimeOrdersLoading;
+  final BuiltList<TimeOrder> tomorrowOrders;
+  @override
+  final bool isTodayOrdersTimesLoading;
+  @override
+  final bool isTomorrowOrdersTimesLoading;
+  @override
+  final bool isTodayTimeOrdersLoading;
+  @override
+  final bool isTomorrowTimeOrdersLoading;
 
   factory _$OrdersState([void Function(OrdersStateBuilder)? updates]) =>
       (new OrdersStateBuilder()..update(updates))._build();
@@ -29,21 +37,35 @@ class _$OrdersState extends OrdersState {
       {required this.isLoading,
       required this.message,
       required this.error,
-      required this.times,
-      required this.orders,
-      required this.isOrdersTimesLoading,
-      required this.isTimeOrdersLoading})
+      required this.todayTimes,
+      required this.tomorrowTimes,
+      required this.todayOrders,
+      required this.tomorrowOrders,
+      required this.isTodayOrdersTimesLoading,
+      required this.isTomorrowOrdersTimesLoading,
+      required this.isTodayTimeOrdersLoading,
+      required this.isTomorrowTimeOrdersLoading})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         isLoading, r'OrdersState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(message, r'OrdersState', 'message');
     BuiltValueNullFieldError.checkNotNull(error, r'OrdersState', 'error');
-    BuiltValueNullFieldError.checkNotNull(times, r'OrdersState', 'times');
-    BuiltValueNullFieldError.checkNotNull(orders, r'OrdersState', 'orders');
     BuiltValueNullFieldError.checkNotNull(
-        isOrdersTimesLoading, r'OrdersState', 'isOrdersTimesLoading');
+        todayTimes, r'OrdersState', 'todayTimes');
     BuiltValueNullFieldError.checkNotNull(
-        isTimeOrdersLoading, r'OrdersState', 'isTimeOrdersLoading');
+        tomorrowTimes, r'OrdersState', 'tomorrowTimes');
+    BuiltValueNullFieldError.checkNotNull(
+        todayOrders, r'OrdersState', 'todayOrders');
+    BuiltValueNullFieldError.checkNotNull(
+        tomorrowOrders, r'OrdersState', 'tomorrowOrders');
+    BuiltValueNullFieldError.checkNotNull(
+        isTodayOrdersTimesLoading, r'OrdersState', 'isTodayOrdersTimesLoading');
+    BuiltValueNullFieldError.checkNotNull(isTomorrowOrdersTimesLoading,
+        r'OrdersState', 'isTomorrowOrdersTimesLoading');
+    BuiltValueNullFieldError.checkNotNull(
+        isTodayTimeOrdersLoading, r'OrdersState', 'isTodayTimeOrdersLoading');
+    BuiltValueNullFieldError.checkNotNull(isTomorrowTimeOrdersLoading,
+        r'OrdersState', 'isTomorrowTimeOrdersLoading');
   }
 
   @override
@@ -60,10 +82,14 @@ class _$OrdersState extends OrdersState {
         isLoading == other.isLoading &&
         message == other.message &&
         error == other.error &&
-        times == other.times &&
-        orders == other.orders &&
-        isOrdersTimesLoading == other.isOrdersTimesLoading &&
-        isTimeOrdersLoading == other.isTimeOrdersLoading;
+        todayTimes == other.todayTimes &&
+        tomorrowTimes == other.tomorrowTimes &&
+        todayOrders == other.todayOrders &&
+        tomorrowOrders == other.tomorrowOrders &&
+        isTodayOrdersTimesLoading == other.isTodayOrdersTimesLoading &&
+        isTomorrowOrdersTimesLoading == other.isTomorrowOrdersTimesLoading &&
+        isTodayTimeOrdersLoading == other.isTodayTimeOrdersLoading &&
+        isTomorrowTimeOrdersLoading == other.isTomorrowTimeOrdersLoading;
   }
 
   @override
@@ -72,12 +98,22 @@ class _$OrdersState extends OrdersState {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, isLoading.hashCode), message.hashCode),
-                        error.hashCode),
-                    times.hashCode),
-                orders.hashCode),
-            isOrdersTimesLoading.hashCode),
-        isTimeOrdersLoading.hashCode));
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, isLoading.hashCode),
+                                            message.hashCode),
+                                        error.hashCode),
+                                    todayTimes.hashCode),
+                                tomorrowTimes.hashCode),
+                            todayOrders.hashCode),
+                        tomorrowOrders.hashCode),
+                    isTodayOrdersTimesLoading.hashCode),
+                isTomorrowOrdersTimesLoading.hashCode),
+            isTodayTimeOrdersLoading.hashCode),
+        isTomorrowTimeOrdersLoading.hashCode));
   }
 
   @override
@@ -86,10 +122,14 @@ class _$OrdersState extends OrdersState {
           ..add('isLoading', isLoading)
           ..add('message', message)
           ..add('error', error)
-          ..add('times', times)
-          ..add('orders', orders)
-          ..add('isOrdersTimesLoading', isOrdersTimesLoading)
-          ..add('isTimeOrdersLoading', isTimeOrdersLoading))
+          ..add('todayTimes', todayTimes)
+          ..add('tomorrowTimes', tomorrowTimes)
+          ..add('todayOrders', todayOrders)
+          ..add('tomorrowOrders', tomorrowOrders)
+          ..add('isTodayOrdersTimesLoading', isTodayOrdersTimesLoading)
+          ..add('isTomorrowOrdersTimesLoading', isTomorrowOrdersTimesLoading)
+          ..add('isTodayTimeOrdersLoading', isTodayTimeOrdersLoading)
+          ..add('isTomorrowTimeOrdersLoading', isTomorrowTimeOrdersLoading))
         .toString();
   }
 }
@@ -109,23 +149,50 @@ class OrdersStateBuilder implements Builder<OrdersState, OrdersStateBuilder> {
   bool? get error => _$this._error;
   set error(bool? error) => _$this._error = error;
 
-  List<OrdersTimes>? _times;
-  List<OrdersTimes>? get times => _$this._times;
-  set times(List<OrdersTimes>? times) => _$this._times = times;
+  ListBuilder<OrdersTimes>? _todayTimes;
+  ListBuilder<OrdersTimes> get todayTimes =>
+      _$this._todayTimes ??= new ListBuilder<OrdersTimes>();
+  set todayTimes(ListBuilder<OrdersTimes>? todayTimes) =>
+      _$this._todayTimes = todayTimes;
 
-  List<TimeOrder>? _orders;
-  List<TimeOrder>? get orders => _$this._orders;
-  set orders(List<TimeOrder>? orders) => _$this._orders = orders;
+  ListBuilder<OrdersTimes>? _tomorrowTimes;
+  ListBuilder<OrdersTimes> get tomorrowTimes =>
+      _$this._tomorrowTimes ??= new ListBuilder<OrdersTimes>();
+  set tomorrowTimes(ListBuilder<OrdersTimes>? tomorrowTimes) =>
+      _$this._tomorrowTimes = tomorrowTimes;
 
-  bool? _isOrdersTimesLoading;
-  bool? get isOrdersTimesLoading => _$this._isOrdersTimesLoading;
-  set isOrdersTimesLoading(bool? isOrdersTimesLoading) =>
-      _$this._isOrdersTimesLoading = isOrdersTimesLoading;
+  ListBuilder<TimeOrder>? _todayOrders;
+  ListBuilder<TimeOrder> get todayOrders =>
+      _$this._todayOrders ??= new ListBuilder<TimeOrder>();
+  set todayOrders(ListBuilder<TimeOrder>? todayOrders) =>
+      _$this._todayOrders = todayOrders;
 
-  bool? _isTimeOrdersLoading;
-  bool? get isTimeOrdersLoading => _$this._isTimeOrdersLoading;
-  set isTimeOrdersLoading(bool? isTimeOrdersLoading) =>
-      _$this._isTimeOrdersLoading = isTimeOrdersLoading;
+  ListBuilder<TimeOrder>? _tomorrowOrders;
+  ListBuilder<TimeOrder> get tomorrowOrders =>
+      _$this._tomorrowOrders ??= new ListBuilder<TimeOrder>();
+  set tomorrowOrders(ListBuilder<TimeOrder>? tomorrowOrders) =>
+      _$this._tomorrowOrders = tomorrowOrders;
+
+  bool? _isTodayOrdersTimesLoading;
+  bool? get isTodayOrdersTimesLoading => _$this._isTodayOrdersTimesLoading;
+  set isTodayOrdersTimesLoading(bool? isTodayOrdersTimesLoading) =>
+      _$this._isTodayOrdersTimesLoading = isTodayOrdersTimesLoading;
+
+  bool? _isTomorrowOrdersTimesLoading;
+  bool? get isTomorrowOrdersTimesLoading =>
+      _$this._isTomorrowOrdersTimesLoading;
+  set isTomorrowOrdersTimesLoading(bool? isTomorrowOrdersTimesLoading) =>
+      _$this._isTomorrowOrdersTimesLoading = isTomorrowOrdersTimesLoading;
+
+  bool? _isTodayTimeOrdersLoading;
+  bool? get isTodayTimeOrdersLoading => _$this._isTodayTimeOrdersLoading;
+  set isTodayTimeOrdersLoading(bool? isTodayTimeOrdersLoading) =>
+      _$this._isTodayTimeOrdersLoading = isTodayTimeOrdersLoading;
+
+  bool? _isTomorrowTimeOrdersLoading;
+  bool? get isTomorrowTimeOrdersLoading => _$this._isTomorrowTimeOrdersLoading;
+  set isTomorrowTimeOrdersLoading(bool? isTomorrowTimeOrdersLoading) =>
+      _$this._isTomorrowTimeOrdersLoading = isTomorrowTimeOrdersLoading;
 
   OrdersStateBuilder();
 
@@ -135,10 +202,14 @@ class OrdersStateBuilder implements Builder<OrdersState, OrdersStateBuilder> {
       _isLoading = $v.isLoading;
       _message = $v.message;
       _error = $v.error;
-      _times = $v.times;
-      _orders = $v.orders;
-      _isOrdersTimesLoading = $v.isOrdersTimesLoading;
-      _isTimeOrdersLoading = $v.isTimeOrdersLoading;
+      _todayTimes = $v.todayTimes.toBuilder();
+      _tomorrowTimes = $v.tomorrowTimes.toBuilder();
+      _todayOrders = $v.todayOrders.toBuilder();
+      _tomorrowOrders = $v.tomorrowOrders.toBuilder();
+      _isTodayOrdersTimesLoading = $v.isTodayOrdersTimesLoading;
+      _isTomorrowOrdersTimesLoading = $v.isTomorrowOrdersTimesLoading;
+      _isTodayTimeOrdersLoading = $v.isTodayTimeOrdersLoading;
+      _isTomorrowTimeOrdersLoading = $v.isTomorrowTimeOrdersLoading;
       _$v = null;
     }
     return this;
@@ -159,22 +230,49 @@ class OrdersStateBuilder implements Builder<OrdersState, OrdersStateBuilder> {
   OrdersState build() => _build();
 
   _$OrdersState _build() {
-    final _$result = _$v ??
-        new _$OrdersState._(
-            isLoading: BuiltValueNullFieldError.checkNotNull(
-                isLoading, r'OrdersState', 'isLoading'),
-            message: BuiltValueNullFieldError.checkNotNull(
-                message, r'OrdersState', 'message'),
-            error: BuiltValueNullFieldError.checkNotNull(
-                error, r'OrdersState', 'error'),
-            times: BuiltValueNullFieldError.checkNotNull(
-                times, r'OrdersState', 'times'),
-            orders: BuiltValueNullFieldError.checkNotNull(
-                orders, r'OrdersState', 'orders'),
-            isOrdersTimesLoading: BuiltValueNullFieldError.checkNotNull(
-                isOrdersTimesLoading, r'OrdersState', 'isOrdersTimesLoading'),
-            isTimeOrdersLoading: BuiltValueNullFieldError.checkNotNull(
-                isTimeOrdersLoading, r'OrdersState', 'isTimeOrdersLoading'));
+    _$OrdersState _$result;
+    try {
+      _$result = _$v ??
+          new _$OrdersState._(
+              isLoading: BuiltValueNullFieldError.checkNotNull(
+                  isLoading, r'OrdersState', 'isLoading'),
+              message: BuiltValueNullFieldError.checkNotNull(
+                  message, r'OrdersState', 'message'),
+              error: BuiltValueNullFieldError.checkNotNull(
+                  error, r'OrdersState', 'error'),
+              todayTimes: todayTimes.build(),
+              tomorrowTimes: tomorrowTimes.build(),
+              todayOrders: todayOrders.build(),
+              tomorrowOrders: tomorrowOrders.build(),
+              isTodayOrdersTimesLoading: BuiltValueNullFieldError.checkNotNull(
+                  isTodayOrdersTimesLoading, r'OrdersState', 'isTodayOrdersTimesLoading'),
+              isTomorrowOrdersTimesLoading: BuiltValueNullFieldError.checkNotNull(
+                  isTomorrowOrdersTimesLoading,
+                  r'OrdersState',
+                  'isTomorrowOrdersTimesLoading'),
+              isTodayTimeOrdersLoading: BuiltValueNullFieldError.checkNotNull(
+                  isTodayTimeOrdersLoading, r'OrdersState', 'isTodayTimeOrdersLoading'),
+              isTomorrowTimeOrdersLoading: BuiltValueNullFieldError.checkNotNull(
+                  isTomorrowTimeOrdersLoading,
+                  r'OrdersState',
+                  'isTomorrowTimeOrdersLoading'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'todayTimes';
+        todayTimes.build();
+        _$failedField = 'tomorrowTimes';
+        tomorrowTimes.build();
+        _$failedField = 'todayOrders';
+        todayOrders.build();
+        _$failedField = 'tomorrowOrders';
+        tomorrowOrders.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'OrdersState', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

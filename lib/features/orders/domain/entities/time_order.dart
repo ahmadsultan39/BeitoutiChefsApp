@@ -10,10 +10,21 @@ class TimeOrder extends Equatable {
   final String? notes;
   final List<OrderMeal> meals;
 
-  const TimeOrder(this.id, this.selectedDeliveryTime, this.subscriptionId,
-      this.notes, this.meals, this.status);
+  const TimeOrder(
+    this.id,
+    this.selectedDeliveryTime,
+    this.subscriptionId,
+    this.notes,
+    this.meals,
+    this.status,
+  );
 
   @override
-  List<Object?> get props =>
-      [id, selectedDeliveryTime, subscriptionId, notes, meals];
+  List<Object?> get props => [
+        id,
+        selectedDeliveryTime,
+        subscriptionId,
+        notes,
+        meals,
+      ];
 }

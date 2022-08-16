@@ -18,7 +18,6 @@ class Endpoints {
   static const getMealsActiveCount = "/meals/active-count";
   static const createCategory = "/meals/category";
   static const addMeal = "/meals/";
-  static const ordersTimes = "/orders/meals";
   static const getSubscriptions = "/subscriptions/";
   static const addNewSubscription = "/subscriptions/";
   static const getChefMeals = "/meals";
@@ -33,10 +32,12 @@ class Endpoints {
   static const checkCodeAndAccessibility = "/check-code-and-accessibility";
   static const requestRegister = "/request-register";
 
+  static String ordersTimes(String day) => "/orders/meals?day=$day";
+
   static String getOrderHistory(int page) =>
       "/profile/order-history?page=$page";
 
-  static String timeOrders(String time) => "/orders/?time=$time";
+  static String timeOrders(String time,String day) => "/orders/?time=$time&day=$day";
 
   static String changeOrderStatus(int orderId) =>
       "/orders/$orderId/change-status";

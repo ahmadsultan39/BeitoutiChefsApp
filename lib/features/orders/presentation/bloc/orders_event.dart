@@ -1,46 +1,75 @@
-
 import 'package:built_value/built_value.dart';
 
 part 'orders_event.g.dart';
 
 abstract class OrdersEvent {}
 
-abstract class GetOrdersTimesEvent extends OrdersEvent
-    implements Built<GetOrdersTimesEvent, GetOrdersTimesEventBuilder> {
+abstract class GetTomorrowOrdersTimes extends OrdersEvent
+    implements Built<GetTomorrowOrdersTimes, GetTomorrowOrdersTimesBuilder> {
+  GetTomorrowOrdersTimes._();
 
-  GetOrdersTimesEvent._();
+  factory GetTomorrowOrdersTimes(
+          [Function(GetTomorrowOrdersTimesBuilder b) updates]) =
+      _$GetTomorrowOrdersTimes;
 
-  factory GetOrdersTimesEvent([Function(GetOrdersTimesEventBuilder b) updates]) =
-  _$GetOrdersTimesEvent;
-
-  factory GetOrdersTimesEvent.initial() {
-    return GetOrdersTimesEvent((b) => b);
+  factory GetTomorrowOrdersTimes.initial() {
+    return GetTomorrowOrdersTimes((b) => b);
   }
 }
 
-abstract class GetTimeOrdersEvent extends OrdersEvent
-    implements Built<GetTimeOrdersEvent, GetTimeOrdersEventBuilder> {
+abstract class GetTodayOrdersTimes extends OrdersEvent
+    implements Built<GetTodayOrdersTimes, GetTodayOrdersTimesBuilder> {
+  GetTodayOrdersTimes._();
+
+  factory GetTodayOrdersTimes(
+      [Function(GetTodayOrdersTimesBuilder b) updates]) = _$GetTodayOrdersTimes;
+
+  factory GetTodayOrdersTimes.initial() {
+    return GetTodayOrdersTimes((b) => b);
+  }
+}
+
+abstract class GetTodayTimeOrdersEvent extends OrdersEvent
+    implements Built<GetTodayTimeOrdersEvent, GetTodayTimeOrdersEventBuilder> {
   String get time;
 
-  GetTimeOrdersEvent._();
+  GetTodayTimeOrdersEvent._();
 
-  factory GetTimeOrdersEvent([Function(GetTimeOrdersEventBuilder b) updates]) =
-  _$GetTimeOrdersEvent;
+  factory GetTodayTimeOrdersEvent(
+          [Function(GetTodayTimeOrdersEventBuilder b) updates]) =
+      _$GetTodayTimeOrdersEvent;
 
-  factory GetTimeOrdersEvent.initial() {
-    return GetTimeOrdersEvent((b) => b);
+  factory GetTodayTimeOrdersEvent.initial() {
+    return GetTodayTimeOrdersEvent((b) => b);
+  }
+}
+
+abstract class GetTomorrowTimeOrdersEvent extends OrdersEvent
+    implements
+        Built<GetTomorrowTimeOrdersEvent, GetTomorrowTimeOrdersEventBuilder> {
+  String get time;
+
+  GetTomorrowTimeOrdersEvent._();
+
+  factory GetTomorrowTimeOrdersEvent(
+          [Function(GetTomorrowTimeOrdersEventBuilder b) updates]) =
+      _$GetTomorrowTimeOrdersEvent;
+
+  factory GetTomorrowTimeOrdersEvent.initial() {
+    return GetTomorrowTimeOrdersEvent((b) => b);
   }
 }
 
 abstract class ChangeStatusEvent extends OrdersEvent
     implements Built<ChangeStatusEvent, ChangeStatusEventBuilder> {
   int get orderId;
+
   String get time;
 
   ChangeStatusEvent._();
 
   factory ChangeStatusEvent([Function(ChangeStatusEventBuilder b) updates]) =
-  _$ChangeStatusEvent;
+      _$ChangeStatusEvent;
 
   factory ChangeStatusEvent.initial() {
     return ChangeStatusEvent((b) => b);
@@ -49,11 +78,10 @@ abstract class ChangeStatusEvent extends OrdersEvent
 
 abstract class ClearMessage extends OrdersEvent
     implements Built<ClearMessage, ClearMessageBuilder> {
-
   ClearMessage._();
 
   factory ClearMessage([Function(ClearMessageBuilder b) updates]) =
-  _$ClearMessage;
+      _$ClearMessage;
 
   factory ClearMessage.initial() {
     return ClearMessage((b) => b);

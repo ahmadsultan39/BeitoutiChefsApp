@@ -1,4 +1,4 @@
-
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 
 import '../../domain/entities/orders_times.dart';
@@ -6,20 +6,28 @@ import '../../domain/entities/time_order.dart';
 
 part 'orders_state.g.dart';
 
-abstract class OrdersState implements Built<OrdersState,OrdersStateBuilder> {
+abstract class OrdersState implements Built<OrdersState, OrdersStateBuilder> {
   bool get isLoading;
 
   String get message;
 
   bool get error;
 
-  List<OrdersTimes> get times;
+  BuiltList<OrdersTimes> get todayTimes;
 
-  List<TimeOrder> get orders;
+  BuiltList<OrdersTimes> get tomorrowTimes;
 
-  bool get isOrdersTimesLoading;
+  BuiltList<TimeOrder> get todayOrders;
 
-  bool get isTimeOrdersLoading;
+  BuiltList<TimeOrder> get tomorrowOrders;
+
+  bool get isTodayOrdersTimesLoading;
+
+  bool get isTomorrowOrdersTimesLoading;
+
+  bool get isTodayTimeOrdersLoading;
+
+  bool get isTomorrowTimeOrdersLoading;
 
   OrdersState._();
 
@@ -27,15 +35,18 @@ abstract class OrdersState implements Built<OrdersState,OrdersStateBuilder> {
 
   factory OrdersState.initial() {
     return OrdersState(
-          (b) => b
+      (b) => b
         ..isLoading = false
         ..message = ""
         ..error = false
-        ..isOrdersTimesLoading = false
-        ..isTimeOrdersLoading = false
-        ..times =[]
-        ..orders = [],
+        ..todayTimes.replace([])
+        ..tomorrowTimes.replace([])
+        ..todayOrders.replace([])
+        ..tomorrowOrders.replace([])
+        ..isTodayOrdersTimesLoading = false
+        ..isTomorrowOrdersTimesLoading = false
+        ..isTodayTimeOrdersLoading = false
+        ..isTomorrowTimeOrdersLoading = false,
     );
   }
 }
-

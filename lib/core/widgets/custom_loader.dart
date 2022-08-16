@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class Loader extends StatelessWidget {
@@ -9,9 +10,9 @@ class Loader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: LoadingAnimationWidget.fourRotatingDots( // or hexagonDots
+      child: LoadingAnimationWidget.hexagonDots( // or fourRotatingDots
         color: Theme.of(context).colorScheme.secondary,
-        size: size ?? 60,
+        size: size ?? 50.sp,
       ),
     );
   }

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -19,8 +18,16 @@ class OrdersRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   OrdersRemoteDataSourceImp({required Dio dio}) : super(dio: dio);
 
   @override
-  Future<List<OrdersTimesModel>> getOrdersTimes({required String token})
-  => performGetListRequest<OrdersTimesModel>(endpoint: Endpoints.ordersTimes,token: token);
+  Future<List<OrdersTimesModel>> getOrdersTimes({
+    required String token,
+    required String day,
+  }) =>
+      performGetListRequest<OrdersTimesModel>(
+        endpoint: Endpoints.ordersTimes(day
+        ),
+        token: token,
+      );
+
   // async {
   //   final BaseListResponseModel<OrdersTimesModel> finalResponse =
   //   BaseListResponseModel<OrdersTimesModel>.fromJson(json.decode(
@@ -30,12 +37,23 @@ class OrdersRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   // }
 
   @override
-  Future<List<TimeOrderModel>> getTimeOrders({required String token, required String time})  =>
-      performGetListRequest<TimeOrderModel>(endpoint: Endpoints.timeOrders(time.split(" ").last),token: token);
+  Future<List<TimeOrderModel>> getTimeOrders({
+    required String token,
+    required String time,
+    required String day,
+  }) =>
+      performGetListRequest<TimeOrderModel>(
+        endpoint: Endpoints.timeOrders(time.split(" ").last, day),
+        token: token,
+      );
 
   @override
-  Future<void> changeStatus({required String token, required int orderId}) async {
-    await performPutRequest<Null>(endpoint:  Endpoints.changeOrderStatus(orderId),
+  Future<void> changeStatus({
+    required String token,
+    required int orderId,
+  }) async {
+    await performPutRequest<Null>(
+        endpoint: Endpoints.changeOrderStatus(orderId),
         options: GetOptions.getOptionsWithToken(token));
   }
 }

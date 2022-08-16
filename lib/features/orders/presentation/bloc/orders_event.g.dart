@@ -6,91 +6,152 @@ part of 'orders_event.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$GetOrdersTimesEvent extends GetOrdersTimesEvent {
-  factory _$GetOrdersTimesEvent(
-          [void Function(GetOrdersTimesEventBuilder)? updates]) =>
-      (new GetOrdersTimesEventBuilder()..update(updates))._build();
+class _$GetTomorrowOrdersTimes extends GetTomorrowOrdersTimes {
+  factory _$GetTomorrowOrdersTimes(
+          [void Function(GetTomorrowOrdersTimesBuilder)? updates]) =>
+      (new GetTomorrowOrdersTimesBuilder()..update(updates))._build();
 
-  _$GetOrdersTimesEvent._() : super._();
+  _$GetTomorrowOrdersTimes._() : super._();
 
   @override
-  GetOrdersTimesEvent rebuild(
-          void Function(GetOrdersTimesEventBuilder) updates) =>
+  GetTomorrowOrdersTimes rebuild(
+          void Function(GetTomorrowOrdersTimesBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GetOrdersTimesEventBuilder toBuilder() =>
-      new GetOrdersTimesEventBuilder()..replace(this);
+  GetTomorrowOrdersTimesBuilder toBuilder() =>
+      new GetTomorrowOrdersTimesBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GetOrdersTimesEvent;
+    return other is GetTomorrowOrdersTimes;
   }
 
   @override
   int get hashCode {
-    return 174213308;
+    return 158102221;
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper(r'GetOrdersTimesEvent').toString();
+    return newBuiltValueToStringHelper(r'GetTomorrowOrdersTimes').toString();
   }
 }
 
-class GetOrdersTimesEventBuilder
-    implements Builder<GetOrdersTimesEvent, GetOrdersTimesEventBuilder> {
-  _$GetOrdersTimesEvent? _$v;
+class GetTomorrowOrdersTimesBuilder
+    implements Builder<GetTomorrowOrdersTimes, GetTomorrowOrdersTimesBuilder> {
+  _$GetTomorrowOrdersTimes? _$v;
 
-  GetOrdersTimesEventBuilder();
+  GetTomorrowOrdersTimesBuilder();
 
   @override
-  void replace(GetOrdersTimesEvent other) {
+  void replace(GetTomorrowOrdersTimes other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GetOrdersTimesEvent;
+    _$v = other as _$GetTomorrowOrdersTimes;
   }
 
   @override
-  void update(void Function(GetOrdersTimesEventBuilder)? updates) {
+  void update(void Function(GetTomorrowOrdersTimesBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GetOrdersTimesEvent build() => _build();
+  GetTomorrowOrdersTimes build() => _build();
 
-  _$GetOrdersTimesEvent _build() {
-    final _$result = _$v ?? new _$GetOrdersTimesEvent._();
+  _$GetTomorrowOrdersTimes _build() {
+    final _$result = _$v ?? new _$GetTomorrowOrdersTimes._();
     replace(_$result);
     return _$result;
   }
 }
 
-class _$GetTimeOrdersEvent extends GetTimeOrdersEvent {
-  @override
-  final String time;
+class _$GetTodayOrdersTimes extends GetTodayOrdersTimes {
+  factory _$GetTodayOrdersTimes(
+          [void Function(GetTodayOrdersTimesBuilder)? updates]) =>
+      (new GetTodayOrdersTimesBuilder()..update(updates))._build();
 
-  factory _$GetTimeOrdersEvent(
-          [void Function(GetTimeOrdersEventBuilder)? updates]) =>
-      (new GetTimeOrdersEventBuilder()..update(updates))._build();
-
-  _$GetTimeOrdersEvent._({required this.time}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(time, r'GetTimeOrdersEvent', 'time');
-  }
+  _$GetTodayOrdersTimes._() : super._();
 
   @override
-  GetTimeOrdersEvent rebuild(
-          void Function(GetTimeOrdersEventBuilder) updates) =>
+  GetTodayOrdersTimes rebuild(
+          void Function(GetTodayOrdersTimesBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GetTimeOrdersEventBuilder toBuilder() =>
-      new GetTimeOrdersEventBuilder()..replace(this);
+  GetTodayOrdersTimesBuilder toBuilder() =>
+      new GetTodayOrdersTimesBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GetTimeOrdersEvent && time == other.time;
+    return other is GetTodayOrdersTimes;
+  }
+
+  @override
+  int get hashCode {
+    return 448180700;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GetTodayOrdersTimes').toString();
+  }
+}
+
+class GetTodayOrdersTimesBuilder
+    implements Builder<GetTodayOrdersTimes, GetTodayOrdersTimesBuilder> {
+  _$GetTodayOrdersTimes? _$v;
+
+  GetTodayOrdersTimesBuilder();
+
+  @override
+  void replace(GetTodayOrdersTimes other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GetTodayOrdersTimes;
+  }
+
+  @override
+  void update(void Function(GetTodayOrdersTimesBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetTodayOrdersTimes build() => _build();
+
+  _$GetTodayOrdersTimes _build() {
+    final _$result = _$v ?? new _$GetTodayOrdersTimes._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GetTodayTimeOrdersEvent extends GetTodayTimeOrdersEvent {
+  @override
+  final String time;
+
+  factory _$GetTodayTimeOrdersEvent(
+          [void Function(GetTodayTimeOrdersEventBuilder)? updates]) =>
+      (new GetTodayTimeOrdersEventBuilder()..update(updates))._build();
+
+  _$GetTodayTimeOrdersEvent._({required this.time}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        time, r'GetTodayTimeOrdersEvent', 'time');
+  }
+
+  @override
+  GetTodayTimeOrdersEvent rebuild(
+          void Function(GetTodayTimeOrdersEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GetTodayTimeOrdersEventBuilder toBuilder() =>
+      new GetTodayTimeOrdersEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetTodayTimeOrdersEvent && time == other.time;
   }
 
   @override
@@ -100,23 +161,24 @@ class _$GetTimeOrdersEvent extends GetTimeOrdersEvent {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GetTimeOrdersEvent')
+    return (newBuiltValueToStringHelper(r'GetTodayTimeOrdersEvent')
           ..add('time', time))
         .toString();
   }
 }
 
-class GetTimeOrdersEventBuilder
-    implements Builder<GetTimeOrdersEvent, GetTimeOrdersEventBuilder> {
-  _$GetTimeOrdersEvent? _$v;
+class GetTodayTimeOrdersEventBuilder
+    implements
+        Builder<GetTodayTimeOrdersEvent, GetTodayTimeOrdersEventBuilder> {
+  _$GetTodayTimeOrdersEvent? _$v;
 
   String? _time;
   String? get time => _$this._time;
   set time(String? time) => _$this._time = time;
 
-  GetTimeOrdersEventBuilder();
+  GetTodayTimeOrdersEventBuilder();
 
-  GetTimeOrdersEventBuilder get _$this {
+  GetTodayTimeOrdersEventBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _time = $v.time;
@@ -126,24 +188,109 @@ class GetTimeOrdersEventBuilder
   }
 
   @override
-  void replace(GetTimeOrdersEvent other) {
+  void replace(GetTodayTimeOrdersEvent other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GetTimeOrdersEvent;
+    _$v = other as _$GetTodayTimeOrdersEvent;
   }
 
   @override
-  void update(void Function(GetTimeOrdersEventBuilder)? updates) {
+  void update(void Function(GetTodayTimeOrdersEventBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GetTimeOrdersEvent build() => _build();
+  GetTodayTimeOrdersEvent build() => _build();
 
-  _$GetTimeOrdersEvent _build() {
+  _$GetTodayTimeOrdersEvent _build() {
     final _$result = _$v ??
-        new _$GetTimeOrdersEvent._(
+        new _$GetTodayTimeOrdersEvent._(
             time: BuiltValueNullFieldError.checkNotNull(
-                time, r'GetTimeOrdersEvent', 'time'));
+                time, r'GetTodayTimeOrdersEvent', 'time'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GetTomorrowTimeOrdersEvent extends GetTomorrowTimeOrdersEvent {
+  @override
+  final String time;
+
+  factory _$GetTomorrowTimeOrdersEvent(
+          [void Function(GetTomorrowTimeOrdersEventBuilder)? updates]) =>
+      (new GetTomorrowTimeOrdersEventBuilder()..update(updates))._build();
+
+  _$GetTomorrowTimeOrdersEvent._({required this.time}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        time, r'GetTomorrowTimeOrdersEvent', 'time');
+  }
+
+  @override
+  GetTomorrowTimeOrdersEvent rebuild(
+          void Function(GetTomorrowTimeOrdersEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GetTomorrowTimeOrdersEventBuilder toBuilder() =>
+      new GetTomorrowTimeOrdersEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetTomorrowTimeOrdersEvent && time == other.time;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, time.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GetTomorrowTimeOrdersEvent')
+          ..add('time', time))
+        .toString();
+  }
+}
+
+class GetTomorrowTimeOrdersEventBuilder
+    implements
+        Builder<GetTomorrowTimeOrdersEvent, GetTomorrowTimeOrdersEventBuilder> {
+  _$GetTomorrowTimeOrdersEvent? _$v;
+
+  String? _time;
+  String? get time => _$this._time;
+  set time(String? time) => _$this._time = time;
+
+  GetTomorrowTimeOrdersEventBuilder();
+
+  GetTomorrowTimeOrdersEventBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _time = $v.time;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GetTomorrowTimeOrdersEvent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GetTomorrowTimeOrdersEvent;
+  }
+
+  @override
+  void update(void Function(GetTomorrowTimeOrdersEventBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetTomorrowTimeOrdersEvent build() => _build();
+
+  _$GetTomorrowTimeOrdersEvent _build() {
+    final _$result = _$v ??
+        new _$GetTomorrowTimeOrdersEvent._(
+            time: BuiltValueNullFieldError.checkNotNull(
+                time, r'GetTomorrowTimeOrdersEvent', 'time'));
     replace(_$result);
     return _$result;
   }

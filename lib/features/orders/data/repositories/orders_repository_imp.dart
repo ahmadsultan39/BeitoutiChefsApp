@@ -17,11 +17,14 @@ class OrderRepositoryImp implements OrdersRepository {
   OrderRepositoryImp(this._local, this._remote);
 
   @override
-  Future<Either<Failure, List<OrdersTimes>>> getOrdersTimes() async {
+  Future<Either<Failure, List<OrdersTimes>>> getOrdersTimes({
+    required String day,
+  }) async {
     try {
       final _token = await _local.token;
       final result = await _remote.getOrdersTimes(
         token: _token,
+        day: day,
       );
       return Right(result);
     } on HandledException catch (e) {
@@ -30,12 +33,16 @@ class OrderRepositoryImp implements OrdersRepository {
   }
 
   @override
-  Future<Either<Failure, List<TimeOrder>>> getTimeOrders({required String time}) async {
+  Future<Either<Failure, List<TimeOrder>>> getTimeOrders({
+    required String time,
+    required String day,
+  }) async {
     try {
       final _token = await _local.token;
       final result = await _remote.getTimeOrders(
         token: _token,
         time: time,
+        day: day,
       );
       return Right(result);
     } on HandledException catch (e) {
@@ -46,7 +53,7 @@ class OrderRepositoryImp implements OrdersRepository {
   @override
   Future<Either<Failure, void>> changeStatus({required int orderId}) async {
     try {
-      final _token =  await _local.token;
+      final _token = await _local.token;
       await _remote.changeStatus(
         token: _token,
         orderId: orderId,

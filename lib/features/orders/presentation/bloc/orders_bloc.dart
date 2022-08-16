@@ -13,16 +13,28 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   final GetTimeOrdersUseCase getTimeOrdersUseCase;
   final ChangeStatusUseCase changeStatusUseCase;
 
-  void addGetOrdersTimesEvent() {
-    add(GetOrdersTimesEvent());
+  void addGetTodayOrdersTimesEvent() {
+    add(GetTodayOrdersTimes());
   }
 
-  void addGetTimeOrdersEvent(String time) {
-    add(GetTimeOrdersEvent((b) => b..time = time));
+  void addGetTomorrowOrdersTimesEvent() {
+    add(GetTomorrowOrdersTimes());
   }
 
-  void addChangeStatusEvent(int orderId,String time) {
-    add(ChangeStatusEvent((b) => b..orderId = orderId..time = time));
+  void addGetToadyTimeOrdersEvent(String time) {
+    add(GetTodayTimeOrdersEvent((b) => b..time = time));
+  }
+
+  void addGetTomorrowTimeOrdersEvent(String time) {
+    add(GetTomorrowTimeOrdersEvent((b) => b..time = time));
+  }
+
+  void addChangeStatusEvent(int orderId, String time) {
+    add(
+      ChangeStatusEvent((b) => b
+        ..orderId = orderId
+        ..time = time),
+    );
   }
 
   void clearMessage() {
@@ -30,21 +42,23 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   }
 
   @factoryMethod
-  OrdersBloc(this.getOrdersTimesUseCase, this.getTimeOrdersUseCase, this.changeStatusUseCase) : super(OrdersState.initial()) {
+  OrdersBloc(this.getOrdersTimesUseCase, this.getTimeOrdersUseCase,
+      this.changeStatusUseCase)
+      : super(OrdersState.initial()) {
     on<OrdersEvent>((event, emit) async {
-      /// *** Get Orders Times *** //
-      if (event is GetOrdersTimesEvent) {
-        emit(state.rebuild((b) => b..isOrdersTimesLoading = true));
+      /// *** Get Today Orders Times *** //
+      if (event is GetTodayOrdersTimes) {
+        emit(state.rebuild((b) => b..isTodayOrdersTimesLoading = true));
 
         final result = await getOrdersTimesUseCase(
-          NoParams(),
+          const ParamsGetOrdersTimeUseCase(day: 'today'),
         );
 
         result.fold(
           (failure) => emit(
             state.rebuild(
               (b) => b
-                ..isOrdersTimesLoading = false
+                ..isTodayOrdersTimesLoading = false
                 ..error = true
                 ..message = failure.error,
             ),
@@ -52,27 +66,60 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           (times) => emit(
             state.rebuild(
               (b) => b
-                ..isOrdersTimesLoading = false
-                ..times = times,
+                ..isTodayOrdersTimesLoading = false
+                ..todayTimes.replace(times),
             ),
           ),
         );
       }
 
+      /// *** Get Tomorrow Orders Times *** //
+      if (event is GetTomorrowOrdersTimes) {
+        emit(state.rebuild((b) => b..isTomorrowOrdersTimesLoading = true));
 
-      /// *** Get Time Orders  *** //
-      if (event is GetTimeOrdersEvent) {
-        emit(state.rebuild((b) => b..isTimeOrdersLoading = true));
-
-        final result = await getTimeOrdersUseCase(
-          ParamsGetTimeOrdersUseCase(time: event.time),
+        final result = await getOrdersTimesUseCase(
+          const ParamsGetOrdersTimeUseCase(day: 'tomorrow'),
         );
 
         result.fold(
           (failure) => emit(
             state.rebuild(
               (b) => b
-                ..isTimeOrdersLoading = false
+                ..isTomorrowOrdersTimesLoading = false
+                ..error = true
+                ..message = failure.error,
+            ),
+          ),
+          (times) => emit(
+            state.rebuild(
+              (b) => b
+                ..isTomorrowOrdersTimesLoading = false
+                ..tomorrowTimes.replace(times),
+            ),
+          ),
+        );
+      }
+
+      /// *** Get Today Time Orders  *** //
+      if (event is GetTodayTimeOrdersEvent) {
+        emit(state.rebuild(
+          (b) => b
+            ..isTodayTimeOrdersLoading = true
+            ..todayOrders.replace([]),
+        ));
+
+        final result = await getTimeOrdersUseCase(
+          ParamsGetTimeOrdersUseCase(
+            time: event.time,
+            day: 'today',
+          ),
+        );
+
+        result.fold(
+          (failure) => emit(
+            state.rebuild(
+              (b) => b
+                ..isTodayTimeOrdersLoading = false
                 ..error = true
                 ..message = failure.error,
             ),
@@ -80,8 +127,42 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           (orders) => emit(
             state.rebuild(
               (b) => b
-                ..isTimeOrdersLoading = false
-                ..orders = orders,
+                ..isTodayTimeOrdersLoading = false
+                ..todayOrders.replace(orders),
+            ),
+          ),
+        );
+      }
+
+      /// *** Get Tomorrow Time Orders  *** //
+      if (event is GetTomorrowTimeOrdersEvent) {
+        emit(state.rebuild(
+          (b) => b
+            ..isTomorrowTimeOrdersLoading = true
+            ..tomorrowOrders.replace([]),
+        ));
+
+        final result = await getTimeOrdersUseCase(
+          ParamsGetTimeOrdersUseCase(
+            time: event.time,
+            day: 'tomorrow',
+          ),
+        );
+
+        result.fold(
+          (failure) => emit(
+            state.rebuild(
+              (b) => b
+                ..isTomorrowTimeOrdersLoading = false
+                ..error = true
+                ..message = failure.error,
+            ),
+          ),
+          (orders) => emit(
+            state.rebuild(
+              (b) => b
+                ..isTomorrowTimeOrdersLoading = false
+                ..tomorrowOrders.replace(orders),
             ),
           ),
         );
@@ -106,12 +187,12 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           ),
           (_) {
             emit(
-            state.rebuild(
-              (b) => b
-                ..isLoading = false
-            ),
-          );
-            addGetTimeOrdersEvent(event.time);
+              state.rebuild(
+                (b) => b..isLoading = false
+                ..todayOrders.removeWhere((b) => b.id == event.orderId)
+                ..tomorrowOrders.removeWhere((b) => b.id == event.orderId),
+              ),
+            );
           },
         );
       }
@@ -120,7 +201,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       if (event is ClearMessage) {
         emit(
           state.rebuild(
-                (b) => b
+            (b) => b
               ..error = false
               ..message = '',
           ),

@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
@@ -16,20 +15,24 @@ class GetTimeOrdersUseCase
   GetTimeOrdersUseCase(this._repository);
 
   @override
-  Future<Either<Failure, List<TimeOrder>>> call(ParamsGetTimeOrdersUseCase params) {
+  Future<Either<Failure, List<TimeOrder>>> call(
+      ParamsGetTimeOrdersUseCase params) {
     return _repository.getTimeOrders(
       time: params.time,
+      day: params.day,
     );
   }
 }
 
 class ParamsGetTimeOrdersUseCase extends Equatable {
-  final String  time;
+  final String time;
+  final String day;
 
   const ParamsGetTimeOrdersUseCase({
     required this.time,
+    required this.day,
   });
 
   @override
-  List<Object?> get props => [time];
+  List<Object?> get props => [time, day];
 }

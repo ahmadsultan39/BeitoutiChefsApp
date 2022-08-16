@@ -8,6 +8,5 @@ class OrdersTimes extends Equatable {
   const OrdersTimes(this.clock, this.meals);
 
   @override
-  List<Object?> get props => [clock,meals];
-
+  List<Object?> get props => [clock, meals];
 }

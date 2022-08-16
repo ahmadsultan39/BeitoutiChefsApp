@@ -7,7 +7,13 @@ class TotalMeal extends Equatable {
   final String image;
   final int quantity;
 
-  const TotalMeal(this.id, this.chefId, this.name, this.image, this.quantity);
+  const TotalMeal(
+    this.id,
+    this.chefId,
+    this.name,
+    this.image,
+    this.quantity,
+  );
 
   @override
   List<Object?> get props => [
