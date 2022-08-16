@@ -78,6 +78,17 @@ abstract class EditSubscriptionEvent extends SubscriptionsEvent
   }
 }
 
+abstract class ResetPopScreenEvent extends SubscriptionsEvent
+    implements Built<ResetPopScreenEvent, ResetPopScreenEventBuilder> {
+  ResetPopScreenEvent._();
+
+  factory ResetPopScreenEvent([Function(ResetPopScreenEventBuilder b) updates]) = _$ResetPopScreenEvent;
+
+  factory ResetPopScreenEvent.initial() {
+    return ResetPopScreenEvent((b) => b);
+  }
+}
+
 
 abstract class ClearMessage extends SubscriptionsEvent
     implements Built<ClearMessage, ClearMessageBuilder> {

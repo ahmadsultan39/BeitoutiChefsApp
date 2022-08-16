@@ -92,9 +92,10 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
     final theme = Theme.of(context);
     return BlocConsumer<SubscriptionsBloc, SubscriptionsState>(
       bloc: _bloc,
-      listener:(context,state){
-        if (state.popScreen){
-                      Navigator.of(context).pop();
+      listener: (context, state) {
+        if (state.popScreen) {
+          Navigator.of(context).pop();
+          _bloc.addResetPopScreenEvent();
         }
       },
       builder: (context, state) {
@@ -173,13 +174,13 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                                     startsAt =
                                         pickedDate.toString().split(".").first;
                                   });
-
                                 }
                               },
                               icon: const Icon(Icons.date_range),
                               label: const Text("اختر تاريخ بداية الاشتراك")),
                           SizedBox(height: 8.h),
-                          if (startsAt != null) Text(startsAt!.split(" ").first),
+                          if (startsAt != null)
+                            Text(startsAt!.split(" ").first),
                           SizedBox(height: 8.h),
                           SizedBox(
                             height: 250.h,
@@ -289,13 +290,15 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                                     value?.trim();
                                     if (value == null || value.isEmpty) {
                                       setState(() {
-                                        mealsCostError = "السعر لا يجب أن يكون فارغ";
+                                        mealsCostError =
+                                            "السعر لا يجب أن يكون فارغ";
                                       });
                                       return " ";
                                     }
                                     if (int.tryParse(value) == null) {
                                       setState(() {
-                                        mealsCostError = "السعر يجب أن يكون رقم";
+                                        mealsCostError =
+                                            "السعر يجب أن يكون رقم";
                                       });
                                       return " ";
                                     }
@@ -313,8 +316,12 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                               const Text("ل.س")
                             ],
                           ),
-                          if(mealsCostError != null)
-                            Text(mealsCostError!, style: TextStyle(color: Theme.of(context).errorColor),),
+                          if (mealsCostError != null)
+                            Text(
+                              mealsCostError!,
+                              style: TextStyle(
+                                  color: Theme.of(context).errorColor),
+                            ),
                           SizedBox(height: 8.h),
                           Row(
                             children: [
@@ -328,13 +335,15 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                                     value?.trim();
                                     if (value == null || value.isEmpty) {
                                       setState(() {
-                                        maxSubscribersError = "العدد الأعظمي لا يجب أن يكون فارغ";
+                                        maxSubscribersError =
+                                            "العدد الأعظمي لا يجب أن يكون فارغ";
                                       });
                                       return " ";
                                     }
                                     if (int.tryParse(value) == null) {
                                       setState(() {
-                                        maxSubscribersError = "العدد الأعظمي يجب أن يكون رقم";
+                                        maxSubscribersError =
+                                            "العدد الأعظمي يجب أن يكون رقم";
                                       });
                                       return " ";
                                     }
@@ -353,8 +362,12 @@ class _AddNewSubscriptionPageState extends State<AddNewSubscriptionPage> {
                               ),
                             ],
                           ),
-                          if(maxSubscribersError != null)
-                            Text(maxSubscribersError!, style: TextStyle(color: Theme.of(context).errorColor),),
+                          if (maxSubscribersError != null)
+                            Text(
+                              maxSubscribersError!,
+                              style: TextStyle(
+                                  color: Theme.of(context).errorColor),
+                            ),
                           SizedBox(height: 8.h),
                           Center(
                             child: SizedBox(

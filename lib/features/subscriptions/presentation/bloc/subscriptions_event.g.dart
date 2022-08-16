@@ -467,6 +467,66 @@ class EditSubscriptionEventBuilder
   }
 }
 
+class _$ResetPopScreenEvent extends ResetPopScreenEvent {
+  factory _$ResetPopScreenEvent(
+          [void Function(ResetPopScreenEventBuilder)? updates]) =>
+      (new ResetPopScreenEventBuilder()..update(updates))._build();
+
+  _$ResetPopScreenEvent._() : super._();
+
+  @override
+  ResetPopScreenEvent rebuild(
+          void Function(ResetPopScreenEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  ResetPopScreenEventBuilder toBuilder() =>
+      new ResetPopScreenEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ResetPopScreenEvent;
+  }
+
+  @override
+  int get hashCode {
+    return 188384137;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'ResetPopScreenEvent').toString();
+  }
+}
+
+class ResetPopScreenEventBuilder
+    implements Builder<ResetPopScreenEvent, ResetPopScreenEventBuilder> {
+  _$ResetPopScreenEvent? _$v;
+
+  ResetPopScreenEventBuilder();
+
+  @override
+  void replace(ResetPopScreenEvent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$ResetPopScreenEvent;
+  }
+
+  @override
+  void update(void Function(ResetPopScreenEventBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ResetPopScreenEvent build() => _build();
+
+  _$ResetPopScreenEvent _build() {
+    final _$result = _$v ?? new _$ResetPopScreenEvent._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$ClearMessage extends ClearMessage {
   factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
       (new ClearMessageBuilder()..update(updates))._build();

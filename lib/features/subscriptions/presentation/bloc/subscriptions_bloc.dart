@@ -35,6 +35,10 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
     add(EditSubscriptionEvent((b) => b..params = params));
   }
 
+ void addResetPopScreenEvent(){
+    add(ResetPopScreenEvent());
+ }
+
   void addDeleteSubscriptionsEvent(int id) {
     add(DeleteSubscriptionEvent((b) => b..id = id));
   }
@@ -96,6 +100,11 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
             ),
           );
         });
+      }
+
+      /*** ResetPopScreenEvent ***/
+      if (event is ResetPopScreenEvent) {
+        emit(state.rebuild((b) => b..popScreen = false));
       }
 
 
@@ -165,7 +174,8 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
           emit(
             state.rebuild(
                   (b) => b
-                  ..popScreen = true
+                    ..message = "تمت الإضافة بنجاح"
+                    ..popScreen = true
                 ..isLoading = false,
             ),
           );
@@ -188,7 +198,7 @@ class SubscriptionsBloc extends Bloc<SubscriptionsEvent, SubscriptionsState> {
           emit(
             state.rebuild(
                   (b) => b
-                  // ..message = "تم التعديل بنجاح"
+                  ..message = "تم التعديل بنجاح"
                     ..popScreen = true
                     ..isLoading = false,
             ),
