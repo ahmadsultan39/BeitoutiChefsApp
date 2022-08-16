@@ -21,7 +21,7 @@ class Endpoints {
   static const getSubscriptions = "/subscriptions/";
   static const addNewSubscription = "/subscriptions/";
   static const getChefMeals = "/meals";
-  static const changeProfilePicture = "/profile/edit-profile";
+  static const changeProfilePicture = "/profile/edit-profile-pic";
   static const changeAvailabilityStatus = "/change-availability-status";
   static const getChefProfile = "/profile";
   static const getChefBalance = "/profile/balance";
@@ -37,7 +37,8 @@ class Endpoints {
   static String getOrderHistory(int page) =>
       "/profile/order-history?page=$page";
 
-  static String timeOrders(String time,String day) => "/orders/?time=$time&day=$day";
+  static String timeOrders(String time, String day) =>
+      "/orders/?time=$time&day=$day";
 
   static String changeOrderStatus(int orderId) =>
       "/orders/$orderId/change-status";
@@ -70,6 +71,7 @@ class Endpoints {
 
 class SharedPreferencesKeys {
   static String userId = 'user_id';
+  static String availabilityStatus = 'availability_status';
   static String apiToken = 'token';
   static String userName = 'user_name';
   static String userEmail = 'user_email';

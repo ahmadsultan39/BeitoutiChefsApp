@@ -11,7 +11,7 @@ ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) => ProfileModel(
       email: json['email'] as String,
       phoneNumber: json['phone_number'] as String,
       locationName: json['location_name'] as String,
-      profilePicture: json['profile_picture'] as String,
+      profilePicture: json['profile_picture'] as String?,
       deliveryEndsAt: json['delivery_ends_at'] as String,
       deliveryStartsAt: json['delivery_starts_at'] as String,
       maxMealsPerDay: json['max_meals_per_day'] as int,

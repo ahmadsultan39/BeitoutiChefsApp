@@ -22,6 +22,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _bloc = sl<HomeBloc>();
 
+  @override
+  void initState() {
+    _bloc.addGetAvailabilityStatusEvent();
+    super.initState();
+  }
+
   final List<Widget> _pages = const [
     OrdersPage(),
     ShowMenuPage(),
@@ -60,11 +66,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             actions: [
-              Switch(
-                value: state.active,
-                onChanged: (_) {
-                  _bloc.addChangeAvailabilityEvent();
-                },
+              Row(
+                children: [
+                  const Text("الحالة"),
+                  Switch(
+                    value: state.active,
+                    activeColor: Theme.of(context).colorScheme.secondary,
+                    onChanged: (_) {
+                      _bloc.addChangeAvailabilityEvent();
+                    },
+                  ),
+                ],
               ),
             ],
           ),

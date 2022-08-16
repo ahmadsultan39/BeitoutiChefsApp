@@ -150,6 +150,20 @@ abstract class PickImage extends ProfileEvent
   }
 }
 
+abstract class ChangePopStatus extends ProfileEvent
+    implements Built<ChangePopStatus, ChangePopStatusBuilder> {
+  //getter fields
+
+  ChangePopStatus._();
+
+  factory ChangePopStatus([Function(ChangePopStatusBuilder b) updates]) =
+      _$ChangePopStatus;
+
+  factory ChangePopStatus.initial() {
+    return ChangePopStatus((b) => b);
+  }
+}
+
 abstract class ClearMessage extends ProfileEvent
     implements Built<ClearMessage, ClearMessageBuilder> {
   //getter fields

@@ -13,7 +13,7 @@ class ProfileModel extends Profile {
     required String email,
     required String phoneNumber,
     required String locationName,
-    required String profilePicture,
+    required String? profilePicture,
     required String deliveryEndsAt,
     required String deliveryStartsAt,
     required int maxMealsPerDay,

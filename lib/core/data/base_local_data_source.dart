@@ -16,9 +16,10 @@ class BaseLocalDataSourceImpl implements BaseLocalDataSource {
   BaseLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
-  Future<void> logout() async =>
-      sharedPreferences.remove(SharedPreferencesKeys.apiToken);
-
+  Future<void> logout() async {
+    sharedPreferences.remove(SharedPreferencesKeys.apiToken);
+    sharedPreferences.remove(SharedPreferencesKeys.availabilityStatus);
+  }
 
   @override
   Future<String> get token async =>

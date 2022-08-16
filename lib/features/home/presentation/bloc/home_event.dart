@@ -32,3 +32,19 @@ abstract class ChangeAvailabilityEvent extends HomeEvent
     return ChangeAvailabilityEvent((b) => b);
   }
 }
+
+
+abstract class GetAvailabilityStatus extends HomeEvent
+    implements Built<GetAvailabilityStatus, GetAvailabilityStatusBuilder> {
+//getter fields
+
+  GetAvailabilityStatus._();
+
+  factory GetAvailabilityStatus(
+      [Function(GetAvailabilityStatusBuilder b) updates]) =
+  _$GetAvailabilityStatus;
+
+  factory GetAvailabilityStatus.initial() {
+    return GetAvailabilityStatus((b) => b);
+  }
+}

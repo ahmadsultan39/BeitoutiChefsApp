@@ -13,7 +13,7 @@ class Profile extends Equatable {
   final String locationName;
 
   @JsonKey(name: 'profile_picture')
-  final String profilePicture;
+  final String? profilePicture;
 
   @JsonKey(name: 'max_meals_per_day')
   final int maxMealsPerDay;

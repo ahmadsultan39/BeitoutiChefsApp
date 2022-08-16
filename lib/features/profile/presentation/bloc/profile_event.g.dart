@@ -674,6 +674,64 @@ class PickImageBuilder implements Builder<PickImage, PickImageBuilder> {
   }
 }
 
+class _$ChangePopStatus extends ChangePopStatus {
+  factory _$ChangePopStatus([void Function(ChangePopStatusBuilder)? updates]) =>
+      (new ChangePopStatusBuilder()..update(updates))._build();
+
+  _$ChangePopStatus._() : super._();
+
+  @override
+  ChangePopStatus rebuild(void Function(ChangePopStatusBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  ChangePopStatusBuilder toBuilder() =>
+      new ChangePopStatusBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ChangePopStatus;
+  }
+
+  @override
+  int get hashCode {
+    return 742072520;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'ChangePopStatus').toString();
+  }
+}
+
+class ChangePopStatusBuilder
+    implements Builder<ChangePopStatus, ChangePopStatusBuilder> {
+  _$ChangePopStatus? _$v;
+
+  ChangePopStatusBuilder();
+
+  @override
+  void replace(ChangePopStatus other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$ChangePopStatus;
+  }
+
+  @override
+  void update(void Function(ChangePopStatusBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ChangePopStatus build() => _build();
+
+  _$ChangePopStatus _build() {
+    final _$result = _$v ?? new _$ChangePopStatus._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$ClearMessage extends ClearMessage {
   factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
       (new ClearMessageBuilder()..update(updates))._build();

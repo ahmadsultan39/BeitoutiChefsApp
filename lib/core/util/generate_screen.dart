@@ -1,21 +1,19 @@
 import 'package:beitouti_chefs/features/profile/domain/entities/profile.dart';
+import 'package:beitouti_chefs/features/profile/presentation/bloc/profile.dart';
 import 'package:beitouti_chefs/features/profile/presentation/pages/chef_balance_page.dart';
 import 'package:beitouti_chefs/features/profile/presentation/pages/edit_order_settings_page.dart';
 import 'package:beitouti_chefs/features/profile/presentation/pages/meals_notes_page.dart';
 import 'package:beitouti_chefs/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:beitouti_chefs/core/entities/meal.dart';
+import 'package:beitouti_chefs/features/add_meal/presentation/pages/add_meal.dart';
+import 'package:beitouti_chefs/features/show_menu/presentation/pages/show_menu.dart';
+import 'package:beitouti_chefs/features/subscriptions/presentation/pages/add_subscription_page.dart';
 
 import '../../features/auth/presentation/pages/auth_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/profile/presentation/pages/order_history_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
-import 'package:beitouti_chefs/core/entities/meal.dart';
-import 'package:beitouti_chefs/features/add_meal/presentation/pages/add_meal.dart';
-import 'package:beitouti_chefs/features/show_menu/presentation/pages/show_menu.dart';
-import 'package:beitouti_chefs/features/subscriptions/domain/entities/subscription.dart';
-import 'package:beitouti_chefs/features/subscriptions/presentation/pages/add_subscription_page.dart';
-import 'package:flutter/material.dart';
-
 import '../../features/subscriptions/domain/entities/new_subscription.dart';
 
 class GenerateScreen {
@@ -66,7 +64,8 @@ class GenerateScreen {
           return MaterialPageRoute(
             builder: (context) => const MealsNotesPage(),
           );
-        }   case NameScreen.ordersHistoryScreen:
+        }
+      case NameScreen.ordersHistoryScreen:
         {
           return MaterialPageRoute(
             builder: (context) => const OrderHistoryPage(),
@@ -75,7 +74,9 @@ class GenerateScreen {
       case NameScreen.editOrderSettingsScreen:
         {
           return MaterialPageRoute(
-            builder: (context) =>  EditOrderSettingsPage(profile: value.arguments as Profile),
+            builder: (context) => EditOrderSettingsPage(
+              profileBloc: value.arguments as ProfileBloc,
+            ),
           );
         }
       case NameScreen.chefBalanceScreen:
@@ -87,7 +88,7 @@ class GenerateScreen {
       case NameScreen.addSubscription:
         {
           return MaterialPageRoute(
-            builder: (context) =>  AddNewSubscriptionPage(
+            builder: (context) => AddNewSubscriptionPage(
               initSubscription: value.arguments as NewSubscription?,
             ),
           );

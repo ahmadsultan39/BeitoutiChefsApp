@@ -76,6 +76,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     add(Logout());
   }
 
+  void changePopStatus() {
+    add(ChangePopStatus());
+  }
+
   void clearMessage() {
     add(ClearMessage());
   }
@@ -103,6 +107,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                 ..message = '',
             ),
           );
+        }
+
+        /// *** ChangePopStatus *** ///
+        if (event is ChangePopStatus) {
+          emit(state.rebuild((b) => b..pop = false));
         }
 
         /// *** Logout *** ///
@@ -385,6 +394,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                   (b) => b..pickedImage = image,
                 ),
               );
+              if (image != null) {
+                addChangeProfilePictureEvent(image: image);
+              }
             },
           );
         }

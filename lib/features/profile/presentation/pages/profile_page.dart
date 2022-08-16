@@ -4,6 +4,7 @@ import 'package:beitouti_chefs/features/profile/presentation/widgets/profile_pic
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/util/constants.dart';
 import '../../../../injection.dart';
@@ -59,7 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 20.h,
                       ),
                       ProfilePicture(
-                        profilePicture: state.profile!.profilePicture,
+                        profilePicture: state.profile!.profilePicture ?? "",
                         pickedImage: state.pickedImage,
                         pickImage: _bloc.addPickImageEvent,
                       ),
@@ -83,11 +84,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: Icons.history,
                         screenName: NameScreen.ordersHistoryScreen,
                       ),
-                       ProfileTile(
+                      ProfileTile(
                         title: 'تعديل إعدادات الطلب',
                         icon: Icons.settings,
                         screenName: NameScreen.editOrderSettingsScreen,
-                        arguments: state.profile,
+                        arguments: _bloc,
                       ),
                       const ProfileTile(
                         title: 'الملاحظات',
@@ -100,10 +101,23 @@ class _ProfilePageState extends State<ProfilePage> {
                         screenName: NameScreen.chefBalanceScreen,
                       ),
                       ProfileTile(
+                        title: 'الدعم',
+                        icon: Icons.balance,
+                        isFunctionCall: true,
+                        function: () async {
+                          const url = "tel:0953954152";
+                          if (await canLaunchUrl(Uri.parse(url))) {
+                            await launchUrl(Uri.parse(url));
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        },
+                      ),
+                      ProfileTile(
                         title: 'تسجيل الخروج',
                         icon: Icons.logout,
-                        isLogout: true,
-                        logoutFunction: _bloc.addLogoutEvent,
+                        isFunctionCall: true,
+                        function: _bloc.addLogoutEvent,
                       ),
                     ],
                   ),
@@ -120,9 +134,9 @@ class _ProfilePageState extends State<ProfilePage> {
 class ProfileTile extends StatelessWidget {
   final String title;
   final IconData icon;
-  final bool isLogout;
+  final bool isFunctionCall;
   final String? screenName;
-  final VoidCallback? logoutFunction;
+  final VoidCallback? function;
   final Object? arguments;
 
   const ProfileTile({
@@ -130,8 +144,8 @@ class ProfileTile extends StatelessWidget {
     required this.title,
     required this.icon,
     this.screenName,
-    this.isLogout = false,
-    this.logoutFunction,
+    this.isFunctionCall = false,
+    this.function,
     this.arguments,
   }) : super(key: key);
 
@@ -144,8 +158,8 @@ class ProfileTile extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          if (isLogout) {
-            logoutFunction!();
+          if (isFunctionCall) {
+            function!();
           } else {
             Navigator.of(context).pushNamed(screenName!, arguments: arguments);
           }
