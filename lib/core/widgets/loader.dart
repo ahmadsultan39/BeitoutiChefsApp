@@ -1,13 +1,20 @@
-import 'package:flutter/cupertino.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:flutter/material.dart';
 
 class Loader extends StatelessWidget {
-  const Loader({Key? key}) : super(key: key);
+  final double? size;
+
+  const Loader({Key? key, this.size}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: CircularProgressIndicator(),
+      child: LoadingAnimationWidget.hexagonDots( // or fourRotatingDots
+        color: Theme.of(context).colorScheme.secondary,
+        size: size ?? 50.sp,
+      ),
     );
   }
 }
