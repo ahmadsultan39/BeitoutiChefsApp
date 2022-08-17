@@ -64,6 +64,8 @@ T? _dataFromJson<T>(Object? data) {
       return BalanceModel.fromJson(data) as T;
     } else if (T.toString() == PreparedOrderModel.paginateName) {
       return PaginateResponseModel<PreparedOrderModel>.fromJson(data) as T;
+    } else if (T.toString() == PreparedOrderModel.paginateName) {
+      return PaginateResponseModel<PreparedOrderModel>.fromJson(data) as T;
     } else if (T.toString() == 'Null') {
       debugPrint('Null Data');
       return null;

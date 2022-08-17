@@ -88,11 +88,11 @@ class TimeTile extends StatelessWidget {
                                 ),
                               ),
                               if (!today)
-
                               ...bloc.state.tomorrowOrders.map(
                                 (timeOrder) => TimeOrderTile(
                                   timeOrder: timeOrder,
                                   bloc: bloc,
+                                  today: today,
                                 ),
                               ),
                             ],
