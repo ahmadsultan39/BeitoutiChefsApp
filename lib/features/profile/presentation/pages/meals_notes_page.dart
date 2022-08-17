@@ -79,13 +79,14 @@ class _MealsNotesPageState extends State<MealsNotesPage> {
                                 ),
                                 NoteInfo(
                                   name: 'التقييم',
-                                  info: notes.mealRate!.round().toString() + ' نجوم',
+                                  info: notes.mealRate!.round().toString() +
+                                      ' نجوم',
                                 ),
-                                if(notes.mealRateNotes != null)
-                                NoteInfo(
-                                  name: 'الملاحظات',
-                                  info: notes.mealRateNotes!,
-                                ),
+                                if (notes.mealRateNotes != null)
+                                  NoteInfo(
+                                    name: 'الملاحظات',
+                                    info: notes.mealRateNotes!,
+                                  ),
                               ],
                             ),
                           ),
@@ -123,7 +124,7 @@ class NoteInfo extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "$name:  ",
@@ -133,12 +134,16 @@ class NoteInfo extends StatelessWidget {
               fontSize: 15.sp,
             ),
           ),
-          Text(
-            info,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary,
-              fontWeight: FontWeight.w500,
-              fontSize: 15.sp,
+          SizedBox(
+            width: 150.w,
+            child: Text(
+              info,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+                fontWeight: FontWeight.w500,
+                fontSize: 15.sp,
+              ),
+              overflow: TextOverflow.fade,
             ),
           ),
         ],
