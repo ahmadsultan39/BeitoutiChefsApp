@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/util/constants.dart';
 import '../../../../core/util/generate_screen.dart';
 import '../../../../injection.dart';
 import '../bloc/subscriptions_state.dart';
@@ -30,6 +31,14 @@ class _SubscriptionsPageState extends State<SubscriptionsPage> {
     return BlocBuilder<SubscriptionsBloc, SubscriptionsState>(
       bloc: _bloc,
       builder: (context, state) {
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
+          message(
+            message: state.message,
+            isError: state.error,
+            context: context,
+            bloc: _bloc,
+          );
+        });
         return Scaffold(
           body: RefreshIndicator(
             onRefresh: () async {

@@ -53,10 +53,8 @@ class SubscriptionsRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   @override
   Future<void> addNewSubscription(
       {required String token, required NewSubscription newSubscription}) async {
-    // final response =
     await performPostRequest<Null>(endpoint: Endpoints.addNewSubscription, data: RequestBody.addSubscription(newSubscription: newSubscription)
           , options: GetOptions.getOptionsWithToken(token));
-    // return response!;
   }
 
   @override
