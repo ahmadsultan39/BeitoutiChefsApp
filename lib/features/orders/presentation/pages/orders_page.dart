@@ -31,14 +31,14 @@ class _OrdersPageState extends State<OrdersPage> {
     return BlocBuilder<OrdersBloc, OrdersState>(
       bloc: _bloc,
       builder: (context, state) {
-        return RefreshIndicator(
-          onRefresh: () async {
-            _bloc.addGetTodayOrdersTimesEvent();
-            _bloc.addGetTomorrowOrdersTimesEvent();
-          },
-          child: Stack(
-            children: [
-              SingleChildScrollView(
+        return Stack(
+          children: [
+            RefreshIndicator(
+              onRefresh: () async {
+                _bloc.addGetTodayOrdersTimesEvent();
+                _bloc.addGetTomorrowOrdersTimesEvent();
+              },
+              child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,9 +77,9 @@ class _OrdersPageState extends State<OrdersPage> {
                   ],
                 ),
               ),
-              if (state.isLoading) const Loader(),
-            ],
-          ),
+            ),
+            if (state.isLoading) const Loader(),
+          ],
         );
       },
     );

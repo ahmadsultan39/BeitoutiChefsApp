@@ -7,11 +7,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class TimeOrderTile extends StatelessWidget {
   final TimeOrder timeOrder;
   final OrdersBloc bloc;
+  final bool today;
 
   const TimeOrderTile({
     Key? key,
     required this.timeOrder,
     required this.bloc,
+    this.today = true,
   }) : super(key: key);
 
   @override
@@ -136,34 +138,34 @@ class TimeOrderTile extends StatelessWidget {
           SizedBox(
             height: 15.h,
           ),
-          GestureDetector(
-            onTap: () {
-              bloc.addChangeStatusEvent(
-                timeOrder.id,
-                timeOrder.selectedDeliveryTime,
-
-              );
-            },
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "إنتهاء الطلب",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.sp,
+          if (today)
+            GestureDetector(
+              onTap: () {
+                bloc.addChangeStatusEvent(
+                  timeOrder.id,
+                  timeOrder.selectedDeliveryTime,
+                );
+              },
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "إنتهاء الطلب",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.sp,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
         ],
       ),
     );
@@ -213,7 +215,6 @@ class OrderDetails extends StatelessWidget {
               fontSize: 14.sp,
             ),
             overflow: TextOverflow.fade,
-
           ),
         ),
       ],
