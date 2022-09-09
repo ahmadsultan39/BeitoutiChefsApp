@@ -25,6 +25,8 @@ abstract class AuthState implements Built<AuthState, AuthStateBuilder> {
 
   FilePickerResult? get filePickerResult;
 
+  FilePickerResult? get profilePictureFile;
+
   AccessibilityStaysType? get accessibilityStaysType;
 
   AuthState._();
@@ -41,6 +43,7 @@ abstract class AuthState implements Built<AuthState, AuthStateBuilder> {
         ..accessibilityStaysType = null
         ..isCodeSent = false
         ..filePickerResult = null
+        ..profilePictureFile = null
         ..isCodeValid = false
         ..message = ""
         ..error = false,

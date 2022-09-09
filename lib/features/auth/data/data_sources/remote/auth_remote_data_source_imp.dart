@@ -54,7 +54,8 @@ class AuthRemoteDataSourceImp extends BaseRemoteDataSourceImpl
     required RegisterRequestModel request,
     required String fcmToken,
   }) async {
-    final formData = RequestBody.requestRegister(request: request,fcmToken: fcmToken);
+    final formData = await RequestBody.requestRegister(request: request,fcmToken: fcmToken);
+    print(formData.fields);
     try {
       final response = await dio.post(
         Endpoints.requestRegister,

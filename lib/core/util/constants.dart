@@ -11,8 +11,8 @@ import '../../features/auth/data/models/request_register_model.dart';
 import '../../features/add_meal/domain/use_cases/add_meal.dart';
 
 class Endpoints {
-  static const baseUrl = "http://935f-94-47-182-14.ngrok.io/api/chef";
-  static const url = "http://935f-94-47-182-14.ngrok.io";
+  static const baseUrl = "https://baitoutee.herokuapp.com/api/chef";
+  static const url = "https://baitoutee.herokuapp.com";
   static const logout = "/logout";
   static const getCategories = "/meals/categories";
   static const getMealsActiveCount = "/meals/active-count";
@@ -192,8 +192,8 @@ class RequestBody {
     required RegisterRequestModel request,
     required String fcmToken,
   }) async {
-    if (request.certificatePath != null) {
-      return FormData.fromMap({
+    return FormData.fromMap(
+      {
         'phone_number': request.phoneNumber,
         'birth_date': request.birthDate,
         'name': request.name,
@@ -205,28 +205,21 @@ class RequestBody {
         'delivery_starts_at': request.deliveryStartsAt,
         'delivery_ends_at': request.deliveryEndsAt,
         'max_meals_per_day': request.maxMealsPerDay,
-        // 'profile_picture': request.profilePicture,
-        'certificate': await MultipartFile.fromFile(request.certificatePath!,
-            filename: request.certificateName),
         'fcm_token': fcmToken,
-      });
-    } else {
-      return FormData.fromMap({
-        'phone_number': request.phoneNumber,
-        'birth_date': request.birthDate,
-        'name': request.name,
-        'email': request.email,
-        'location': request.location,
-        'gender': request.gender.index,
-        'latitude': request.latitude,
-        'longitude': request.longitude,
-        'delivery_starts_at': request.deliveryStartsAt,
-        'delivery_ends_at': request.deliveryEndsAt,
-        'max_meals_per_day': request.maxMealsPerDay,
-        // 'profile_picture': request.profilePicture,
-        'fcm_token': fcmToken,
-      });
-    }
+        'profile_picture': request.profilePicturePath == null
+            ? null
+            : await MultipartFile.fromFile(
+                request.profilePicturePath!,
+                filename: request.profilePictureName,
+              ),
+        'certificate': request.certificatePath == null
+            ? null
+            : await MultipartFile.fromFile(
+                request.certificatePath!,
+                filename: request.certificateName,
+              ),
+      },
+    );
   }
 
   // Change profile picture

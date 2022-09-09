@@ -67,6 +67,20 @@ abstract class GetCurrentLocation extends AuthEvent
   }
 }
 
+abstract class PickProfilePicture extends AuthEvent
+    implements Built<PickProfilePicture, PickProfilePictureBuilder> {
+  //getter fields
+
+  PickProfilePicture._();
+
+  factory PickProfilePicture([Function(PickProfilePictureBuilder b) updates]) =
+      _$PickProfilePicture;
+
+  factory PickProfilePicture.initial() {
+    return PickProfilePicture((b) => b);
+  }
+}
+
 abstract class PickFile extends AuthEvent
     implements Built<PickFile, PickFileBuilder> {
   //getter fields
@@ -74,7 +88,7 @@ abstract class PickFile extends AuthEvent
   PickFile._();
 
   factory PickFile([Function(PickFileBuilder b) updates]) =
-      _$PickFile;
+  _$PickFile;
 
   factory PickFile.initial() {
     return PickFile((b) => b);

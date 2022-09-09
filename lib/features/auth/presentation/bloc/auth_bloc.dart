@@ -45,6 +45,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     add(PickFile());
   }
 
+  void addPickProfilePictureEvent() {
+    add(PickProfilePicture());
+  }
+
   void addGetCurrentLocationEvent() {
     add(GetCurrentLocation());
   }
@@ -164,19 +168,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
         /// *** ReInitializeState *** //
         if (event is ReInitializeState) {
-          emit(
-            state.rebuild(
-              (b) => b
-                ..isLoading = false
-                ..user = null
-                ..isRegisterRequestSent = false
-                ..accessibilityStaysType = null
-                ..isCodeSent = false
-                ..isCodeValid = false
-                ..message = ""
-                ..error = false,
-            ),
-          );
+          emit(AuthState.initial());
         }
 
         if (event is GetCurrentLocation) {
@@ -211,12 +203,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (event is PickFile) {
           final file = await FilePicker.platform.pickFiles(
             type: FileType.custom,
-            allowedExtensions: ['pdf','docx','jpg'], //here
+            allowMultiple: false,
+            allowedExtensions: ['pdf', 'docx', 'jpg'], //here
           );
           if (file != null) {
             emit(
               state.rebuild(
                 (b) => b..filePickerResult = file,
+              ),
+            );
+          }
+        }
+
+        if (event is PickProfilePicture) {
+          final file = await FilePicker.platform.pickFiles(
+            type: FileType.image,
+            allowMultiple: false,
+          );
+          if (file != null) {
+            emit(
+              state.rebuild(
+                (b) => b..profilePictureFile = file,
               ),
             );
           }

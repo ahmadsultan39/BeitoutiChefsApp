@@ -29,7 +29,32 @@ class LocationInfoPage extends StatefulWidget {
 class _LocationInfoPageState extends State<LocationInfoPage> {
   final RegExp _validNumberExp = RegExp(r'[0-9]$');
 
-  /// User name attributes
+  bool _isBirthDateTextValid = false;
+  String _birthDateErrorMessage = '';
+
+  final GlobalKey<CustomExpansionTileState> key = GlobalKey();
+
+  void _birthDateValidation(String birthDate) {
+    if (birthDate.isEmpty) {
+      setState(() {
+        _isBirthDateTextValid = false;
+        _birthDateErrorMessage = 'الرجاء إدخال تاريخ الميلاد';
+      });
+    } else if (!_isBirthDateTextValid) {
+      setState(() {
+        _isBirthDateTextValid = true;
+      });
+    }
+  }
+
+  final List<String> _genders = [
+    'ذكر',
+    'أنثى',
+  ];
+
+  bool _isGenderChanged = true;
+  String _selectedGender = 'الرجاء اختيار الجنس';
+
   bool _isLocationTextValid = false;
   String _locationErrorMessage = '';
 
@@ -37,43 +62,33 @@ class _LocationInfoPageState extends State<LocationInfoPage> {
     if (location.isEmpty) {
       setState(() {
         _isLocationTextValid = false;
-        _locationErrorMessage = 'الرجاء إدخال الموقع';
+        _locationErrorMessage = 'الرجاء إدخال العنوان';
       });
-    }
-    // else if (name.length < 7) {
-    //   setState(() {
-    //     _isNameTextValid = false;
-    //     _nameErrorMessage = 'الإسم الثلاثي يجب أن يتكون من سبعة محارف أو أكثر';
-    //   });
-    // }
-    else if (!_isLocationTextValid) {
+    } else if (!_isLocationTextValid) {
       setState(() {
         _isLocationTextValid = true;
       });
     }
   }
 
-  // TransportationType
-  final List<String> _gendersList = [
-    'ذكر',
-    'أنثى',
-  ];
-  bool _isGenderChanged = false;
-  String _gender = 'الرجاء اختيار الجنس';
-  final GlobalKey<CustomExpansionTileState> _genderKey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return PageViewItem(
       buttonText: "التالي",
       onPressed: () {
-        if (widget.birthDateTextController.text.isNotEmpty) {
+        _locationValidation(widget.locationTextController.text);
+        _birthDateValidation(widget.birthDateTextController.text);
+        if (_selectedGender == 'الرجاء اختيار الجنس') {
+          setState(() {
+            _isGenderChanged = false;
+          });
+        } else if (_isBirthDateTextValid && _isLocationTextValid) {
           widget.onPressed();
         }
       },
       children: [
         FormEntity(
-          upperLabel: 'الموقع',
+          upperLabel: 'العنوان',
           controller: widget.locationTextController,
           onChanged: _locationValidation,
           error: _locationErrorMessage,
@@ -82,9 +97,10 @@ class _LocationInfoPageState extends State<LocationInfoPage> {
           isInputTextValid: _isLocationTextValid,
         ),
         FormEntity(
+          textInputAction: TextInputAction.done,
           controller: widget.birthDateTextController,
-          onChanged: (text) {},
-          error: '',
+          onChanged: _birthDateValidation,
+          error: _birthDateErrorMessage,
           onTap: () async {
             final date = await showDatePicker(
               context: context,
@@ -102,7 +118,7 @@ class _LocationInfoPageState extends State<LocationInfoPage> {
           prefixIcon: Icons.date_range_rounded,
           enabled: false,
           upperLabel: "تاريخ الميلاد",
-          isInputTextValid: true,
+          isInputTextValid: _isBirthDateTextValid,
           height: 40.h,
           contentPadding: EdgeInsets.symmetric(
             horizontal: 10.w,
@@ -114,9 +130,9 @@ class _LocationInfoPageState extends State<LocationInfoPage> {
           child: Column(
             children: [
               CustomExpansionTile(
-                key: _genderKey,
+                key: key,
                 title: Text(
-                  _gender,
+                  _selectedGender,
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: _isGenderChanged
@@ -126,18 +142,16 @@ class _LocationInfoPageState extends State<LocationInfoPage> {
                   ),
                 ),
                 children: [
-                  ..._gendersList
+                  ..._genders
                       .map(
                         (gender) => GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           onTap: () {
                             setState(() {
                               _isGenderChanged = true;
-                              _gender = gender;
-                              widget.genderController(
-                                _gendersList.indexOf(gender),
-                              );
-                              _genderKey.currentState?.collapse();
+                              _selectedGender = gender;
+                              widget.genderController(_genders.indexOf(gender));
+                              key.currentState?.collapse();
                             });
                           },
                           child: Padding(
@@ -148,7 +162,7 @@ class _LocationInfoPageState extends State<LocationInfoPage> {
                               gender,
                               style: TextStyle(
                                 fontSize: 14.sp,
-                                color: _gender == gender
+                                color: _selectedGender == gender
                                     ? Theme.of(context).colorScheme.tertiary
                                     : Theme.of(context).primaryColor,
                               ),
@@ -184,21 +198,6 @@ class _LocationInfoPageState extends State<LocationInfoPage> {
               ),
             ],
           ),
-        ),
-        FormEntity(
-          upperLabel: 'أرفق رخصة إن وجدت',
-          child: GestureDetector(
-            onTap: widget.pickFile,
-            child: Container(
-              width: 200,
-              height: 100,
-              color: Theme.of(context).backgroundColor,
-              child: Text("File name"),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 200.h,
         ),
       ],
     );

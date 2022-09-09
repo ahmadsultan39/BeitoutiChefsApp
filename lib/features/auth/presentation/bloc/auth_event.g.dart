@@ -300,6 +300,66 @@ class GetCurrentLocationBuilder
   }
 }
 
+class _$PickProfilePicture extends PickProfilePicture {
+  factory _$PickProfilePicture(
+          [void Function(PickProfilePictureBuilder)? updates]) =>
+      (new PickProfilePictureBuilder()..update(updates))._build();
+
+  _$PickProfilePicture._() : super._();
+
+  @override
+  PickProfilePicture rebuild(
+          void Function(PickProfilePictureBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  PickProfilePictureBuilder toBuilder() =>
+      new PickProfilePictureBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is PickProfilePicture;
+  }
+
+  @override
+  int get hashCode {
+    return 660512035;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'PickProfilePicture').toString();
+  }
+}
+
+class PickProfilePictureBuilder
+    implements Builder<PickProfilePicture, PickProfilePictureBuilder> {
+  _$PickProfilePicture? _$v;
+
+  PickProfilePictureBuilder();
+
+  @override
+  void replace(PickProfilePicture other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$PickProfilePicture;
+  }
+
+  @override
+  void update(void Function(PickProfilePictureBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  PickProfilePicture build() => _build();
+
+  _$PickProfilePicture _build() {
+    final _$result = _$v ?? new _$PickProfilePicture._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$PickFile extends PickFile {
   factory _$PickFile([void Function(PickFileBuilder)? updates]) =>
       (new PickFileBuilder()..update(updates))._build();

@@ -9,13 +9,28 @@ class BeitoutiText extends StatelessWidget {
     return Positioned(
       top: 180.h,
       right: 25.w,
-      child: Text(
-        "بَيتُوتِي",
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.secondary,
-          fontSize: 50.sp,
-          fontWeight: FontWeight.w600,
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(
+            "بَيتُوتِي",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.secondary,
+              fontSize: 50.sp,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          SizedBox(width: 10.w),
+          Text(
+            "طٌهَاة",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.tertiary,
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
       ),
     );
   }

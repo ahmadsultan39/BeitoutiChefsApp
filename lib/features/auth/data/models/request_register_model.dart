@@ -27,6 +27,8 @@ class RegisterRequestModel extends RegisterRequest {
   RegisterRequestModel({
     String? certificateName,
     String? certificatePath,
+    String? profilePictureName,
+    String? profilePicturePath,
     required String name,
     required String email,
     required String location,
@@ -39,6 +41,8 @@ class RegisterRequestModel extends RegisterRequest {
     required this.maxMealsPerDay,
     required this.birthDate,
   }) : super(
+          profilePictureName: profilePictureName,
+          profilePicturePath: profilePicturePath,
           name: name,
           email: email,
           phoneNumber: phoneNumber,

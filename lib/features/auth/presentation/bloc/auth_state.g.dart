@@ -26,6 +26,8 @@ class _$AuthState extends AuthState {
   @override
   final FilePickerResult? filePickerResult;
   @override
+  final FilePickerResult? profilePictureFile;
+  @override
   final AccessibilityStaysType? accessibilityStaysType;
 
   factory _$AuthState([void Function(AuthStateBuilder)? updates]) =>
@@ -41,6 +43,7 @@ class _$AuthState extends AuthState {
       this.locationData,
       this.user,
       this.filePickerResult,
+      this.profilePictureFile,
       this.accessibilityStaysType})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(isLoading, r'AuthState', 'isLoading');
@@ -74,6 +77,7 @@ class _$AuthState extends AuthState {
         locationData == other.locationData &&
         user == other.user &&
         filePickerResult == other.filePickerResult &&
+        profilePictureFile == other.profilePictureFile &&
         accessibilityStaysType == other.accessibilityStaysType;
   }
 
@@ -87,15 +91,17 @@ class _$AuthState extends AuthState {
                         $jc(
                             $jc(
                                 $jc(
-                                    $jc($jc(0, isLoading.hashCode),
-                                        message.hashCode),
-                                    error.hashCode),
-                                isCodeSent.hashCode),
-                            isCodeValid.hashCode),
-                        isRegisterRequestSent.hashCode),
-                    locationData.hashCode),
-                user.hashCode),
-            filePickerResult.hashCode),
+                                    $jc(
+                                        $jc($jc(0, isLoading.hashCode),
+                                            message.hashCode),
+                                        error.hashCode),
+                                    isCodeSent.hashCode),
+                                isCodeValid.hashCode),
+                            isRegisterRequestSent.hashCode),
+                        locationData.hashCode),
+                    user.hashCode),
+                filePickerResult.hashCode),
+            profilePictureFile.hashCode),
         accessibilityStaysType.hashCode));
   }
 
@@ -111,6 +117,7 @@ class _$AuthState extends AuthState {
           ..add('locationData', locationData)
           ..add('user', user)
           ..add('filePickerResult', filePickerResult)
+          ..add('profilePictureFile', profilePictureFile)
           ..add('accessibilityStaysType', accessibilityStaysType))
         .toString();
   }
@@ -158,6 +165,11 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
   set filePickerResult(FilePickerResult? filePickerResult) =>
       _$this._filePickerResult = filePickerResult;
 
+  FilePickerResult? _profilePictureFile;
+  FilePickerResult? get profilePictureFile => _$this._profilePictureFile;
+  set profilePictureFile(FilePickerResult? profilePictureFile) =>
+      _$this._profilePictureFile = profilePictureFile;
+
   AccessibilityStaysType? _accessibilityStaysType;
   AccessibilityStaysType? get accessibilityStaysType =>
       _$this._accessibilityStaysType;
@@ -178,6 +190,7 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
       _locationData = $v.locationData;
       _user = $v.user;
       _filePickerResult = $v.filePickerResult;
+      _profilePictureFile = $v.profilePictureFile;
       _accessibilityStaysType = $v.accessibilityStaysType;
       _$v = null;
     }
@@ -216,6 +229,7 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
             locationData: locationData,
             user: user,
             filePickerResult: filePickerResult,
+            profilePictureFile: profilePictureFile,
             accessibilityStaysType: accessibilityStaysType);
     replace(_$result);
     return _$result;

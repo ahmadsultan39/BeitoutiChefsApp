@@ -7,6 +7,8 @@ class FormEntity extends StatelessWidget {
   // TEXT FIELD
   final TextEditingController? controller;
   final Function(String)? onChanged;
+  final FocusNode? focusNode;
+  final TextInputAction? textInputAction;
   final String? error;
   final bool? isInputTextValid;
 
@@ -38,6 +40,7 @@ class FormEntity extends StatelessWidget {
     this.controller,
     this.onChanged,
     this.error,
+    this.focusNode,
     required this.upperLabel,
     this.isInputTextValid,
     this.contentPadding,
@@ -58,7 +61,7 @@ class FormEntity extends StatelessWidget {
     this.prefixIconSize,
     this.labelText,
     this.hintText,
-    this.child,
+    this.child, this.textInputAction,
   }) : super(key: key);
 
   @override
@@ -77,6 +80,9 @@ class FormEntity extends StatelessWidget {
         ),
         child ??
             DecoratedTextField(
+
+              textInputAction: textInputAction,
+              focusNode: focusNode,
               enabled: enabled,
               onTap: onTap,
               contentPadding: contentPadding,

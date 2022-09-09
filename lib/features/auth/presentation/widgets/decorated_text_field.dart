@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class DecoratedTextField extends StatelessWidget {
   final TextEditingController controller;
   final Function(String) onChanged;
+  final FocusNode? focusNode;
   final String error;
   final bool isInputTextValid;
 
@@ -26,12 +27,14 @@ class DecoratedTextField extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final bool? enabled;
   final VoidCallback? onTap;
+  final TextInputAction? textInputAction;
 
   const DecoratedTextField({
     Key? key,
     required this.controller,
     required this.onChanged,
     required this.isInputTextValid,
+    this.focusNode,
     required this.error,
     this.contentPadding,
     this.enabled,
@@ -51,6 +54,7 @@ class DecoratedTextField extends StatelessWidget {
     this.labelText,
     this.hintText,
     this.prefixIcon,
+    this.textInputAction,
   }) : super(key: key);
 
   @override
@@ -74,6 +78,9 @@ class DecoratedTextField extends StatelessWidget {
                 // ON CHANGED
                 onChanged: onChanged,
 
+                // Focus Node
+                focusNode: focusNode,
+
                 // KEYBOARD INPUT TYPE
                 keyboardType: textInputType,
                 // (If null) Default set to TextInputType.text
@@ -84,6 +91,8 @@ class DecoratedTextField extends StatelessWidget {
                   color: textColor ?? primaryColor,
                   fontWeight: FontWeight.w300,
                 ),
+
+                textInputAction: textInputAction ?? TextInputAction.next,
 
                 // TEXT ALIGN
                 textAlignVertical: TextAlignVertical.center,
@@ -165,7 +174,7 @@ class DecoratedTextField extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                top: 10.h,
+                top: isInputTextValid ? 5.h : 10.h,
                 right: 10.w,
                 bottom: 10.h,
               ),

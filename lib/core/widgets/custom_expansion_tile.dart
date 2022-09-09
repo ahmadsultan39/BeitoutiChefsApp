@@ -55,9 +55,9 @@ class CustomExpansionTile extends StatefulWidget {
   })  : assert(initiallyExpanded != null),
         assert(maintainState != null),
         assert(
-          expandedCrossAxisAlignment != CrossAxisAlignment.baseline,
-          'CrossAxisAlignment.baseline is not supported since the expanded children '
-          'are aligned in a column, not a row. Try to use another constant.',
+        expandedCrossAxisAlignment != CrossAxisAlignment.baseline,
+        'CrossAxisAlignment.baseline is not supported since the expanded children '
+            'are aligned in a column, not a row. Try to use another constant.',
         ),
         super(key: key);
 
@@ -182,11 +182,11 @@ class CustomExpansionTile extends StatefulWidget {
 class CustomExpansionTileState extends State<CustomExpansionTile>
     with SingleTickerProviderStateMixin {
   static final Animatable<double> _easeOutTween =
-      CurveTween(curve: Curves.easeOut);
+  CurveTween(curve: Curves.easeOut);
   static final Animatable<double> _easeInTween =
-      CurveTween(curve: Curves.easeIn);
+  CurveTween(curve: Curves.easeIn);
   static final Animatable<double> _halfTween =
-      Tween<double>(begin: 0.0, end: 0.5);
+  Tween<double>(begin: 0.0, end: 0.5);
 
   final ColorTween _borderColorTween = ColorTween();
   final ColorTween _headerColorTween = ColorTween();
@@ -374,7 +374,7 @@ class CustomExpansionTileState extends State<CustomExpansionTile>
           padding: widget.childrenPadding ?? EdgeInsets.zero,
           child: Column(
             crossAxisAlignment:
-                widget.expandedCrossAxisAlignment ?? CrossAxisAlignment.center,
+            widget.expandedCrossAxisAlignment ?? CrossAxisAlignment.center,
             children: widget.children,
           ),
         ),
@@ -386,7 +386,7 @@ class CustomExpansionTileState extends State<CustomExpansionTile>
     return Padding(
       padding: EdgeInsets.only(
         top: 15.h,
-        bottom: 30.h,
+        bottom: 10.h,
       ),
       child: Container(
         height: !_isExpanded ? 40.h : null,

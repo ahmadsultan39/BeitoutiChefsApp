@@ -66,6 +66,8 @@ class AuthRepositoryImp implements AuthRepository {
           location: request.location,
           gender: request.gender.index,
           phoneNumber: request.phoneNumber,
+          certificatePath: request.certificatePath,
+          certificateName: request.certificateName,
           birthDate: request.birthDate,
           deliveryStartsAt: request.deliveryStartsAt,
           longitude: request.longitude,

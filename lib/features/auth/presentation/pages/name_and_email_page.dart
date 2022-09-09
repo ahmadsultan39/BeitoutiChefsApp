@@ -31,10 +31,10 @@ class _NameAndEmailPageState extends State<NameAndEmailPage> {
         _isNameTextValid = false;
         _nameErrorMessage = 'الرجاء إدخال الإسم';
       });
-    } else if (name.length < 7) {
+    } else if (name.length < 4) {
       setState(() {
         _isNameTextValid = false;
-        _nameErrorMessage = 'الإسم الثلاثي يجب أن يتكون من سبعة محارف أو أكثر';
+        _nameErrorMessage = 'الإسم يجب أن يتكون من أربعة محارف أو أكثر';
       });
     } else if (!_isNameTextValid) {
       setState(() {
@@ -83,17 +83,20 @@ class _NameAndEmailPageState extends State<NameAndEmailPage> {
         FormEntity(
           controller: widget.nameTextController,
           onChanged: _nameValidation,
+          textInputAction: TextInputAction.next,
           error: _nameErrorMessage,
-          upperLabel: "الإسم الثلاثي",
+          upperLabel: "الإسم والكنية",
           height: 40.h,
           prefixIcon: Icons.account_circle_rounded,
           isInputTextValid: _isNameTextValid,
         ),
+
         FormEntity(
           controller: widget.emailTextController,
           onChanged: _emailValidation,
           prefixIcon: Icons.email_rounded,
           textInputType: TextInputType.emailAddress,
+          textInputAction: TextInputAction.done,
           error: _emailErrorMessage,
           height: 40.h,
           upperLabel: "البريد الإلكتروني",

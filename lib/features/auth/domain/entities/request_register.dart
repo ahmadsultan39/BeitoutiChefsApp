@@ -16,6 +16,8 @@ class RegisterRequest extends Equatable {
   final Gender gender;
   final String? certificateName;
   final String? certificatePath;
+  final String? profilePicturePath;
+  final String? profilePictureName;
 
   const RegisterRequest({
     required this.name,
@@ -31,6 +33,8 @@ class RegisterRequest extends Equatable {
     required this.maxMealsPerDay,
     this.certificateName,
     this.certificatePath,
+    this.profilePictureName,
+    this.profilePicturePath,
   });
 
   @override

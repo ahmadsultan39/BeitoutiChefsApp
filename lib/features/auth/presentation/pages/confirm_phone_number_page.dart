@@ -62,20 +62,29 @@ class _ConfirmPhoneNumberPageState extends State<ConfirmPhoneNumberPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FormEntity(
+              textInputAction: TextInputAction.done,
+              textInputType: TextInputType.number,
               upperLabel: "أدخل رمز التأكيد المُرسل إلى رقمك:",
-              child: SizedBox(
-                width: 250.w,
-                child: PinCodeTextField(
-                  autoDisposeControllers: false,
-                  controller: widget.pinCodeTextController,
-                  appContext: context,
-                  pinTheme: PinTheme.defaults(
-                    selectedColor: Theme.of(context).primaryColor,
-                    activeColor: Theme.of(context).primaryColor,
-                    inactiveColor: Colors.grey,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 10.h,
+                ),
+                child: SizedBox(
+                  width: 250.w,
+                  child: PinCodeTextField(
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.number,
+                    autoDisposeControllers: false,
+                    controller: widget.pinCodeTextController,
+                    appContext: context,
+                    pinTheme: PinTheme.defaults(
+                      selectedColor: Theme.of(context).primaryColor,
+                      activeColor: Theme.of(context).primaryColor,
+                      inactiveColor: Colors.grey,
+                    ),
+                    length: 4,
+                    onChanged: _pinCodeValidation,
                   ),
-                  length: 4,
-                  onChanged: _pinCodeValidation,
                 ),
               ),
             ),
